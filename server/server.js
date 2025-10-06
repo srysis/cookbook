@@ -27,8 +27,17 @@ app.get('/api/recipes', (request, response) => {
 	})
 });
 
-app.get('/api/recipe', (request, response) => {
-	const search_queue = request.query.queue;
+app.get('/api/filter_recipes', (request, response) => {
+	const ingredients = Object.values(request.query);
+
+	const query = "SELECT * FROM `recipes` WHERE MATCH(`ingredients`) AGAINST ('" + ingredients + "')";
+
+	database.query(query, (error, data) => {
+		if (error) return response.json(error);
+
+		response.json(data);
+	})
+
 })
 
 
