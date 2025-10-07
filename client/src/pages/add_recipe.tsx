@@ -25,16 +25,19 @@ function AddRecipe() {
 	}
 
 	return(
-		<form onSubmit={onSubmitHandler}>
-			<br />
-			<input type="text" id="name" placeholder="Name" onChange={onChangeHandler} required />
-			<br /><br />
-			<input type="text" id="description" placeholder="Description" onChange={onChangeHandler} />
-			<br /><br />
-			<input type="text" id="ingredients" placeholder="Ingredients" onChange={onChangeHandler} required />
-			<br /><br />
-			<button>Add</button>
-		</form>
+		<section id="add_recipe">
+			<h1>Add recipe</h1>
+			<form onSubmit={onSubmitHandler}>
+				<br />
+				<input type="text" id="name" placeholder="Name" onChange={onChangeHandler} required />
+				<br /><br />
+				<input type="text" id="description" placeholder="Description" onChange={onChangeHandler} />
+				<br /><br />
+				<input type="text" id="ingredients" placeholder="Ingredients" onChange={onChangeHandler} required />
+				<br /><br />
+				<button>Add</button>
+			</form>
+		</section>
 	)
 }
 
