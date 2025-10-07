@@ -27,6 +27,18 @@ app.get('/api/recipes', (request, response) => {
 	})
 });
 
+app.post('/api/recipe', (request, response) => {
+	const { name, description, ingredients } = request.body.recipe_data;
+
+	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `ingredients`) VALUES ('" + name + "', '" + description + "', '" + ingredients + "');"
+
+	database.query(add_recipe_query, (error, data) => {
+		if (error) return response.json(error);
+
+		response.json({data: data, inserted_ID: data.insertID});
+	})
+})
+
 app.get('/api/filter_recipes', (request, response) => {
 	const ingredients = Object.values(request.query);
 
@@ -37,8 +49,7 @@ app.get('/api/filter_recipes', (request, response) => {
 
 		response.json(data);
 	})
-
-})
+});
 
 
 app.listen(process.env.PORT || port, () => {console.log(`Cookbook API running on port ${port}`)});
