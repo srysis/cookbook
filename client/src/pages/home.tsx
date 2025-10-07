@@ -19,6 +19,7 @@ function Home() {
 	if (recipes != undefined) {
 		return(
 			<section id="home">
+				<h1>Home</h1>
 				{recipes.map((recipe) => <Recipe key={recipe.id} content={recipe} />)}
 			</section>
 		)

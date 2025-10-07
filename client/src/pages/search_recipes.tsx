@@ -34,6 +34,7 @@ function SearchRecipes() {
 
 	return(
 		<section id="search">
+			<h1>Search</h1>
 			<form onSubmit={onSubmitHandler}>
 				<input type="text" autoComplete="off" onChange={onChangeHandler} />
 				<button>Submit</button>
