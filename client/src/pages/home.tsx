@@ -19,7 +19,6 @@ function Home() {
 	if (recipes != undefined) {
 		return(
 			<section id="home">
-				<p>text</p>
 				{recipes.map((recipe) => <Recipe key={recipe.id} content={recipe} />)}
 			</section>
 		)
