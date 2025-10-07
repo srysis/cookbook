@@ -8,6 +8,7 @@ import axios from './api/axios.ts'
 import BaseLayout from './components/layout/Base'
 
 import Home from './pages/home'
+import SearchRecipesPage from './pages/search_recipes'
 
 if (import.meta.env.PROD) {
 	disableReactDevTools();
@@ -19,6 +20,7 @@ function App() {
 			<Routes>
 				<Route element={<BaseLayout />} >
 					<Route path="/" element={<Home />} />
+					<Route path="/search" element={<SearchRecipesPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
