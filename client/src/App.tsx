@@ -33,6 +33,21 @@ function App() {
 
 	const [isLoggedIn, setLoggedInState] = useState<boolean>(logged_in);
 
+	useEffect(() => {
+		if (stored_web_token && stored_user_ID) {
+
+			axios.get(`/auth/verify/${stored_user_ID}`)
+			.then((response: any) => {
+				if (!response.data.success) logOut();
+			})
+			.catch(() => {
+				logOut();
+			});
+		} else {
+			logOut();
+		}
+	}, [isLoggedIn])
+
 	function logIn(login_data: any) {
 		const token = login_data.token;
 		const user_id = login_data.user_id;
