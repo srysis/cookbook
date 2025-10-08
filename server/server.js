@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dot_env = require('dotenv');
+const cookieparser = require('cookie-parser');
 
 const database = require('./database.js');
 
@@ -10,6 +11,7 @@ const recipesRoutes = require('./routes/recipes.js');
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
+app.use(cookieparser());
 
 dot_env.config();
 
