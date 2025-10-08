@@ -2,10 +2,15 @@ import { Outlet } from 'react-router-dom'
 
 import Header from "./Header"
 
-function Base() {
+interface props {
+	isLoggedIn: boolean,
+	logOut: Function
+}
+
+function Base({isLoggedIn, logOut}: props) {
 	return(
 		<>
-			<Header />
+			<Header isLoggedIn={isLoggedIn} logOut={logOut} />
 			<main>
 				<Outlet />
 			</main>
