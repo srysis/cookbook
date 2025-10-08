@@ -27,6 +27,18 @@ app.get('/api/recipes', (request, response) => {
 	})
 });
 
+app.get('/api/recipe/:id', (request, response) => {
+	const recipe_id = request.params.id;
+
+	const get_recipe_query = "SELECT * FROM `recipes` WHERE `id` = " + recipe_id;
+
+	database.query(get_recipe_query, (error, data) => {
+		if (error) return response.json(error);
+
+		response.json({recipe_info: data[0]});
+	})
+})
+
 app.post('/api/recipe', (request, response) => {
 	const { name, description, ingredients } = request.body.recipe_data;
 
@@ -35,7 +47,7 @@ app.post('/api/recipe', (request, response) => {
 	database.query(add_recipe_query, (error, data) => {
 		if (error) return response.json(error);
 
-		response.json({data: data, inserted_ID: data.insertID});
+		response.json({recipe_info: data, inserted_ID: data.insertID});
 	})
 })
 
