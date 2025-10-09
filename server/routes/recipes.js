@@ -28,7 +28,7 @@ router.get('/recipe/:id', (request, response) => {
 	})
 })
 
-router.post('/recipe', (request, response) => {
+router.post('/recipe', authenticator, (request, response) => {
 	const { name, description, ingredients } = request.body.recipe_data;
 
 	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `ingredients`) VALUES ('" + name + "', '" + description + "', '" + ingredients + "');"
@@ -36,7 +36,7 @@ router.post('/recipe', (request, response) => {
 	database.query(add_recipe_query, (error, data) => {
 		if (error) return response.json(error);
 
-		response.json({recipe_info: data, inserted_ID: data.insertID});
+		response.json({success: true, inserted_ID: data.insertId});
 	})
 })
 
