@@ -5,6 +5,8 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools'
 
 import axios from './api/axios'
 
+import ProtectedRoutes from './tools/ProtectedRoutes'
+
 import BaseLayout from './components/layout/Base'
 
 import Home from './pages/home'
@@ -80,11 +82,14 @@ function App() {
 				<Route element={<BaseLayout isLoggedIn={isLoggedIn} logOut={logOut} />} >
 					<Route path="/" element={<Home />} />
 					<Route path="/search" element={<SearchRecipesPage />} />
-					<Route path="/add_recipe" element={<AddRecipePage />} />
 					<Route path="/recipe/:id" element={<RecipePage />} />
 
 					<Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} logIn={logIn} />} />
 					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
+
+					<Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+						<Route path="/add_recipe" element={<AddRecipePage />} />
+					</Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>
