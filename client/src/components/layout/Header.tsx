@@ -20,9 +20,11 @@ function Header({isLoggedIn, logOut}: props) {
 				}
 				<Link to="/">Home</Link>
 				<Link to="/search">Search recipes</Link>
-				<Link to="/add_recipe">Add a new recipe</Link>
-				{isLoggedIn && 
-					<button onClick={logOut}>Log out</button>
+				{isLoggedIn &&
+					<>
+						<Link to="/add_recipe">Add a new recipe</Link> 
+						<button onClick={logOut}>Log out</button>
+					</>
 				}
 			</nav>
 		</header>
