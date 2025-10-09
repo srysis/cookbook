@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 import axios from '../api/axios.ts'
 
 function AddRecipe() {
+	const navigate = useNavigate();
+
 	const [recipe_data, setRecipeData] = useState<any>({name: "", description: "", ingredients: ""});
 
 	function onChangeHandler(event: any) {
@@ -15,12 +18,16 @@ function AddRecipe() {
 	function onSubmitHandler(event: any) {
 		event.preventDefault();
 
-		axios.post(`/recipe`, {recipe_data: recipe_data})
+		axios.post(`/recipe`, {user_id: window.localStorage.getItem("id"), recipe_data: recipe_data})
 		.then((response: any) => {
-			console.log(response);
+			if (response.data.success) {
+				navigate(`/recipe/${response.data.inserted_ID}`)
+			}
 		})
 		.catch((error: any) => {
-			console.error(error);
+			if (!error.response.data.success) {
+				window.location.reload();
+			}
 		})
 	}
 
