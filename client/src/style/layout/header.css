@@ -1,10 +1,38 @@
 header {
-	nav {
-		display: flex;
-		justify-content: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 2vw;
+	background-color: #FF424B;
 
-		a {
+	div.logo_container {
+		font-size: 2.2em;
+		font-weight: bold;
+	}
+
+	nav {
+		a, button.log_out_button {
 			margin-inline: 1vw;
+			padding: 10px 1vw;
+			border-radius: 10px;
+			font-weight: bold;
+			font-size: 1.3em;
+		}
+
+		a:hover, button.log_out_button:hover {
+			background-color: rgba(255, 158, 158, 0.5);
+		}
+
+		button.log_out_button:hover {
+			color: var(--link-hover-color);
+		}
+
+		button.log_out_button:active {
+			color: var(--link-active-color);
+		}
+
+		span.log_in_button, button.log_out_button {
+			margin-right: 0;
 		}
 	}
 }
