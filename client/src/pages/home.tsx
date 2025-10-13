@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 
 import Recipe from "../components/home/Recipe"
 
+import "../style/home.css"
+
 function Home() {
 	const [recipes, setRecipes] = useState<any>();
 
@@ -18,7 +20,6 @@ function Home() {
 
 	return(
 		<section id="home">
-			<h1>Home</h1>
 			{recipes && recipes.map((recipe) => <Recipe key={recipe.id} content={recipe} />)}
 		</section>
 	)
