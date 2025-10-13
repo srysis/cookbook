@@ -12,19 +12,19 @@ function Header({isLoggedIn, logOut}: props) {
 
 	return(
 		<header>
+			<div className="logo_container"><Link to="/">Cookbook</Link></div>
 			<nav>
-				{!isLoggedIn && 
-					<> 
-						<Link id="log_in_button" to="/login">Log In</Link>
-					</> 
-				}
-				<Link to="/">Home</Link>
-				<Link to="/search">Search recipes</Link>
+				<span><Link to="/search">Search recipes</Link></span>
 				{isLoggedIn &&
 					<>
-						<Link to="/add_recipe">Add a new recipe</Link> 
-						<button onClick={logOut}>Log out</button>
+						<span><Link to="/add_recipe">Add a new recipe</Link></span>
+						<button className="log_out_button" onClick={logOut}>Log out</button>
 					</>
+				}
+				{!isLoggedIn && 
+					<span className="log_in_button"> 
+						<Link id="log_in_button" to="/login">Log In</Link>
+					</span> 
 				}
 			</nav>
 		</header>
