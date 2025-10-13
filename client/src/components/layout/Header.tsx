@@ -22,7 +22,7 @@ function Header({isLoggedIn, logOut}: props) {
 					</>
 				}
 				{!isLoggedIn && 
-					<span className="log_in_button"> 
+					<span> 
 						<Link id="log_in_button" to="/login">Log In</Link>
 					</span> 
 				}
