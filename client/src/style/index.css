@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
+	--link-color: #fff;
+	--link-hover-color: #eee;
+	--link-active-color: #ddd;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -11,4 +19,27 @@ html {
 
 body {
 	text-align: center;
+	overflow-y: scroll;
+	font-family: "Open Sans", sans-serif;
+}
+
+a {
+	text-decoration-line: none;
+	color: var(--link-color);
+}
+
+a:hover {
+	color: var(--link-hover-color);
+}
+
+a:active {
+	color: var(--link-active-color);
+}
+
+button {
+	border: none;
+	background-color: transparent;
+	color: var(--link-color);
+	font-family: "Open Sans", sans-serif;
+	cursor: pointer;
 }
