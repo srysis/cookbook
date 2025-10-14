@@ -8,8 +8,6 @@ interface props {
 }
 
 function Header({isLoggedIn, logOut}: props) {
-	const stored_user_id: any = window.localStorage.getItem('id');
-
 	return(
 		<header>
 			<div className="logo_container"><Link to="/">cookbook</Link></div>
@@ -18,7 +16,7 @@ function Header({isLoggedIn, logOut}: props) {
 				{isLoggedIn &&
 					<>
 						<span><Link to="/add_recipe">Add a new recipe</Link></span>
-						<button className="log_out_button" onClick={logOut}>Log out</button>
+						<button className="log_out_button" onClick={() => logOut()}>Log out</button>
 					</>
 				}
 				{!isLoggedIn && 
