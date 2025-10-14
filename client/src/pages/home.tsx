@@ -5,8 +5,15 @@ import Recipe from "../components/home/Recipe"
 
 import "../style/home.css"
 
+type Recipe = {
+	id: number,
+	name: string,
+	description: string,
+	ingredients: string
+}
+
 function Home() {
-	const [recipes, setRecipes] = useState<any>();
+	const [recipes, setRecipes] = useState<Array<Recipe>>([]);
 
 	useEffect(() => {
 		axios.get(`/recipes`)
