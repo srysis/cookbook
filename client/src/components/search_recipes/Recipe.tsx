@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 interface props {
@@ -17,21 +18,35 @@ function Recipe({recipe, ingredients_list}: props) {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
 
-	let ingredients_HTML = [];
+	const recipe_ingredients = ingredients.split(/[ ,]+/);
+
+	let matching_ingredients_HTML = [];
+	let matching_ingredients_amount = 0;
+
+	let non_matching_ingredients_HTML = [];
+
+	let isFullMatch = false;
+
+	recipe_ingredients.map((recipe_ingredient, index) => {
+		if (ingredients_list.includes(recipe_ingredient)) {
+			matching_ingredients_HTML.push(<span key={index} className="matching_ingredient">{capitalize(recipe_ingredient)}</span>);
+			matching_ingredients_amount++;
+		}
+	});
+
+	recipe_ingredients.map((recipe_ingredient, index) => {
+		if (!ingredients_list.includes(recipe_ingredient)) {
+			non_matching_ingredients_HTML.push(<span key={index}>{capitalize(recipe_ingredient)}</span>);
+		}
+	});
+
+	if (matching_ingredients_amount == recipe_ingredients.length) {
+		isFullMatch = true;
+	}
 
 	return(
 		<>
-			{ingredients.split(/[ ,]+/).map((recipe_ingredient, index) => {
-				if (ingredients_list.includes(recipe_ingredient)) {
-					ingredients_HTML.push(<span key={index} className="matching_ingredient">{capitalize(recipe_ingredient)}</span>)
-				}
-			})}
-			{ingredients.split(/[ ,]+/).map((recipe_ingredient, index) => {
-				if (!ingredients_list.includes(recipe_ingredient)) {
-					ingredients_HTML.push(<span key={index}>{capitalize(recipe_ingredient)}</span>)
-				}
-			})}
-			<div className="recipe">
+			<div className={isFullMatch ? "recipe match" : "recipe"}>
 				<div className="link_container">
 					<div className="overlay">
 						<Link to={`/recipe/${id}`}></Link>
@@ -40,7 +55,7 @@ function Recipe({recipe, ingredients_list}: props) {
 					<div className="description">
 						<p>{description ? description : "no description"}</p>
 					</div>
-					<div className="ingredients">{ingredients_HTML}</div>
+					<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
 				</div>
 			</div>
 		</>
