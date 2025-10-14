@@ -15,6 +15,8 @@ function SearchRecipes() {
 	function onSubmitHandler(event: any) {
 		event.preventDefault();
 
+		setFilteredRecipes([]);
+
 		setIngredientsList(() => {
 			const new_ingredients_list = (event.target.elements[0].value);
 
@@ -39,20 +41,20 @@ function SearchRecipes() {
 
 	return(
 		<section id="search">
-			<h1>Search</h1>
 			<form onSubmit={onSubmitHandler}>
-				<input type="text" autoComplete="off" />
-				<button>Submit</button>
+				<div className="input_container"><input type="search" id="ingredients" placeholder="Filter by ingredients..." autoComplete="off" /></div>
+				<div className="submit_container"><button>Search</button></div>
 			</form>
-			{ isSearchFinished && 
-				<section id="matching_recipes">
-					{filtered_recipes.length > 0 &&
-						<>
-							{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list.split(/[ ,]+/)} />)}
-						</>
-					}
-				</section>
-			}
+			<section id="matching_recipes">
+				{ isSearchFinished && filtered_recipes.length > 0 && 
+					<>
+						{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list.split(/[ ,]+/)} />)}
+					</>
+				}
+				{ isSearchFinished && filtered_recipes.length <= 0 &&
+					<p>No recipes that match given ingredients were found.</p>
+				}
+			</section>
 		</section>
 	)
 }
