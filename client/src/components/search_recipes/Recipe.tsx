@@ -51,7 +51,7 @@ function Recipe({recipe, ingredients_list}: props) {
 					<div className="overlay">
 						<Link to={`/recipe/${id}`}></Link>
 					</div>
-					<div className="name"><h2>{name}</h2></div>
+					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">You can cook this!</span>}</div>
 					<div className="description">
 						<p>{description ? description : "no description"}</p>
 					</div>
