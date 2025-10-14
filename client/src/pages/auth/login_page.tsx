@@ -1,6 +1,5 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
 
 import axios from '../../api/axios'
 

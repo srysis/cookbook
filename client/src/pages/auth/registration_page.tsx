@@ -16,15 +16,12 @@ function RegistrationPage({isLoggedIn}: props) {
 
 	const [username, setUsername] = useState<string>("");
 	const [isUsernameValid, setIsUsernameValid] = useState<boolean>(false);
-	const [username_focus, setUsernameFocus] = useState<boolean>(false);
 
 	const [password, setPassword] = useState<string>("");
 	const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
-	const [password_focus, setPasswordFocus] = useState<boolean>(false);
 
 	const [matching_password, setMatchingPassword] = useState<string>("");
 	const [doPasswordsMatch, setDoPasswordsMatch] = useState<boolean>(false);
-	const [matching_password_focus, setMatchingPasswordFocus] = useState<boolean>(false);
 
 	const navigate = useNavigate();
 
@@ -91,17 +88,13 @@ function RegistrationPage({isLoggedIn}: props) {
 						ref={userRef} 
 						autoComplete="off" 
 						onChange={onChangeHandler} 
-						onFocus={() => setUsernameFocus(true)} 
-						onBlur={() => setUsernameFocus(false)} 
 						required 
 					/>
 					<br /><br />
 					<input 
 						type="password" 
 						id="password" 
-						onChange={onChangeHandler} 
-						onFocus={() => setPasswordFocus(true)} 
-						onBlur={() => setPasswordFocus(false)} 
+						onChange={onChangeHandler}  
 						required 
 					/>
 					<br /><br />
@@ -109,8 +102,6 @@ function RegistrationPage({isLoggedIn}: props) {
 						type="password" 
 						id="match_password" 
 						onChange={onChangeHandler} 
-						onFocus={() => setMatchingPasswordFocus(true)} 
-						onBlur={() => setMatchingPasswordFocus(false)} 
 						required 
 					/>
 					<br /><br />
