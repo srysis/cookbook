@@ -12,7 +12,7 @@ function Header({isLoggedIn, logOut}: props) {
 
 	return(
 		<header>
-			<div className="logo_container"><Link to="/">Cookbook</Link></div>
+			<div className="logo_container"><Link to="/">cookbook</Link></div>
 			<nav>
 				<span><Link to="/search">Search recipes</Link></span>
 				{isLoggedIn &&
