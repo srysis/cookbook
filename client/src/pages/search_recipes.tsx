@@ -6,9 +6,16 @@ import Recipe from "../components/search_recipes/Recipe"
 
 import "../style/search_page.css"
 
+type Recipe = {
+	id: number,
+	name: string,
+	description: string,
+	ingredients: string
+}
+
 function SearchRecipes() {
-	const [filtered_recipes, setFilteredRecipes] = useState<any>();
-	const [ingredients_list, setIngredientsList] = useState<any>();
+	const [filtered_recipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
+	const [ingredients_list, setIngredientsList] = useState<string>("");
 
 	const [isSearchFinished, setIsSearachFinished] = useState<boolean>(false);
 
