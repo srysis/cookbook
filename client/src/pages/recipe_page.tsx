@@ -5,10 +5,17 @@ import axios from '../api/axios'
 
 import "../style/recipe_page.css"
 
+type Recipe = {
+	id: number,
+	name: string,
+	description: string,
+	ingredients: string
+}
+
 function RecipePage() {
 	const { id } = useParams();
 
-	const [recipe_info, setRecipeInfo] = useState<any>();
+	const [recipe_info, setRecipeInfo] = useState<Recipe>({id: 0, name: "", description: "", ingredients: ""});
 	const [infoFetched, setInfoFetched] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -26,11 +33,11 @@ function RecipePage() {
 	if (infoFetched) {
 		const { name, description, ingredients } = recipe_info;
 
-		const recipe_ingredients = ingredients.split(/[ ,]+/);
-		const ingredients_list = Object.values(Object.fromEntries(new URLSearchParams(window.location.search)));
+		const recipe_ingredients: string[] = ingredients.split(/[ ,]+/);
+		const ingredients_list: string[] = Object.values(Object.fromEntries(new URLSearchParams(window.location.search)));
 
-		let matching_ingredients_HTML = [];
-		let non_matching_ingredients_HTML = [];
+		let matching_ingredients_HTML: any = [];
+		let non_matching_ingredients_HTML: any = [];
 
 		recipe_ingredients.map((recipe_ingredient, index) => {
 			if (ingredients_list.includes(recipe_ingredient)) {
