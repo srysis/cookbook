@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 interface props {
@@ -20,10 +19,10 @@ function Recipe({recipe, ingredients_list}: props) {
 
 	const recipe_ingredients = ingredients.split(/[ ,]+/);
 
-	let matching_ingredients_HTML = [];
-	let matching_ingredients_amount = 0;
+	let matching_ingredients_HTML: any = [];
+	let matching_ingredients_amount: number = 0;
 
-	let non_matching_ingredients_HTML = [];
+	let non_matching_ingredients_HTML: any = [];
 
 	let isFullMatch = false;
 
@@ -44,8 +43,8 @@ function Recipe({recipe, ingredients_list}: props) {
 		isFullMatch = true;
 	}
 
-	const query = new URLSearchParams(Object.assign({}, ingredients_list));
-	const queryString = query.toString();
+	const query: any = new URLSearchParams(Object.assign({}, ingredients_list) as any);
+	const queryString: string = query.toString();
 
 	return(
 		<>
