@@ -44,12 +44,15 @@ function Recipe({recipe, ingredients_list}: props) {
 		isFullMatch = true;
 	}
 
+	const query = new URLSearchParams(Object.assign({}, ingredients_list));
+	const queryString = query.toString();
+
 	return(
 		<>
 			<div className={isFullMatch ? "recipe match" : "recipe"}>
 				<div className="link_container">
 					<div className="overlay">
-						<Link to={`/recipe/${id}`}></Link>
+						<Link to={`/recipe/${id}?${queryString}`}></Link>
 					</div>
 					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">You can cook this!</span>}</div>
 					<div className="description">
