@@ -34,6 +34,7 @@ header {
 		a#log_in_button, button.log_out_button {
 			margin-right: 0;
 			background-color: rgba(255, 0, 0, 0.6);
+			color: var(--link-hover-color);
 		}
 	}
 }
