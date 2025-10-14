@@ -1,12 +1,12 @@
 section#search {
 	section#matching_recipes {
-		margin: 0;
+		margin: 20px 0;
 
 		div.recipe {
 			display: flex;
 			flex-direction: column;
 			text-align: left;
-			margin-block: 10px;
+			margin-block: 20px;
 			border-radius: 10px;
 			background-color: #fff;
 			box-shadow: var(--recipe-element-box-shadow);
@@ -71,5 +71,17 @@ section#search {
 				background-color: var(--link-active-color);
 			}
 		}
+	}
+
+	div.recipe.match {
+		box-shadow: var(--recipe-match-element-box-shadow) !important;
+	}
+
+	div.recipe:first-child {
+		margin-top: 0 !important;
+	}
+
+	div.recipe:last-child {
+		margin-bottom: 0 !important;
 	}
 }
