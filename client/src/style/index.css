@@ -5,6 +5,9 @@
 	--link-hover-color: #eee;
 	--link-active-color: #ddd;
 
+	--input-element-background-color: #eee;
+	--input-element-box-shadow: 0px 0px 4px 2px #ddd;
+
 	--section-box-shadow: 0px 0px 4px 2px #ccc;
 
 	--recipe-element-box-shadow: 0px 0px 4px 4px #bbb;
