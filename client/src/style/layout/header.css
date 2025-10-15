@@ -11,27 +11,28 @@ header {
 	}
 
 	nav {
-		a, button.log_out_button {
+		a, button.log_in_button, button.log_out_button {
 			margin-inline: 1vw;
 			padding: 10px 1vw;
 			border-radius: 10px;
 			font-weight: bold;
 			font-size: 1.3em;
+			color: #fff;
 		}
 
-		a:hover, button.log_out_button:hover {
+		a:hover, button.log_in_button:hover, button.log_out_button:hover {
 			background-color: rgba(255, 158, 158, 0.5);
 		}
 
-		button.log_out_button:hover {
+		button.log_in_button:hover, button.log_out_button:hover {
 			color: var(--link-hover-color);
 		}
 
-		button.log_out_button:active {
+		button.log_in_button:active, button.log_out_button:active {
 			color: var(--link-active-color);
 		}
 
-		a#log_in_button, button.log_out_button {
+		button.log_in_button, button.log_out_button {
 			margin-right: 0;
 			background-color: rgba(255, 0, 0, 0.6);
 			color: var(--link-hover-color);
