@@ -16,7 +16,12 @@ section#search {
 				border: none;
 				border-radius: 4px;
 				padding: 20px .8vw;
-				box-shadow: var(--recipe-element-box-shadow);
+				box-shadow: var(--input-element-box-shadow);
+				background-color: var(--input-element-background-color);
+			}
+
+			input:focus {
+				background-color: #ddd;
 			}
 		}
 
@@ -24,21 +29,21 @@ section#search {
 			margin-top: 20px;
 
 			button {
-				border: none;
 				border-radius: 2px;
 				padding: 10px 3vw;
-				box-shadow: var(--recipe-element-box-shadow);
+				box-shadow: var(--input-element-box-shadow);
 				font-size: 1em;
 				font-weight: bold;
 				color: #000;
+				background-color: var(--input-element-background-color);
 			}
 
 			button:hover {
-				background-color: #eee;
+				background-color: #ddd;
 			}
 
 			button:active {
-				background-color: #ddd;
+				background-color: #ccc;
 			}
 		}
 	}
