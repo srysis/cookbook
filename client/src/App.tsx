@@ -15,7 +15,6 @@ import AddRecipePage from './pages/add_recipe'
 import RecipePage from './pages/recipe_page'
 
 import RegistrationPage from './pages/auth/registration_page'
-import LoginPage from './pages/auth/login_page'
 
 if (import.meta.env.PROD) {
 	disableReactDevTools();
@@ -79,12 +78,11 @@ function App() {
 	return(
 		<BrowserRouter basename="/">
 			<Routes>
-				<Route element={<BaseLayout isLoggedIn={isLoggedIn} logOut={logOut} />} >
+				<Route element={<BaseLayout isLoggedIn={isLoggedIn} logIn={logIn} logOut={logOut} />} >
 					<Route path="/" element={<Home />} />
 					<Route path="/search" element={<SearchRecipesPage />} />
 					<Route path="/recipe/:id" element={<RecipePage />} />
 
-					<Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} logIn={logIn} />} />
 					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
 
 					<Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
