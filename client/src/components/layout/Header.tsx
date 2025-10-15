@@ -4,10 +4,11 @@ import "../../style/layout/header.css"
 
 interface props {
 	isLoggedIn: boolean,
-	logOut: Function
+	logOut: Function,
+	setLoginPopupVisible: Function
 }
 
-function Header({isLoggedIn, logOut}: props) {
+function Header({isLoggedIn, logOut, setLoginPopupVisible}: props) {
 	return(
 		<header>
 			<div className="logo_container"><Link to="/">cookbook</Link></div>
@@ -20,9 +21,7 @@ function Header({isLoggedIn, logOut}: props) {
 					</>
 				}
 				{!isLoggedIn && 
-					<span> 
-						<Link id="log_in_button" to="/login">Log In</Link>
-					</span> 
+					<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>Log in</button>
 				}
 			</nav>
 		</header>
