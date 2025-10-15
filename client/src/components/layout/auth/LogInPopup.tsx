@@ -41,7 +41,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 			if (response.data.success) {
 				logIn(response.data);
 
-				navigate('/');
+				window.location.reload();
 			}
 		} catch (error: any) {
 			console.error(error);
@@ -73,8 +73,9 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							required 
 						/>
 					</div>
-					<div className="submit_container">
-						<button disabled={!user_credentials.username || !user_credentials.password}>Log In</button>
+					<div className="buttons_container">
+						<button type="submit" disabled={!user_credentials.username || !user_credentials.password}>Log In</button>
+						<button type="button" onClick={() => {navigate('/register'); setLoginPopupVisible(false)}}>Register</button>
 					</div>
 				</form>
 			</div>
