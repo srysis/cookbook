@@ -7,6 +7,10 @@
 
 	--input-element-background-color: #eee;
 	--input-element-box-shadow: 0px 0px 4px 2px #ddd;
+	--input-element-hover-background-color: #ddd;
+	--input-element-active-background-color: #ccc;
+
+	--disabled-input-element-background-color: #ddd;
 
 	--section-box-shadow: 0px 0px 4px 2px #ccc;
 
