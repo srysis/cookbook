@@ -1,0 +1,72 @@
+section#add_recipe {
+	padding: 20px 1vw;
+	border-radius: 5px;
+	box-shadow: var(--section-box-shadow);
+	text-align: left;
+	background-color: #fff;
+
+	form {
+		div.input_container:nth-child(1) {
+			padding-top: 0;
+		}
+
+		div.input_container {
+			padding-block: 10px;
+
+			label {
+				display: block;
+				margin-bottom: 10px;
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+
+			input, textarea {
+				width: 100%;
+				border: 1px solid #ddd;
+				padding: 15px 1vw;
+				box-shadow: var(--input-element-box-shadow);
+				background-color: var(--input-element-background-color);
+			}
+
+			textarea {
+				font-family: "Open Sans", sans-serif;
+			}
+		}
+
+		div.buttons_container {
+			display: flex;
+			justify-content: flex-end;
+			padding-top: 20px;
+
+			button[type="submit"] {
+				margin-right: 0;
+			}
+
+			button {
+				width: 15%;
+				margin-inline: 1vw;
+				border: 1px solid #ddd;
+				border-radius: 2px;
+				padding-block: 10px;
+				font-size: 1.2em;
+				font-weight: bold;
+				box-shadow: var(--input-element-box-shadow);
+				background-color: var(--input-element-background-color);
+				color: #000;
+			}
+
+			button:hover {
+				background-color: var(--input-element-hover-background-color);
+			}
+
+			button:active {
+				background-color: var(--input-element-active-background-color);
+			}
+
+			button[disabled] {
+				cursor: not-allowed;
+				background-color: var(--disabled-input-element-background-color);
+			}
+		}
+	}
+}
