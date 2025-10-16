@@ -19,10 +19,6 @@ section#search {
 				box-shadow: var(--input-element-box-shadow);
 				background-color: var(--input-element-background-color);
 			}
-
-			input:focus {
-				background-color: #ddd;
-			}
 		}
 
 		div.submit_container {
