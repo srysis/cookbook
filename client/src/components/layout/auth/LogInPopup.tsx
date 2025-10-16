@@ -5,6 +5,11 @@ import axios from '../../../api/axios'
 
 import "../../../style/auth/login_popup.css"
 
+type UserCredentials = {
+	username: string,
+	password: string
+}
+
 interface props {
 	logIn: Function,
 	setLoginPopupVisible: Function
@@ -13,7 +18,7 @@ interface props {
 function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	const userRef: any = useRef(null);
 
-	const [user_credentials, setUserCredentials] = useState<{username: string, password: string} | {}>({});
+	const [user_credentials, setUserCredentials] = useState<UserCredentials>({username: "", password: ""});
 
 	const navigate = useNavigate();
 
@@ -49,7 +54,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	}
 
 	return(
-		<div id="login_popup" onClick={() => { if (event.target.id == "login_popup") setLoginPopupVisible(false) }}>
+		<div id="login_popup" onClick={() => { if ((event?.target as HTMLElement).id == "login_popup") setLoginPopupVisible(false) }}>
 			<div className="form_container">
 				<h1>Log In</h1>
 				<form onSubmit={onSubmitHandler}>
