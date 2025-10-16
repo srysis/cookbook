@@ -3,10 +3,22 @@ import { useNavigate } from 'react-router'
 
 import axios from '../api/axios.ts'
 
+import "../style/add_recipe_page.css"
+
 function AddRecipe() {
 	const navigate = useNavigate();
 
 	const [recipe_data, setRecipeData] = useState<any>({name: "", description: "", ingredients: ""});
+
+	function clearFields() {
+		const input_fields = document.querySelectorAll("input[type='text'], textarea") as any;
+
+		for (let input_field of input_fields) {
+			input_field.value = "";
+
+			setRecipeData({name: "", description: "", ingredients: ""});
+		}
+	}
 
 	function onChangeHandler(event: any) {
 		setRecipeData({
@@ -33,16 +45,30 @@ function AddRecipe() {
 
 	return(
 		<section id="add_recipe">
-			<h1>Add recipe</h1>
 			<form onSubmit={onSubmitHandler}>
-				<br />
-				<input type="text" id="name" placeholder="Name" onChange={onChangeHandler} required />
-				<br /><br />
-				<input type="text" id="description" placeholder="Description" onChange={onChangeHandler} />
-				<br /><br />
-				<input type="text" id="ingredients" placeholder="Ingredients" onChange={onChangeHandler} required />
-				<br /><br />
-				<button>Add</button>
+				<div className="input_container">
+					<label htmlFor="name"><span>Recipe name</span></label>
+					<input type="text" id="name" placeholder="Name your recipe" onChange={onChangeHandler} autoComplete="off" required />
+				</div>
+				<div className="input_container">
+					<label htmlFor="ingredients"><span>Ingredients that are required in the recipe</span></label>
+					<input type="text" id="ingredients" placeholder="e.g. cheese, bread, etc." onChange={onChangeHandler} autoComplete="off" required />
+				</div>
+				<div className="input_container">
+					<label htmlFor="description"><span>Additional information(optional)</span></label>
+					<textarea 
+						id="description" 
+						placeholder="Things like how to cook properly or just the description of an end result" 
+						rows={4} 
+						cols={40} 
+						maxLength={5000} 
+						onChange={onChangeHandler} 
+					/>
+				</div>
+				<div className="buttons_container">
+					<button type="button" onClick={() => clearFields()}>Clear</button>
+					<button type="submit" disabled={!recipe_data.name || !recipe_data.ingredients}>Add recipe</button>
+				</div>
 			</form>
 		</section>
 	)
