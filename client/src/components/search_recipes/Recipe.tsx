@@ -19,6 +19,7 @@ function Recipe({recipe, ingredients_list}: props) {
 
 	const recipe_ingredients = ingredients.split(/[ ,]+/);
 
+	let matching_ingredients: string[] = [];
 	let matching_ingredients_HTML: any = [];
 	let matching_ingredients_amount: number = 0;
 
@@ -29,6 +30,7 @@ function Recipe({recipe, ingredients_list}: props) {
 	recipe_ingredients.map((recipe_ingredient, index) => {
 		if (ingredients_list.includes(recipe_ingredient)) {
 			matching_ingredients_HTML.push(<span key={index} className="matching_ingredient">{capitalize(recipe_ingredient)}</span>);
+			matching_ingredients.push(recipe_ingredient);
 			matching_ingredients_amount++;
 		}
 	});
@@ -43,7 +45,7 @@ function Recipe({recipe, ingredients_list}: props) {
 		isFullMatch = true;
 	}
 
-	const query: any = new URLSearchParams(Object.assign({}, ingredients_list) as any);
+	const query: any = new URLSearchParams(Object.assign({}, matching_ingredients) as any);
 	const queryString: string = query.toString();
 
 	return(
