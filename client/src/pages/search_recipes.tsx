@@ -30,7 +30,7 @@ function SearchRecipes() {
 	function removeIngredientFromList(event: any) {
 		let new_ingredients_list = ingredients_list;
 
-		new_ingredients_list = new_ingredients_list.filter((item, index) => { return index != event.currentTarget.dataset.index });
+		new_ingredients_list = new_ingredients_list.filter((_item, index) => { return index != event.currentTarget.dataset.index });
 
 		setIngredientsList(new_ingredients_list);
 	}
@@ -69,7 +69,7 @@ function SearchRecipes() {
 			const temp_ingredients_list = ingredients_list;
 
 			if (temp_ingredients_list) {
-				let query = new URLSearchParams(Object.assign({}, temp_ingredients_list));
+				let query = new URLSearchParams(Object.assign({}, temp_ingredients_list) as any);
 				let queryString = query.toString();
 
 				axios.get(`/filter_recipes?${queryString}`)
