@@ -1,7 +1,7 @@
 section#add_recipe {
 	padding: 20px 1vw;
-	border-radius: 5px;
-	box-shadow: var(--section-box-shadow);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
 	text-align: left;
 	background-color: #fff;
 
@@ -23,6 +23,7 @@ section#add_recipe {
 			input, textarea {
 				width: 100%;
 				border: 1px solid #ddd;
+				border-radius: var(--border-radius);
 				padding: 15px 1vw;
 				box-shadow: var(--input-element-box-shadow);
 				background-color: var(--input-element-background-color);
