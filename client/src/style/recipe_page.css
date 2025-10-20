@@ -2,8 +2,8 @@ section#recipe {
 	display: flex;
 	flex-direction: column;
 	padding: 20px 1vw;
-	border-radius: 5px;
-	box-shadow: var(--section-box-shadow);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
 	text-align: left;
 	background-color: #fff;
 
@@ -22,7 +22,7 @@ section#recipe {
 	div.ingredients {
 		span {
 			margin-inline: .1vw;
-			border-radius: 5px;
+			border-radius: var(--ingredient-border-radius);
 			padding: 2px 8px;
 			background-color: #ddd;
 			color: #666;

@@ -1,7 +1,7 @@
 section#search {
 	padding: 20px 1vw;
 	border-radius: 5px;
-	box-shadow: var(--section-box-shadow);
+	box-shadow: var(--box-shadow);
 	background-color: #fff;
 
 	form {
@@ -61,7 +61,7 @@ section#search {
 					input {
 						width: inherit;
 						border: none;
-						border-radius: 4px;
+						border-radius: var(--border-radius);
 						padding: 20px .4vw;
 						background-color: var(--input-element-background-color);
 					}
@@ -104,14 +104,14 @@ section#search {
 			flex-direction: column;
 			text-align: left;
 			margin-block: 20px;
-			border-radius: 10px;
+			border-radius: var(--border-radius);
 			background-color: #fff;
-			box-shadow: var(--recipe-element-box-shadow);
+			box-shadow: var(--box-shadow);
 
 			div.link_container {
 				position: relative;
 				margin: 0;
-				border-radius: 10px;
+				border-radius: inherit;
 				padding: 0;
 
 				div.overlay {
@@ -153,7 +153,7 @@ section#search {
 
 					span {
 						margin-inline: .1vw;
-						border-radius: 5px;
+						border-radius: var(--ingredient-border-radius);
 						padding: 2px 8px;
 						background-color: #ddd;
 						color: #666;
