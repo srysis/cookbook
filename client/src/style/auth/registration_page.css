@@ -1,9 +1,9 @@
 section#registration {
 	width: 80%;
 	margin-inline: auto;
-	border-radius: 5px;
+	border-radius: var(--border-radius);
 	padding: 40px 0;
-	box-shadow: var(--section-box-shadow);
+	box-shadow: var(--box-shadow);
 	background-color: #fff;
 
 	form {
@@ -31,6 +31,7 @@ section#registration {
 			input {
 				width: 100%;
 				border: 1px solid #ddd;
+				border-radius: var(--border-radius);
 				padding: 10px 1vw;
 				box-shadow: var(--input-element-box-shadow);
 				background-color: var(--input-element-background-color);
@@ -41,6 +42,8 @@ section#registration {
 				margin: 0 auto 20px;
 				border: 2px solid #555;
 				border-top: none;
+				border-bottom-left-radius: var(--border-radius);
+				border-bottom-right-radius: var(--border-radius);
 				padding: 10px 1vw;
 				text-align: left;
 				line-height: 1.3em;
