@@ -65,11 +65,6 @@ section#search {
 						padding: 20px .4vw;
 						background-color: var(--input-element-background-color);
 					}
-
-					input:focus {
-						outline: none;
-						border: none;
-					}
 				}
 			}
 		}
