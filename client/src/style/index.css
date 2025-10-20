@@ -62,3 +62,8 @@ button {
 	background-color: transparent;
 	cursor: pointer;
 }
+
+input:focus {
+	outline: none;
+	border: none;
+}
