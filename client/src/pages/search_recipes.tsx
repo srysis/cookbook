@@ -93,14 +93,14 @@ function SearchRecipes() {
 				<div className="search_bar_wrapper" onClick={() => ingredientsRef.current?.focus()}>
 					<div className="search_bar">
 						{ ingredients_list.length > 0 && 
-							<>
+							<div className="ingredients">
 								{ingredients_list.map((ingredient, index) => 
 									<span className="ingredient_wrapper" key={index} data-index={index} onClick={removeIngredientFromList}>
 										<span className="ingredient">{ingredient}</span>
 										<button type="button">X</button>
 									</span>
 								)}
-							</>
+							</div>
 						}
 						<div className="input_container">
 							<input 
