@@ -11,7 +11,7 @@ div#login_popup {
 		width: 60%;
 		margin: auto;
 		margin-block: 25vh;
-		border-radius: 10px;
+		border-radius: var(--border-radius);
 		padding: 40px 0;
 		background-color: #fff;
 
@@ -37,6 +37,7 @@ div#login_popup {
 				input {
 					width: 100%;
 					border: 1px solid #ddd;
+					border-radius: var(--border-radius);
 					padding: 10px 1vw;
 					box-shadow: var(--input-element-box-shadow);
 					background-color: var(--input-element-background-color);
