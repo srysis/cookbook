@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import axios from '../api/axios'
 
@@ -14,12 +14,18 @@ type Recipe = {
 }
 
 function SearchRecipes() {
+	const ingredientsRef = useRef<HTMLInputElement | null>(null);
+
 	const [filtered_recipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
 	const [ingredients_list, setIngredientsList] = useState<string[]>([]);
 
 	const [isSearchFinished, setIsSearachFinished] = useState<boolean>(false);
 
 	const [ingredients_list_to_send, setIngredientsListToSend] = useState<string[]>([]);
+
+	useEffect(() => {
+		ingredientsRef.current?.focus();
+	}, []);
 
 	function removeIngredientFromList(event: any) {
 		let new_ingredients_list = ingredients_list;
@@ -30,7 +36,10 @@ function SearchRecipes() {
 	}
 
 	function onKeyDownHandler(event: any) {
-		if (event.which == 13 || event.keyCode == 13 || event.code == "Enter") {
+		// code 13 is 'Enter' and code 188 is ','
+
+		if ((event.which == 13 || event.keyCode == 13 || event.code == "Enter") ||
+			(event.which == 188 || event.keyCode == 188 || event.code == "Comma")) {
 			event.preventDefault();
 
 			if (event.target.value && !ingredients_list.includes(event.target.value)) {
@@ -57,10 +66,10 @@ function SearchRecipes() {
 		setFilteredRecipes([]);
 
 		setIngredientsListToSend(() => {
-			const temp_ingredients = ingredients_list;
+			const temp_ingredients_list = ingredients_list;
 
-			if (temp_ingredients) {
-				let query = new URLSearchParams(Object.assign({}, temp_ingredients));
+			if (temp_ingredients_list) {
+				let query = new URLSearchParams(Object.assign({}, temp_ingredients_list));
 				let queryString = query.toString();
 
 				axios.get(`/filter_recipes?${queryString}`)
@@ -74,34 +83,39 @@ function SearchRecipes() {
 				})
 			}
 
-			return temp_ingredients;
+			return temp_ingredients_list;
 		})
 	}
 
 	return(
 		<section id="search">
 			<form onSubmit={onSubmitHandler}>
-				<div className="search_bar">
-					{ ingredients_list.length > 0 && 
-						<div className="ingredients">
-							{ingredients_list.map((ingredient, index) => 
-								<span className="ingredient_wrapper" key={index} data-index={index} onClick={removeIngredientFromList}>
-									<span className="ingredient">{ingredient}</span>
-									<button type="button">X</button>
-								</span>
-							)}
+				<div className="search_bar_wrapper" onClick={() => ingredientsRef.current?.focus()}>
+					<div className="search_bar">
+						{ ingredients_list.length > 0 && 
+							<>
+								{ingredients_list.map((ingredient, index) => 
+									<span className="ingredient_wrapper" key={index} data-index={index} onClick={removeIngredientFromList}>
+										<span className="ingredient">{ingredient}</span>
+										<button type="button">X</button>
+									</span>
+								)}
+							</>
+						}
+						<div className="input_container">
+							<input 
+								type="text"
+								ref={ingredientsRef}  
+								id="ingredients" 
+								placeholder="Add ingredient..." 
+								autoComplete="off" 
+								onKeyDown={onKeyDownHandler} 
+								onBlur={onBlurHandler}
+							/>
 						</div>
-					}
-					<div className="input_container">
-						<input 
-							type="search" 
-							id="ingredients" 
-							placeholder="Filter by ingredients..." 
-							autoComplete="off" 
-							onKeyDown={onKeyDownHandler} 
-							onBlur={onBlurHandler}
-						/>
 					</div>
+					
+					
 				</div>
 				<div className="submit_container"><button type="submit">Search</button></div>
 			</form>
