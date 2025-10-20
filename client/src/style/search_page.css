@@ -179,17 +179,17 @@ section#search {
 				background-color: var(--link-active-color);
 			}
 		}
-	}
 
-	div.recipe.match {
-		box-shadow: var(--recipe-match-element-box-shadow) !important;
-	}
+		div.recipe.match {
+			box-shadow: var(--recipe-match-element-box-shadow) !important;
+		}
 
-	div.recipe:first-child {
-		margin-top: 0 !important;
-	}
+		div.recipe:first-child {
+			margin-top: 0 !important;
+		}
 
-	div.recipe:last-child {
-		margin-bottom: 0 !important;
+		div.recipe:last-child {
+			margin-bottom: 0 !important;
+		}
 	}
 }
