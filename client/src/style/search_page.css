@@ -22,6 +22,8 @@ section#search {
 				flex-wrap: wrap;
 
 				div.ingredients {
+					display: flex;
+
 					span.ingredient_wrapper:last-child {
 						margin-right: 0;
 					}
