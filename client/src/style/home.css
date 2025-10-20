@@ -4,14 +4,14 @@ section#home {
 		flex-direction: column;
 		text-align: left;
 		margin-block: 10px;
-		border-radius: 10px;
+		border-radius: var(--border-radius);
 		background-color: #fff;
-		box-shadow: var(--recipe-element-box-shadow);
+		box-shadow: var(--box-shadow);
 
 		div.link_container {
 			position: relative;
 			margin: 0;
-			border-radius: 10px;
+			border-radius: inherit;
 			padding: 0;
 
 			div.overlay {
@@ -41,7 +41,7 @@ section#home {
 
 				span {
 					margin-inline: .1vw;
-					border-radius: 5px;
+					border-radius: var(--ingredient-border-radius);
 					padding: 2px 8px;
 					background-color: #FF424B;
 					color: #fff;
