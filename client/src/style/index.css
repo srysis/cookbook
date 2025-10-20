@@ -16,6 +16,8 @@
 	--disabled-input-element-background-color: #ddd;
 
 	--recipe-match-element-box-shadow: 0px 0px 4px 4px #A3CCA3;
+
+	--ingredient-border-radius: 3px;
 }
 
 * {
