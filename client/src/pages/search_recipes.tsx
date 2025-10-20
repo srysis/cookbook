@@ -15,20 +15,52 @@ type Recipe = {
 
 function SearchRecipes() {
 	const [filtered_recipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
-	const [ingredients_list, setIngredientsList] = useState<string>("");
+	const [ingredients_list, setIngredientsList] = useState<string[]>([]);
 
 	const [isSearchFinished, setIsSearachFinished] = useState<boolean>(false);
+
+	const [ingredients_list_to_send, setIngredientsListToSend] = useState<string[]>([]);
+
+	function removeIngredientFromList(event: any) {
+		let new_ingredients_list = ingredients_list;
+
+		new_ingredients_list = new_ingredients_list.filter((item, index) => { return index != event.currentTarget.dataset.index });
+
+		setIngredientsList(new_ingredients_list);
+	}
+
+	function onKeyDownHandler(event: any) {
+		if (event.which == 13 || event.keyCode == 13 || event.code == "Enter") {
+			event.preventDefault();
+
+			if (event.target.value && !ingredients_list.includes(event.target.value)) {
+				setIngredientsList([...ingredients_list, event.target.value]);
+			}
+
+			event.target.value = "";
+		}
+	}
+
+	function onBlurHandler(event: any) {
+		event.preventDefault();
+
+		if (event.target.value && !ingredients_list.includes(event.target.value)) {
+			setIngredientsList([...ingredients_list, event.target.value]);
+		}
+
+		event.target.value = "";
+	}
 
 	function onSubmitHandler(event: any) {
 		event.preventDefault();
 
 		setFilteredRecipes([]);
 
-		setIngredientsList(() => {
-			const new_ingredients_list = (event.target.elements[0].value);
+		setIngredientsListToSend(() => {
+			const temp_ingredients = ingredients_list;
 
-			if (new_ingredients_list) {
-				let query = new URLSearchParams(Object.assign({}, new_ingredients_list.split(",")));
+			if (temp_ingredients) {
+				let query = new URLSearchParams(Object.assign({}, temp_ingredients));
 				let queryString = query.toString();
 
 				axios.get(`/filter_recipes?${queryString}`)
@@ -42,20 +74,41 @@ function SearchRecipes() {
 				})
 			}
 
-			return new_ingredients_list;
+			return temp_ingredients;
 		})
 	}
 
 	return(
 		<section id="search">
 			<form onSubmit={onSubmitHandler}>
-				<div className="input_container"><input type="search" id="ingredients" placeholder="Filter by ingredients..." autoComplete="off" /></div>
-				<div className="submit_container"><button>Search</button></div>
+				<div className="search_bar">
+					{ ingredients_list.length > 0 && 
+						<div className="ingredients">
+							{ingredients_list.map((ingredient, index) => 
+								<span className="ingredient_wrapper" key={index} data-index={index} onClick={removeIngredientFromList}>
+									<span className="ingredient">{ingredient}</span>
+									<button type="button">X</button>
+								</span>
+							)}
+						</div>
+					}
+					<div className="input_container">
+						<input 
+							type="search" 
+							id="ingredients" 
+							placeholder="Filter by ingredients..." 
+							autoComplete="off" 
+							onKeyDown={onKeyDownHandler} 
+							onBlur={onBlurHandler}
+						/>
+					</div>
+				</div>
+				<div className="submit_container"><button type="submit">Search</button></div>
 			</form>
 			<section id="matching_recipes">
 				{ isSearchFinished && filtered_recipes.length > 0 && 
 					<>
-						{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list.split(/[ ,]+/)} />)}
+						{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list_to_send} />)}
 					</>
 				}
 				{ isSearchFinished && filtered_recipes.length <= 0 &&
