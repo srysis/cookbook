@@ -10,6 +10,33 @@ section#add_recipe {
 			padding-top: 0;
 		}
 
+		div.input_wrapper {
+			padding-block: 10px;
+
+			label {
+				display: block;
+				margin-bottom: 10px;
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+
+			div.input_container {
+				width: 100%;
+				border: 1px solid #ddd;
+				border-radius: var(--border-radius);
+				padding: 15px 1vw;
+				box-shadow: var(--input-element-box-shadow);
+				background-color: var(--input-element-background-color);
+
+				input {
+					border: none;
+					padding: 0;
+					box-shadow: none;
+					background-color: transparent;
+				}
+			}
+		}
+
 		div.input_container {
 			padding-block: 10px;
 
