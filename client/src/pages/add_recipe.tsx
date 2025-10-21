@@ -22,6 +22,7 @@ function AddRecipe() {
 		input_field_HTML.setAttribute("type", "text");
 		input_field_HTML.setAttribute("name", "ingredient");
 		input_field_HTML.classList.add("ingredient");
+		input_field_HTML.addEventListener('keydown', onIngredientKeyDownHandler);
 
 		const delete_input_field_button_HTML: HTMLInputElement = document.createElement('button');
 		delete_input_field_button_HTML.setAttribute("type", "button");
@@ -33,6 +34,8 @@ function AddRecipe() {
 
 
 		event.target.parentElement.insertBefore(ingredient_container, document.querySelector("button#add_ingredient"));
+
+		input_field_HTML.focus();
 
 
 		if (!doIngredientsExist) {
@@ -47,6 +50,12 @@ function AddRecipe() {
 
 		if (ingredient_containers.length == 0) {
 			setIngredientsExist(false);
+		}
+	}
+
+	function onIngredientKeyDownHandler(event: any) {
+		if (event.which == 13 || event.keyCode == 13 || event.code == "Enter") {
+			document.querySelector("button#add_ingredient").click();
 		}
 	}
 
