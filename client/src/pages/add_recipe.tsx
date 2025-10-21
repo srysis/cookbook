@@ -14,15 +14,39 @@ function AddRecipe() {
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(false);
 
 	function addInputField(event: any) {
+		const ingredient_container: HTMLElement = document.createElement('div');
+		ingredient_container.classList.add("ingredient_container");
+
+
 		const input_field_HTML: HTMLInputElement = document.createElement('input');
 		input_field_HTML.setAttribute("type", "text");
+		input_field_HTML.setAttribute("name", "ingredient");
 		input_field_HTML.classList.add("ingredient");
-		input_field_HTML.setAttribute("placeholder", "e.g. cheese, bread, etc.");
 
-		event.target.parentElement.insertBefore(input_field_HTML, document.querySelector("button#add_ingredient")).focus();
+		const delete_input_field_button_HTML: HTMLInputElement = document.createElement('button');
+		delete_input_field_button_HTML.setAttribute("type", "button");
+		delete_input_field_button_HTML.addEventListener('click', removeInputField);
+		delete_input_field_button_HTML.innerHTML = 'X';
+
+		ingredient_container.appendChild(input_field_HTML);
+		ingredient_container.appendChild(delete_input_field_button_HTML);
+
+
+		event.target.parentElement.insertBefore(ingredient_container, document.querySelector("button#add_ingredient"));
+
 
 		if (!doIngredientsExist) {
 			setIngredientsExist(true);
+		}
+	}
+
+	function removeInputField(event: any) {
+		event.target.parentElement.remove();
+
+		const ingredient_containers = document.querySelectorAll("div.ingredient_container");
+
+		if (ingredient_containers.length == 0) {
+			setIngredientsExist(false);
 		}
 	}
 
@@ -31,6 +55,12 @@ function AddRecipe() {
 
 		for (let input_field of input_fields) {
 			input_field.value = "";
+		}
+
+		const ingredient_containers = document.querySelectorAll("div.ingredient_container");
+
+		for (let ingredient_container of ingredient_containers) {
+			ingredient_container.remove();
 		}
 
 		setRecipeName("");
