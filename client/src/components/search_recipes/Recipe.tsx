@@ -17,7 +17,7 @@ function Recipe({recipe, ingredients_list}: props) {
 		return word.charAt(0).toUpperCase() + word.slice(1);
 	}
 
-	const recipe_ingredients = ingredients.split(/[ ,]+/);
+	const recipe_ingredients = ingredients.split(",");
 
 	let matching_ingredients: string[] = [];
 	let matching_ingredients_HTML: any = [];
@@ -28,7 +28,7 @@ function Recipe({recipe, ingredients_list}: props) {
 	let isFullMatch = false;
 
 	recipe_ingredients.map((recipe_ingredient, index) => {
-		if (ingredients_list.includes(recipe_ingredient)) {
+		if (ingredients_list.includes(recipe_ingredient.toLowerCase())) {
 			matching_ingredients_HTML.push(<span key={index} className="matching_ingredient">{capitalize(recipe_ingredient)}</span>);
 			matching_ingredients.push(recipe_ingredient);
 			matching_ingredients_amount++;
@@ -36,7 +36,7 @@ function Recipe({recipe, ingredients_list}: props) {
 	});
 
 	recipe_ingredients.map((recipe_ingredient, index) => {
-		if (!ingredients_list.includes(recipe_ingredient)) {
+		if (!ingredients_list.includes(recipe_ingredient.toLowerCase())) {
 			non_matching_ingredients_HTML.push(<span key={index}>{capitalize(recipe_ingredient)}</span>);
 		}
 	});
