@@ -33,7 +33,7 @@ function RecipePage() {
 	if (infoFetched) {
 		const { name, description, ingredients } = recipe_info;
 
-		const recipe_ingredients: string[] = ingredients.split(/[ ,]+/);
+		const recipe_ingredients: string[] = ingredients.split(",");
 		const ingredients_list: string[] = Object.values(Object.fromEntries(new URLSearchParams(window.location.search)));
 
 		let matching_ingredients_HTML: any = [];
