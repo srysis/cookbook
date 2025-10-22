@@ -42,8 +42,8 @@ function SearchRecipes() {
 			(event.which == 188 || event.keyCode == 188 || event.code == "Comma")) {
 			event.preventDefault();
 
-			if (event.target.value && !ingredients_list.includes(event.target.value)) {
-				setIngredientsList([...ingredients_list, event.target.value]);
+			if (event.target.value && !ingredients_list.includes(event.target.value.toLowerCase())) {
+				setIngredientsList([...ingredients_list, event.target.value.toLowerCase()]);
 			}
 
 			event.target.value = "";
@@ -53,8 +53,8 @@ function SearchRecipes() {
 	function onBlurHandler(event: any) {
 		event.preventDefault();
 
-		if (event.target.value && !ingredients_list.includes(event.target.value)) {
-			setIngredientsList([...ingredients_list, event.target.value]);
+		if (event.target.value && !ingredients_list.includes(event.target.value.toLowerCase())) {
+			setIngredientsList([...ingredients_list, event.target.value.toLowerCase()]);
 		}
 
 		event.target.value = "";
