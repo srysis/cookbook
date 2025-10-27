@@ -44,7 +44,7 @@ div#login_popup {
 				}
 			}
 
-			div.buttons_container {
+			div.submit_container {
 				padding-top: 40px;
 
 				button {
@@ -71,6 +71,25 @@ div#login_popup {
 				button[disabled] {
 					cursor: not-allowed;
 					background-color: var(--disabled-input-element-background-color);
+				}
+			}
+
+			div.register_tip {
+				padding-top: 40px;
+				text-align: left;
+
+				p {
+					font-size: 1.25em;
+
+					a {
+						color: #000;
+						text-decoration-line: underline;
+						font-weight: bold;
+					}
+
+					a:hover {
+						text-shadow: #000 0 0 1px;
+					}
 				}
 			}
 		}
