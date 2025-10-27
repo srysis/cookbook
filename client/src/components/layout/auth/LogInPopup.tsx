@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import axios from '../../../api/axios'
 
@@ -78,9 +79,11 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							required 
 						/>
 					</div>
-					<div className="buttons_container">
+					<div className="submit_container">
 						<button type="submit" disabled={!user_credentials.username || !user_credentials.password}>Log In</button>
-						<button type="button" onClick={() => {navigate('/register'); setLoginPopupVisible(false)}}>Register</button>
+					</div>
+					<div className="register_tip">
+						<p><Link to="/register" onClick={() => {setLoginPopupVisible(false)}}>Register now</Link> to be able to create your own recipes!</p>
 					</div>
 				</form>
 			</div>
