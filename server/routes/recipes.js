@@ -18,7 +18,7 @@ router.get('/recipes', (request, response) => {
 	})
 });
 
-router.get('/recipe/:id', (request, response) => {
+router.get('/recipe/:id', checkOwner, (request, response) => {
 	const recipe_id = request.params.id;
 
 	const get_recipe_query = "SELECT * FROM `recipes` WHERE `id` = " + recipe_id;
@@ -26,7 +26,7 @@ router.get('/recipe/:id', (request, response) => {
 	database.query(get_recipe_query, (error, data) => {
 		if (error) return response.json(error);
 
-		response.json({recipe_info: data[0]});
+		response.json({recipe_info: data[0], ownership: response.locals.ownership});
 	})
 })
 
