@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom'
 
 import axios from '../api/axios'
 
+import LoadingSpinnerBlock from "../components/LoadingSpinnerBlock.tsx"
+import LoadingSpinnerInline from "../components/LoadingSpinnerInline.tsx"
+
 import delete_icon from "../assets/trash_can.png"
 
 import "../style/recipe_page.css"
@@ -21,13 +24,18 @@ function RecipePage() {
 	const { id } = useParams();
 
 	const [recipe_info, setRecipeInfo] = useState<Recipe>({id: 0, name: "", description: "", ingredients: ""});
+	const [isLoading, setLoadingState] = useState<boolean>(true);
 	const [infoFetched, setInfoFetched] = useState<boolean>(false);
 
 	const [ownership, setOwnership] = useState<boolean>(false);
 
 	const [isDeletePopupVisible, showDeletePopup] = useState<boolean>(false);
 
+	const [delete_in_progress, setDeletionState] = useState<boolean>(false);
+
 	useEffect(() => {
+		setLoadingState(true);
+
 		axios.get(`/recipe/${id}`)
 		.then((response: any) => {
 			setRecipeInfo(response.data.recipe_info);
@@ -35,6 +43,7 @@ function RecipePage() {
 			setOwnership(response.data.ownership);
 
 			setInfoFetched(true);
+			setLoadingState(false);
 		})
 		.catch((error: any) => {
 			console.error(error);
@@ -43,6 +52,8 @@ function RecipePage() {
 
 	async function deleteRecipe(event: any) {
 		event.preventDefault();
+
+		setDeletionState(true);
 
 		try {
 			const delete_response = await axios.delete(`/recipe/${id}`, {
@@ -64,7 +75,7 @@ function RecipePage() {
 		}
 	}
 
-	if (infoFetched) {
+	if (infoFetched && !isLoading && recipe_info != undefined) {
 		const { name, description, ingredients } = recipe_info;
 
 		const recipe_ingredients: string[] = ingredients.split(",");
@@ -80,7 +91,6 @@ function RecipePage() {
 				non_matching_ingredients_HTML.push(<span key={index}>{recipe_ingredient.charAt(0).toUpperCase() + recipe_ingredient.slice(1)}</span>);
 			}
 		});
-		
 
 		return(
 			<>
@@ -89,8 +99,8 @@ function RecipePage() {
 						<div className="delete_popup_container">
 							<h1>Are you sure?</h1>
 							<div className="selection_container">
-								<button type="button" onClick={deleteRecipe}>Yes</button>
-								<button type="button" onClick={() => {showDeletePopup(false)}}>No</button>
+								<button type="button" onClick={deleteRecipe} disabled={delete_in_progress ? true : false}>{delete_in_progress ? <LoadingSpinnerInline /> : "Yes"}</button>
+								<button type="button" onClick={() => {showDeletePopup(false)}} disabled={delete_in_progress ? true : false}>No</button>
 							</div>
 						</div>
 					</div>
@@ -113,6 +123,16 @@ function RecipePage() {
 					</div>
 				</section>
 			</>
+		)
+	} else if (infoFetched && !isLoading && recipe_info == undefined) {
+		return(
+			<section id="recipe" className="no_data">
+				<p>This recipe does not exist.</p>
+			</section>
+		)
+	} else if (isLoading) {
+		return(
+			<LoadingSpinnerBlock />
 		)
 	}
 }
