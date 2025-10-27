@@ -29,9 +29,12 @@ router.get('/recipe/:id', (request, response) => {
 })
 
 router.post('/recipe', authenticator, (request, response) => {
+	const user_id = request.body.user_id;
 	const { name, description, ingredients } = request.body.recipe_data;
 
-	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `ingredients`) VALUES ('" + name + "', '" + description + "', '" + ingredients + "');"
+	const capitalized_name = name.charAt(0).toUpperCase() + name.slice(1);
+
+	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `ingredients`, `made_by`) VALUES ('" + capitalized_name + "', '" + description + "', '" + ingredients + "', '" + user_id + "');"
 
 	database.query(add_recipe_query, (error, data) => {
 		if (error) return response.json(error);
