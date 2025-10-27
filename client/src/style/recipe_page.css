@@ -40,6 +40,11 @@ div.delete_popup_overlay {
 			button:active {
 				background-color: var(--input-element-active-background-color);
 			}
+
+			button[disabled] {
+				cursor: not-allowed;
+				background-color: var(--disabled-input-element-background-color);
+			}
 		}
 	}
 }
