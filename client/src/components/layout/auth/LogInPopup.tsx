@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import axios from '../../../api/axios'
@@ -20,8 +19,6 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	const userRef: any = useRef(null);
 
 	const [user_credentials, setUserCredentials] = useState<UserCredentials>({username: "", password: ""});
-
-	const navigate = useNavigate();
 
 	const REQUEST_HEADERS = {
 		'Content-Type': 'application/json'
