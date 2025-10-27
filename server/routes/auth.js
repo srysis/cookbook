@@ -62,7 +62,7 @@ router.post('/login', (request, response) => {
 						maxAge: 2592000000
 					});
 
-					response.json({success: true, token: access_token, admin: data[0].admin, user_id: data[0].id});
+					response.json({success: true, token: access_token, user_id: data[0].id});
 				} else {
 					response.status(404).json({success: false, message: 'Invaild credentials.'});
 				}
@@ -101,9 +101,7 @@ router.get('/verify/:id', (request, response) => {
 				database.query(find_user_query, (error, data) => {
 					if (error) return response.json(error);
 
-					if (data[0].admin == 1) isAdmin = data[0].admin;
-
-					response.json({success: true, message: "User is logged in.", admin: isAdmin});
+					response.json({success: true, message: "User is logged in."});
 				})
 
 			} else {
