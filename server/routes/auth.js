@@ -96,7 +96,7 @@ router.get('/verify/:id', (request, response) => {
 			if (decoded_token.id == user_id) { 
 				let isAdmin;
 
-				const find_user_query = "SELECT `id`,`admin` FROM `users` WHERE `id` = " + decoded_token.id;
+				const find_user_query = "SELECT `id` FROM `users` WHERE `id` = " + decoded_token.id;
 
 				database.query(find_user_query, (error, data) => {
 					if (error) return response.json(error);
