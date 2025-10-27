@@ -85,7 +85,7 @@ function RecipePage() {
 		return(
 			<>
 				{ isDeletePopupVisible && 
-					<div className="delete_popup_overlay" onClick={(event) => {if (event.target.classList.contains("delete_popup_overlay")) showDeletePopup(false) }}>
+					<div className="delete_popup_overlay" onClick={(event: any) => {if (event.target.classList.contains("delete_popup_overlay")) showDeletePopup(false) }}>
 						<div className="delete_popup_container">
 							<h1>Are you sure?</h1>
 							<div className="selection_container">
