@@ -28,7 +28,7 @@
 
 html {
 	scrollbar-width: thin;
-	scrollbar-color: #aaa #000;
+	scrollbar-color: #FF424B rgba(0, 0, 0, 0.05);
 }
 
 body {
