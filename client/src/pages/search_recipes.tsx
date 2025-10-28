@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import axios from '../api/axios'
 
 import Recipe from "../components/search_recipes/Recipe"
+import LoadingSpinner from "../components/LoadingSpinnerBlock.tsx"
 
 import "../style/search_page.css"
 
@@ -19,7 +20,8 @@ function SearchRecipes() {
 	const [filtered_recipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
 	const [ingredients_list, setIngredientsList] = useState<string[]>([]);
 
-	const [isSearchFinished, setIsSearachFinished] = useState<boolean>(false);
+	const [search_in_progress, setSearchState] = useState<boolean>(false);
+	const [isSearchFinished, setIsSearchFinished] = useState<boolean>(false);
 
 	const [ingredients_list_to_send, setIngredientsListToSend] = useState<string[]>([]);
 
@@ -63,6 +65,7 @@ function SearchRecipes() {
 	function onSubmitHandler(event: any) {
 		event.preventDefault();
 
+		setSearchState(true);
 		setFilteredRecipes([]);
 
 		setIngredientsListToSend(() => {
@@ -76,7 +79,8 @@ function SearchRecipes() {
 				.then((response: any) => {
 					setFilteredRecipes(response.data);
 
-					setIsSearachFinished(true);
+					setIsSearchFinished(true);
+					setSearchState(false);
 				})
 				.catch((error: any) => {
 					console.error(error);
@@ -117,18 +121,21 @@ function SearchRecipes() {
 					
 					
 				</div>
-				<div className="submit_container"><button type="submit">Search</button></div>
+				<div className="submit_container"><button type="submit" disabled={!ingredients_list.length}>Search</button></div>
 			</form>
-			<section id="matching_recipes">
-				{ isSearchFinished && filtered_recipes.length > 0 && 
-					<>
-						{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list_to_send} />)}
-					</>
-				}
-				{ isSearchFinished && filtered_recipes.length <= 0 &&
-					<p>No recipes that match given ingredients were found.</p>
-				}
-			</section>
+			{ isSearchFinished && 
+				<section id="matching_recipes">
+					{ filtered_recipes.length > 0 && !search_in_progress &&
+						<>
+							{filtered_recipes.map((recipe) => <Recipe key={recipe.id} recipe={recipe} ingredients_list={ingredients_list_to_send} />)}
+						</>
+					}
+					{ filtered_recipes.length <= 0 && !search_in_progress &&
+						<p>No recipes that match given ingredients were found.</p>
+					}
+				</section>
+			}
+			{ search_in_progress && <LoadingSpinner /> }
 		</section>
 	)
 }
