@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router'
 
 import axios from '../../api/axios'
 
+import LoadingSpinner from "../../components/LoadingSpinnerInline.tsx"
+
 import eye_icon from "../../assets/eye-icon.png"
 import correct_icon from "../../assets/correct.png"
 import incorrect_icon from "../../assets/incorrect.png"
@@ -33,6 +35,8 @@ function RegistrationPage({isLoggedIn}: props) {
 	const [matching_password, setMatchingPassword] = useState<string>("");
 	const [doPasswordsMatch, setDoPasswordsMatch] = useState<boolean>(false);
 	const [matching_password_focus, setMatchingPasswordFocus] = useState<boolean>(false);
+
+	const [registration_in_progress, setRegistrationState] = useState<boolean>(false);
 
 	const navigate = useNavigate();
 
@@ -92,10 +96,13 @@ function RegistrationPage({isLoggedIn}: props) {
 			return;
 		}
 
+		setRegistrationState(true);
+
 		try {
 			const register_response = await axios.post('/auth/register', { username: username, password: password } , { headers: REQUEST_HEADERS });
 
 			if (register_response.data.success) {
+				setRegistrationState(false);
 				navigate('/');
 			} else {
 				window.location.reload();
@@ -103,6 +110,7 @@ function RegistrationPage({isLoggedIn}: props) {
 
 		} catch (error: any) {
 			console.error(error);
+			setRegistrationState(false);
 		}
 	}
 
@@ -175,9 +183,9 @@ function RegistrationPage({isLoggedIn}: props) {
 							</div>
 						</div>
 						<div className="buttons_container">
-							<button type="button" onClick={clearFields}>Clear</button>
-							<button type="submit" disabled={!isUsernameValid || !isPasswordValid || !doPasswordsMatch ? true : false}>
-								Register
+							<button type="button" onClick={clearFields} disabled={registration_in_progress}>Clear</button>
+							<button type="submit" disabled={!isUsernameValid || !isPasswordValid || !doPasswordsMatch || registration_in_progress ? true : false}>
+								{ registration_in_progress ? <LoadingSpinner /> : "Register" }
 							</button>
 						</div>
 					</form>
