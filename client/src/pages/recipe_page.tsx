@@ -33,6 +33,10 @@ function RecipePage() {
 
 	const [delete_in_progress, setDeletionState] = useState<boolean>(false);
 
+	const REQUEST_HEADERS = {
+		'Content-Type': 'application/json'
+	}
+
 	useEffect(() => {
 		setLoadingState(true);
 
@@ -57,9 +61,7 @@ function RecipePage() {
 
 		try {
 			const delete_response = await axios.delete(`/recipe/${id}`, {
-				headers: {
-					'Content-Type': 'application/json'
-				},
+				headers: REQUEST_HEADERS,
 				data: {
 					user_id: window.localStorage.getItem("id")
 				}
