@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import axios from '../../../api/axios'
 
+import LoadingSpinner from "../../LoadingSpinnerInline.tsx"
+
 import "../../../style/auth/login_popup.css"
 
 type UserCredentials = {
@@ -19,6 +21,8 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	const userRef: any = useRef(null);
 
 	const [user_credentials, setUserCredentials] = useState<UserCredentials>({username: "", password: ""});
+
+	const [login_in_progress, setLoggingInState] = useState<boolean>(false);
 
 	const REQUEST_HEADERS = {
 		'Content-Type': 'application/json'
@@ -38,16 +42,20 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	async function onSubmitHandler(event: any) {
 		event.preventDefault();
 
+		setLoggingInState(true);
+
 		try {
 			const response = await axios.post('/auth/login', user_credentials, { headers: REQUEST_HEADERS });
 
 			if (response.data.success) {
 				logIn(response.data);
 
+				setLoggingInState(false);
 				window.location.reload();
 			}
 		} catch (error: any) {
 			console.error(error);
+			setLoggingInState(false);
 		}
 	}
 
@@ -77,7 +85,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 						/>
 					</div>
 					<div className="submit_container">
-						<button type="submit" disabled={!user_credentials.username || !user_credentials.password}>Log In</button>
+						<button type="submit" disabled={!user_credentials.username || !user_credentials.password || login_in_progress}>{login_in_progress ? <LoadingSpinner /> : "Log In"}</button>
 					</div>
 					<div className="register_tip">
 						<p><Link to="/register" onClick={() => {setLoginPopupVisible(false)}}>Register now</Link> to be able to create your own recipes!</p>
