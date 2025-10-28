@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router'
 
 import axios from '../api/axios.ts'
 
+import LoadingSpinner from "../components/LoadingSpinnerInline.tsx"
+
 import "../style/add_recipe_page.css"
 
 function AddRecipe() {
@@ -12,6 +14,8 @@ function AddRecipe() {
 	const [recipe_description, setRecipeDescription] = useState<string>("");
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(false);
+
+	const [adding_in_progress, setAddingState] = useState<boolean>(false);
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -111,6 +115,8 @@ function AddRecipe() {
 			if (input_field.value !== "") recipe_ingredients.push(input_field.value);
 		}
 
+		setAddingState(true);
+
 
 		axios.post(`/recipe`, {user_id: window.localStorage.getItem("id"), recipe_data: {
 			name: recipe_name,
@@ -119,10 +125,12 @@ function AddRecipe() {
 		}})
 		.then((response: any) => {
 			if (response.data.success) {
+				setAddingState(false);
 				navigate(`/recipe/${response.data.inserted_ID}`)
 			}
 		})
 		.catch((error: any) => {
+			setAddingState(false);
 			if (!error.response.data.success) {
 				window.location.reload();
 			}
@@ -154,8 +162,8 @@ function AddRecipe() {
 					/>
 				</div>
 				<div className="buttons_container">
-					<button type="button" onClick={() => clearFields()}>Clear</button>
-					<button type="submit" disabled={!recipe_name || !doIngredientsExist}>Add recipe</button>
+					<button type="button" disabled={adding_in_progress} onClick={() => clearFields()}>Clear</button>
+					<button type="submit" disabled={!recipe_name || !doIngredientsExist || adding_in_progress}>{adding_in_progress ? <LoadingSpinner /> : "Add recipe"}</button>
 				</div>
 			</form>
 		</section>
