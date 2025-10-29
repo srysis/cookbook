@@ -138,7 +138,7 @@ function App() {
 					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
 
 					<Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
-						<Route path="/add_recipe" element={<AddRecipePage />} />
+						<Route path="/add_recipe" element={<AddRecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
 					</Route>
 				</Route>
 			</Routes>
