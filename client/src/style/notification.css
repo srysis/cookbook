@@ -1,0 +1,49 @@
+div#notification {
+	position: fixed;
+	z-index: 15;
+	top: 3%;
+	left: 31%;
+	min-width: 800px;
+	max-width: 30vw;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0 4px 1px #111;
+	padding: 10px 1%;
+
+	div.overlay {
+		position: absolute;
+		z-index: 5;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		cursor: pointer;
+	}
+
+	div.overlay:hover {
+		background-color: #000;
+		opacity: 0.1;
+	}
+
+	div.icon_container {
+		img {
+			width: 48px;
+		}
+	}
+
+	div.text_container {
+		width: 100%;
+		padding-inline: 2%;
+		font-size: 1.7em;
+		text-align: left;
+		color: #fff;
+	}
+}
+
+div#notification.success {
+	background-color: rgb(17, 35, 18);
+}
+
+div#notification.error {
+	background-color: var(--error-container-color);
+}
