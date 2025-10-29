@@ -1,49 +1,58 @@
-div#notification {
+div#notification_wrapper {
 	position: fixed;
-	z-index: 15;
-	top: 3%;
-	left: 31%;
-	min-width: 800px;
-	max-width: 30vw;
+	top: 12px;
+	z-index: 4;
 	display: flex;
-	align-items: center;
-	box-shadow: 0 0 4px 1px #111;
-	padding: 10px 1%;
+	flex-direction: row-reverse;
+	width: 100%;
+	padding-inline: 2vw;
 
-	div.overlay {
-		position: absolute;
+	div#notification {
+		position: relative;
 		z-index: 5;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		cursor: pointer;
-	}
+		display: flex;
+		align-items: center;
+		min-width: 36%;
+		max-width: 50%;
+		border-radius: var(--border-radius);
+		padding: 20px 1%;
+		box-shadow: 0 0 4px 1px #111;
 
-	div.overlay:hover {
-		background-color: #000;
-		opacity: 0.1;
-	}
+		div.overlay {
+			position: absolute;
+			z-index: 5;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			cursor: pointer;
+		}
 
-	div.icon_container {
-		img {
-			width: 48px;
+		div.overlay:hover {
+			background-color: #000;
+			opacity: 0.1;
+		}
+
+		div.icon_container {
+			img {
+				width: 48px;
+			}
+		}
+
+		div.text_container {
+			width: 100%;
+			padding-inline: 3%;
+			font-size: 1.7em;
+			text-align: left;
+			color: #fff;
 		}
 	}
 
-	div.text_container {
-		width: 100%;
-		padding-inline: 2%;
-		font-size: 1.7em;
-		text-align: left;
-		color: #fff;
+	div#notification.success {
+		background-color: #35A538;
 	}
-}
 
-div#notification.success {
-	background-color: rgb(17, 35, 18);
-}
-
-div#notification.error {
-	background-color: var(--error-container-color);
+	div#notification.error {
+		background-color: #990007;
+	}
 }
