@@ -41,8 +41,6 @@ div#login_popup {
 		}
 
 		form {
-			margin: auto;
-
 			div.input_container {
 				padding-block: 20px;
 				font-weight: bold;
