@@ -5,6 +5,8 @@ import axios from '../../../api/axios'
 
 import LoadingSpinner from "../../LoadingSpinnerInline.tsx"
 
+import error_icon from "../../../assets/exclamation-mark-2.png"
+
 import "../../../style/auth/login_popup.css"
 
 type UserCredentials = {
@@ -23,6 +25,8 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	const [user_credentials, setUserCredentials] = useState<UserCredentials>({username: "", password: ""});
 
 	const [login_in_progress, setLoggingInState] = useState<boolean>(false);
+	const [login_failed, setLoginFailed] = useState<boolean>(false);
+	const [error_message, setErrorMessage] = useState<string>("");
 
 	const REQUEST_HEADERS = {
 		'Content-Type': 'application/json'
@@ -31,6 +35,11 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	useEffect(() => {
 		userRef.current?.focus();
 	}, [])
+
+	function onFocusHandler() {
+		setLoginFailed(false);
+		setErrorMessage("");
+	}
 
 	function onChangeHandler(event: any) {
 		setUserCredentials({
@@ -43,6 +52,8 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 		event.preventDefault();
 
 		setLoggingInState(true);
+		setLoginFailed(false);
+		setErrorMessage("");
 
 		try {
 			const response = await axios.post('/auth/login', user_credentials, { headers: REQUEST_HEADERS });
@@ -54,8 +65,12 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 				window.location.reload();
 			}
 		} catch (error: any) {
-			console.error(error);
 			setLoggingInState(false);
+			setLoginFailed(true);
+
+			if (error.status === 404) {
+				setErrorMessage("Invalid username or password.");
+			}
 		}
 	}
 
@@ -63,6 +78,16 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 		<div id="login_popup" onClick={() => { if ((event?.target as HTMLElement).id == "login_popup") setLoginPopupVisible(false) }}>
 			<div className="form_container">
 				<h1>Log In</h1>
+				{ login_failed && 
+					<div id="error_container">
+						<div className="image_container">
+							<img src={error_icon} />
+						</div>
+						<div className="text_container">
+							<p>{error_message}</p>
+						</div>
+					</div>
+				}
 				<form onSubmit={onSubmitHandler}>
 					<div className="input_container">
 						<label htmlFor="username"><span>Username</span></label>
@@ -72,6 +97,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							ref={userRef} 
 							autoComplete="off" 
 							onChange={onChangeHandler} 
+							onFocus={onFocusHandler} 
 							required 
 						/>
 					</div>
@@ -81,6 +107,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							type="password" 
 							id="password" 
 							onChange={onChangeHandler} 
+							onFocus={onFocusHandler} 
 							required 
 						/>
 					</div>
