@@ -13,16 +13,18 @@ interface props {
 
 function Notification({message, type, setNotificationMessage, setNotificationType}: props) {
 	return (
-		<div id="notification" className={type === "success" ? "success" : "error"}>
-			<div className="overlay" onClick={() => { setNotificationMessage(""); setNotificationType("") }}></div>
-			<div className="icon_container">
-				<img src={type === "success" ? acknowledge_icon : error_icon} />
-			</div>
-			<div className="text_container">
-				<p>{message}</p>
+		<div id="notification_wrapper">
+			<div id="notification" className={type === "success" ? "success" : "error"}>
+				<div className="overlay" onClick={() => { setNotificationMessage(""); setNotificationType("") }}></div>
+				<div className="icon_container">
+					<img src={type === "success" ? acknowledge_icon : error_icon} />
+				</div>
+				<div className="text_container">
+					<p>{message}</p>
+				</div>
 			</div>
 		</div>
-	);
+	)
 }
 
 export default Notification;
