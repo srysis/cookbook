@@ -34,6 +34,10 @@ function App() {
 
 	const [isLoggedIn, setLoggedInState] = useState<boolean>(logged_in);
 
+	const [notification_visible, setNotificationVisible] = useState<boolean>(false);
+	const [notification_type, setNotificationType] = useState<string>("");
+	const [notification_message, setNotificationMessage] = useState<string>("");
+
 	useEffect(() => {
 		if (stored_web_token && stored_user_ID) {
 
@@ -48,6 +52,42 @@ function App() {
 			logOut();
 		}
 	}, [isLoggedIn])
+
+	useEffect(() => {
+		if (notification_message !== "") {
+			setNotificationVisible(true);
+
+			setTimeout(() => {
+				setNotificationVisible(false);
+				setNotificationMessage("");
+				setNotificationType("");
+			}, 3000);
+		}
+
+		return () => { setNotificationVisible(false); }
+	}, [notification_message])
+
+
+	function setNotificationMessageWrapper(message: string) {
+		setNotificationMessage(message)
+	}
+
+	function setNotificationTypeWrapper(type: string) {
+		switch(type) {
+			case "success":
+				setNotificationType("success");
+				break;
+			case "error":
+				setNotificationType("error");
+				break;
+			case "":
+				setNotificationType("");
+				break;
+			default:
+				console.error(`Values 'success' or 'error' are expected, but instead '${type}' was received`);
+				break;
+		}
+	}
 
 	function logIn(login_data: any) {
 		const token = login_data.token;
@@ -78,10 +118,22 @@ function App() {
 	return(
 		<BrowserRouter basename="/">
 			<Routes>
-				<Route element={<BaseLayout isLoggedIn={isLoggedIn} logIn={logIn} logOut={logOut} />} >
+				<Route 
+					element={<BaseLayout 
+								isLoggedIn={isLoggedIn} 
+								logIn={logIn} 
+								logOut={logOut} 
+								notification_visible={notification_visible} 
+								notification_message={notification_message} 
+								notification_type={notification_type} 
+								setNotificationMessage={setNotificationMessageWrapper} 
+								setNotificationType={setNotificationTypeWrapper} 
+							/>
+							}
+				>
 					<Route path="/" element={<Home />} />
 					<Route path="/search" element={<SearchRecipesPage />} />
-					<Route path="/recipe/:id" element={<RecipePage />} />
+					<Route path="/recipe/:id" element={<RecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
 
 					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
 
