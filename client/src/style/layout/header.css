@@ -6,6 +6,8 @@ header {
 	background-color: #FF424B;
 
 	div.logo_container {
+		position: relative;
+		z-index: 8;
 		font-size: 2.2em;
 		font-weight: bold;
 	}
