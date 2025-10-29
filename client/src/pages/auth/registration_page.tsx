@@ -5,6 +5,7 @@ import axios from '../../api/axios'
 
 import LoadingSpinner from "../../components/LoadingSpinnerInline.tsx"
 
+import error_icon from "../../assets/exclamation-mark-2.png"
 import eye_icon from "../../assets/eye-icon.png"
 import correct_icon from "../../assets/correct.png"
 import incorrect_icon from "../../assets/incorrect.png"
@@ -37,6 +38,8 @@ function RegistrationPage({isLoggedIn}: props) {
 	const [matching_password_focus, setMatchingPasswordFocus] = useState<boolean>(false);
 
 	const [registration_in_progress, setRegistrationState] = useState<boolean>(false);
+	const [registration_failed, setRegistrationFailed] = useState<boolean>(false);
+	const [error_message, setErrorMessage] = useState<string>("");
 
 	const navigate = useNavigate();
 
@@ -58,6 +61,11 @@ function RegistrationPage({isLoggedIn}: props) {
 		setIsPasswordValid(PWD_REGEX.test(password));
 		setDoPasswordsMatch(password === matching_password);
 	}, [password, matching_password]);
+
+	useEffect(() => {
+		setErrorMessage("");
+		setRegistrationFailed(false);
+	}, [username, password, matching_password]);
 
 	function clearFields() {
 		const input_fields = document.querySelectorAll("input[type='text'], input[type='password']") as any;
@@ -97,6 +105,7 @@ function RegistrationPage({isLoggedIn}: props) {
 		}
 
 		setRegistrationState(true);
+		setRegistrationFailed(false);
 
 		try {
 			const register_response = await axios.post('/auth/register', { username: username, password: password } , { headers: REQUEST_HEADERS });
@@ -109,8 +118,16 @@ function RegistrationPage({isLoggedIn}: props) {
 			}
 
 		} catch (error: any) {
-			console.error(error);
+			if (error.status === 409) {
+				setErrorMessage("Username is taken");
+			} else if (!error.data) {
+				setErrorMessage("No response from the server");
+			} else {
+				setErrorMessage("Registration failed");
+			}
+
 			setRegistrationState(false);
+			setRegistrationFailed(true);
 		}
 	}
 
@@ -119,6 +136,16 @@ function RegistrationPage({isLoggedIn}: props) {
 			{ !isLoggedIn && 
 				<section id="registration">
 					<h1>Register</h1>
+					{ registration_failed && 
+						<div id="error_container">
+							<div className="image_container">
+								<img src={error_icon} />
+							</div>
+							<div className="text_container">
+								<p>{error_message}</p>
+							</div>
+						</div>
+					}
 					<form onSubmit={onSubmitHandler}>
 						<div className="input_container">
 							<label htmlFor="username">
