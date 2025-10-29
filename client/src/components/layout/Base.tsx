@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import Header from "./Header.tsx"
@@ -12,6 +12,14 @@ interface props {
 
 function Base({isLoggedIn, logIn, logOut}: props) {
 	const [isLoginPopupVisible, setLoginPopupVisible] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (isLoginPopupVisible) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "";
+		}
+	}, [isLoginPopupVisible])
 
 	function setLoginPopupVisibleWrapper(value: boolean) {
 		setLoginPopupVisible(value);
