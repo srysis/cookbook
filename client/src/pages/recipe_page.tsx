@@ -73,6 +73,8 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 			});
 
 			if (delete_response.data.success) {
+				setNotificationType("success");
+				setNotificationMessage("Recipe was successfully deleted")
 				navigate('/');
 			} else {
 				navigate(`/recipe/${id}`);
