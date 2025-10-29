@@ -18,7 +18,12 @@ type Recipe = {
 	ingredients: string
 }
 
-function RecipePage() {
+interface props {
+	setNotificationMessage: Function,
+	setNotificationType: Function
+}
+
+function RecipePage({setNotificationMessage, setNotificationType}: props) {
 	const navigate = useNavigate();
 
 	const { id } = useParams();
@@ -127,11 +132,9 @@ function RecipePage() {
 			</>
 		)
 	} else if (infoFetched && !isLoading && recipe_info == undefined) {
-		return(
-			<section id="recipe" className="no_data">
-				<p>This recipe does not exist.</p>
-			</section>
-		)
+		setNotificationType("error");
+		setNotificationMessage("Recipe with given ID does not exist");
+		navigate("/");
 	} else if (isLoading) {
 		return(
 			<LoadingSpinnerBlock />
