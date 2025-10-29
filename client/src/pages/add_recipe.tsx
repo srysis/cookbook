@@ -7,7 +7,12 @@ import LoadingSpinner from "../components/LoadingSpinnerInline.tsx"
 
 import "../style/add_recipe_page.css"
 
-function AddRecipe() {
+interface props {
+	setNotificationMessage: Function,
+	setNotificationType: Function
+}
+
+function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 	const navigate = useNavigate();
 
 	const [recipe_name, setRecipeName] = useState<string>("");
@@ -126,6 +131,8 @@ function AddRecipe() {
 		.then((response: any) => {
 			if (response.data.success) {
 				setAddingState(false);
+				setNotificationType("success");
+				setNotificationMessage("Recipe was successfully added");
 				navigate(`/recipe/${response.data.inserted_ID}`)
 			}
 		})
