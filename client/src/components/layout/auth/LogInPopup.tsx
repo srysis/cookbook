@@ -36,10 +36,10 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 		userRef.current?.focus();
 	}, [])
 
-	function onFocusHandler() {
-		setLoginFailed(false);
+	useEffect(() => {
 		setErrorMessage("");
-	}
+		setLoginFailed(false);
+	}, [user_credentials]);
 
 	function onChangeHandler(event: any) {
 		setUserCredentials({
@@ -97,7 +97,6 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							ref={userRef} 
 							autoComplete="off" 
 							onChange={onChangeHandler} 
-							onFocus={onFocusHandler} 
 							required 
 						/>
 					</div>
@@ -107,7 +106,6 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 							type="password" 
 							id="password" 
 							onChange={onChangeHandler} 
-							onFocus={onFocusHandler} 
 							required 
 						/>
 					</div>
