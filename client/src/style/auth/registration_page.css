@@ -2,14 +2,32 @@ section#registration {
 	width: 80%;
 	margin-inline: auto;
 	border-radius: var(--border-radius);
-	padding: 40px 0;
+	padding: 40px 4vw;
 	box-shadow: var(--box-shadow);
 	background-color: #fff;
 
+	div#error_container {
+		display: flex;
+		align-items: center;
+		margin: 20px auto 0;
+		border-radius: var(--border-radius);
+		padding: 10px 1vw;
+		box-shadow: var(--error-container-box-shadow);
+		background-color: var(--error-container-color);
+
+		div.image_container {
+			margin-right: 20px;
+		}
+
+		div.text_container {
+			color: #fdd;
+			font-weight: bold;
+			font-size: 1.3em;
+		}
+	}
+
 	form {
 		div.input_container {
-			width: 90%;
-			margin: 0 auto;
 			padding: 20px 0;
 
 			label {
