@@ -10,9 +10,9 @@ div#login_popup {
 	div.form_container {
 		width: 60%;
 		margin: auto;
-		margin-block: 25vh;
+		margin-block: 15vh;
 		border-radius: var(--border-radius);
-		padding: 40px 0;
+		padding: 40px 5vw;
 		background-color: #fff;
 
 		h1 {
@@ -20,8 +20,27 @@ div#login_popup {
 			margin-block-end: 0;
 		}
 
+		div#error_container {
+			display: flex;
+			align-items: center;
+			margin: 20px auto 0;
+			border-radius: var(--border-radius);
+			padding: 10px 1vw;
+			box-shadow: var(--error-container-box-shadow);
+			background-color: var(--error-container-color);
+
+			div.image_container {
+				margin-right: 20px;
+			}
+
+			div.text_container {
+				color: #fdd;
+				font-weight: bold;
+				font-size: 1.3em;
+			}
+		}
+
 		form {
-			width: 80%;
 			margin: auto;
 
 			div.input_container {
