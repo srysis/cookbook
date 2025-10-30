@@ -77,6 +77,12 @@ section#recipe {
 		div.main_info {
 			width: 90%;
 
+			div.name {
+				h2 {
+					font-size: 2.2em;
+				}
+			}
+
 			div.ingredients {
 				span {
 					margin-inline: .1vw;
@@ -94,6 +100,10 @@ section#recipe {
 				span:first-child {
 					margin-left: 0;
 				}
+			}
+
+			div.short_description {
+				padding-top: 8px;
 			}
 		}
 
