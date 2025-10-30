@@ -16,6 +16,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 	const navigate = useNavigate();
 
 	const [recipe_name, setRecipeName] = useState<string>("");
+	const [recipe_short_description, setRecipeShortDescription] = useState<string>("");
 	const [recipe_description, setRecipeDescription] = useState<string>("");
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(false);
@@ -89,6 +90,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 
 		setRecipeName("");
 		setRecipeDescription("");
+		setRecipeShortDescription("");
 	}
 
 	function onNameOrDescriptionChangeHandler(event: any) {
@@ -98,6 +100,9 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				break;
 			case "description":
 				setRecipeDescription(event.target.value);
+				break;
+			case "short_description":
+				setRecipeShortDescription(event.target.value);
 				break;
 			default:
 				console.error("Unexpected value");
@@ -126,6 +131,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		axios.post(`/recipe`, {user_id: window.localStorage.getItem("id"), recipe_data: {
 			name: recipe_name,
 			description: recipe_description,
+			short_description: recipe_short_description,
 			ingredients: recipe_ingredients
 		}})
 		.then((response: any) => {
@@ -148,14 +154,18 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		<section id="add_recipe">
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
-					<label htmlFor="name"><span>Recipe name</span></label>
+					<label htmlFor="name"><span>Recipe name*</span></label>
 					<input type="text" id="name" placeholder="Name your recipe" onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
 				</div>
 				<div className="input_wrapper">
-					<label><span>Ingredients</span></label>
+					<label><span>Ingredients(at least one)</span></label>
 					<div className="input_container">
 						<button type="button" id="add_ingredient" onClick={addInputField}>+ Add ingredient</button>
 					</div>
+				</div>
+				<div className="input_container">
+					<label htmlFor="short_description"><span>Short description*</span></label>
+					<input type="text" id="short_description" placeholder="Give your recipe a brief description" onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
 				</div>
 				<div className="input_container">
 					<label htmlFor="description"><span>Additional information(optional)</span></label>
@@ -170,7 +180,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				</div>
 				<div className="buttons_container">
 					<button type="button" disabled={adding_in_progress} onClick={() => clearFields()}>Clear</button>
-					<button type="submit" disabled={!recipe_name || !doIngredientsExist || adding_in_progress}>{adding_in_progress ? <LoadingSpinner /> : "Add recipe"}</button>
+					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || adding_in_progress}>{adding_in_progress ? <LoadingSpinner /> : "Add recipe"}</button>
 				</div>
 			</form>
 		</section>
