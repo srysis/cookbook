@@ -5,13 +5,14 @@ interface props {
 		id: number,
 		name: string,
 		description: string,
+		short_description: string,
 		ingredients: string
 	},
 	ingredients_list: string[]
 }
 
 function Recipe({recipe, ingredients_list}: props) {
-	const { id, name, description, ingredients } = recipe;
+	const { id, name, description, short_description, ingredients } = recipe;
 
 	function capitalize(word: string) {
 		return word.charAt(0).toUpperCase() + word.slice(1);
@@ -56,10 +57,11 @@ function Recipe({recipe, ingredients_list}: props) {
 						<Link to={`/recipe/${id}?${queryString}`}></Link>
 					</div>
 					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">You can cook this!</span>}</div>
-					<div className="description">
-						<p>{description ? description : "no description"}</p>
-					</div>
 					<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
+					<div className="description">
+						<p>{short_description ? short_description : "no description"}</p>
+					</div>
+					
 				</div>
 			</div>
 		</>
