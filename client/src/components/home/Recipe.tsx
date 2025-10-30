@@ -5,12 +5,13 @@ interface props {
 		id: number,
 		name: string,
 		description: string,
+		short_description: string,
 		ingredients: string
 	}
 }
 
 function Recipe({content}: props) {
-	const { id, name, description, ingredients } = content;
+	const { id, name, short_description, ingredients } = content;
 	
 	return(
 		<div className="recipe">
@@ -23,7 +24,7 @@ function Recipe({content}: props) {
 					{ingredients.split(",").map((ingredient, index) => <span key={index}>{ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}</span>)}
 				</div>
 				<div className="description">
-					<p>{description ? description : "no description"}</p>
+					<p>{short_description ? short_description : "no description"}</p>
 				</div>
 			</div>
 		</div>
