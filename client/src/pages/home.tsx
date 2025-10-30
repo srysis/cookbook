@@ -10,6 +10,7 @@ type Recipe = {
 	id: number,
 	name: string,
 	description: string,
+	short_description: string,
 	ingredients: string
 }
 
