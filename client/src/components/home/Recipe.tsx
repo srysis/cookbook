@@ -19,11 +19,11 @@ function Recipe({content}: props) {
 					<Link to={`/recipe/${id}`}></Link>
 				</div>
 				<div className="name"><h2>{name}</h2></div>
-				<div className="description">
-					<p>{description ? description : "no description"}</p>
-				</div>
 				<div className="ingredients">
 					{ingredients.split(",").map((ingredient, index) => <span key={index}>{ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}</span>)}
+				</div>
+				<div className="description">
+					<p>{description ? description : "no description"}</p>
 				</div>
 			</div>
 		</div>
