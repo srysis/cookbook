@@ -59,9 +59,8 @@ function Recipe({recipe, ingredients_list}: props) {
 					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">You can cook this!</span>}</div>
 					<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
 					<div className="description">
-						<p>{short_description ? short_description : "no description"}</p>
+						<p>{short_description}</p>
 					</div>
-					
 				</div>
 			</div>
 		</>
