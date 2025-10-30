@@ -15,6 +15,7 @@ type Recipe = {
 	id: number,
 	name: string,
 	description: string,
+	short_description: string,
 	ingredients: string
 }
 
@@ -28,7 +29,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 
 	const { id } = useParams();
 
-	const [recipe_info, setRecipeInfo] = useState<Recipe>({id: 0, name: "", description: "", ingredients: ""});
+	const [recipe_info, setRecipeInfo] = useState<Recipe>({id: 0, name: "", description: "", short_description: "", ingredients: ""});
 	const [isLoading, setLoadingState] = useState<boolean>(true);
 	const [infoFetched, setInfoFetched] = useState<boolean>(false);
 
@@ -85,7 +86,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 	}
 
 	if (infoFetched && !isLoading && recipe_info != undefined) {
-		const { name, description, ingredients } = recipe_info;
+		const { name, description, short_description, ingredients } = recipe_info;
 
 		const recipe_ingredients: string[] = ingredients.split(",");
 		const ingredients_list: string[] = Object.values(Object.fromEntries(new URLSearchParams(window.location.search)));
@@ -117,8 +118,9 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 				<section id="recipe">
 					<div className="recipe_wrapper">
 						<div className="main_info">
-							<div className="name"><h1>{name}</h1></div>
+							<div className="name"><h2>{name}</h2></div>
 							<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
+							<div className="short_description">{short_description}</div>
 						</div>
 						{ ownership && 
 							<div className="delete">
@@ -128,7 +130,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 					</div>
 					<hr />
 					<div className="description">
-						<p>{description ? description : "no description"}</p>
+						<p>{description ? description : "No additional information was given."}</p>
 					</div>
 				</section>
 			</>
