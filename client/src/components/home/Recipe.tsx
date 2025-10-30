@@ -24,7 +24,7 @@ function Recipe({content}: props) {
 					{ingredients.split(",").map((ingredient, index) => <span key={index}>{ingredient.charAt(0).toUpperCase() + ingredient.slice(1)}</span>)}
 				</div>
 				<div className="description">
-					<p>{short_description ? short_description : "no description"}</p>
+					<p>{short_description}</p>
 				</div>
 			</div>
 		</div>
