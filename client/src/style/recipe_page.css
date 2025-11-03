@@ -1,7 +1,7 @@
 div.delete_popup_overlay {
 	position: absolute;
 	inset: 0;
-	z-index: 5;
+	z-index: 9;
 	background-color: rgba(0, 0, 0, 0.7);
 
 	div.delete_popup_container {
@@ -130,6 +130,7 @@ section#recipe {
 
 	div.description {
 		margin-top: 0;
+		padding-block: 10px;
 
 		p {
 			white-space: pre-wrap;
