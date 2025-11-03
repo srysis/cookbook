@@ -5,6 +5,7 @@ import Recipe from "../components/home/Recipe"
 import LoadingSpinner from "../components/LoadingSpinnerBlock.tsx"
 
 import "../style/home.css"
+import "../style/mobile/home.css"
 
 type Recipe = {
 	id: number,
