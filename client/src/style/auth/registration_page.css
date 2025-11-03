@@ -9,7 +9,7 @@ section#registration {
 	div#error_container {
 		display: flex;
 		align-items: center;
-		margin: 20px auto 0;
+		margin: 20px auto;
 		border-radius: var(--border-radius);
 		padding: 10px 1vw;
 		box-shadow: var(--error-container-box-shadow);
@@ -27,6 +27,12 @@ section#registration {
 	}
 
 	form {
+		padding-block: 10px;
+
+		div.input_container:first-child {
+			padding-top: 0;
+		}
+
 		div.input_container {
 			padding: 20px 0;
 
@@ -57,7 +63,6 @@ section#registration {
 
 			div#username_note, div#password_note, div#matching_password_note {
 				display: none;
-				margin: 0 auto 20px;
 				border: 2px solid #555;
 				border-top: none;
 				border-bottom-left-radius: var(--border-radius);
