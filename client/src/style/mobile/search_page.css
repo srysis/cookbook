@@ -1,0 +1,59 @@
+@media screen and (max-width: 550px) {
+	section#search {
+		padding: 10px 2vw;
+
+		form {
+			div.search_bar_wrapper {
+				padding: 10px 1vw;
+
+				div.search_bar {
+					div.ingredients {
+						span.ingredient_wrapper {
+							span.ingredient, button {
+								padding: 6px;
+							}
+						}
+					}
+
+					div.input_container {
+						input {
+							padding: 15px 1vw;
+						}
+					}					
+				}
+			}
+
+			div.submit_container {
+				button {
+					width: 50%;
+				}
+			}
+		}
+
+		section#matching_recipes {
+			div.recipe {
+				margin-block: 10px;
+
+				div.link_container {
+					div {
+						padding: 2px 2vw;
+					}
+
+					div.name {
+						h2 {
+							font-size: 2em;
+						}
+					}
+
+					div.ingredients {
+						span {
+							margin-inline: .5vw;
+							padding: 2px 4px;
+							font-size: .9em;
+						}
+					}
+				}
+			}
+		}
+	}
+}
