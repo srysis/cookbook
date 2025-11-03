@@ -10,6 +10,7 @@ import LoadingSpinnerInline from "../components/LoadingSpinnerInline.tsx"
 import delete_icon from "../assets/trash_can.png"
 
 import "../style/recipe_page.css"
+import "../style/mobile/recipe_page.css"
 
 type Recipe = {
 	id: number,
