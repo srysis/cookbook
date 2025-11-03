@@ -10,15 +10,17 @@ section#add_recipe {
 			padding-top: 0;
 		}
 
-		div.input_wrapper {
-			padding-block: 10px;
-
+		div.input_wrapper, div.input_container {
 			label {
 				display: block;
 				margin-bottom: 10px;
 				font-weight: bold;
 				font-size: 1.2em;
 			}
+		}
+
+		div.input_wrapper {
+			padding-block: 10px;
 
 			div.input_container {
 				width: 100%;
@@ -86,13 +88,6 @@ section#add_recipe {
 
 		div.input_container {
 			padding-block: 10px;
-
-			label {
-				display: block;
-				margin-bottom: 10px;
-				font-weight: bold;
-				font-size: 1.2em;
-			}
 
 			input, textarea {
 				width: 100%;
