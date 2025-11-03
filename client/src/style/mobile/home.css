@@ -1,0 +1,25 @@
+@media screen and (max-width: 550px) {
+	section#home {
+		div.recipe {
+			div.link_container {
+				div {
+					padding: 4px 2vw;
+				}
+
+				div.name {
+					h2 {
+						font-size: 2em;
+					}
+				}
+
+				div.ingredients {
+					span {
+						margin-inline: .5vw;
+						padding: 2px 4px;
+						font-size: .9em;
+					}
+				}
+			}
+		}
+	}
+}
