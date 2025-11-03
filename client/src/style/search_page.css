@@ -12,7 +12,7 @@ section#search {
 			align-items: center;
 			border: none;
 			border-radius: 5px;
-			padding-inline: .5vw;
+			padding: 10px .5vw;
 			box-shadow: var(--input-element-box-shadow);
 			background-color: var(--input-element-background-color);
 			cursor: text;
@@ -23,6 +23,7 @@ section#search {
 
 				div.ingredients {
 					display: flex;
+					flex-wrap: wrap;
 
 					span.ingredient_wrapper:last-child {
 						margin-right: 0;
@@ -32,7 +33,7 @@ section#search {
 						display: flex;
 						align-items: center;
 						border: none;
-						margin-inline: 4px;
+						margin: 4px;
 						color: #fff;
 						cursor: pointer;
 
@@ -62,7 +63,7 @@ section#search {
 						width: inherit;
 						border: none;
 						border-radius: var(--border-radius);
-						padding: 20px .4vw;
+						padding: 10px .4vw;
 						background-color: var(--input-element-background-color);
 					}
 				}
@@ -73,6 +74,7 @@ section#search {
 			margin-top: 30px;
 
 			button {
+				width: 15%;
 				border-radius: 2px;
 				padding: 15px 4vw;
 				box-shadow: var(--input-element-box-shadow);
