@@ -2,7 +2,7 @@ div.delete_popup_overlay {
 	position: absolute;
 	inset: 0;
 	z-index: 9;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.9);
 
 	div.delete_popup_container {
 		width: 60%;
