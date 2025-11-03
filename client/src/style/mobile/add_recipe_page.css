@@ -1,0 +1,54 @@
+@media screen and (max-width: 550px) {
+	section#add_recipe {
+		padding: 10px 2vw;
+
+		form {
+			div.input_wrapper, div.input_container {
+				label {
+					font-size: 1.1em;
+				}
+			}
+
+			div.input_wrapper {
+				div.input_container {
+					padding: 10px 1vw;
+
+					div.ingredient_container {
+						input.ingredient, button {
+							padding: 5px 2vw;
+						}
+
+						input.ingredient {
+							width: 60%;
+							margin-right: 4vw;
+						}
+					}
+
+					button#add_ingredient {
+						padding: 5px 4vw;
+						font-size: .9em;
+					}
+				}
+			}
+
+			div.input_container {
+				input, textarea {
+					padding: 10px 2vw;
+				}
+			}
+
+			div.buttons_container {
+				justify-content: space-between;
+
+				button[type="button"] {
+					margin-left: 0;
+				}
+
+				button {
+					width: 50%;
+					padding-block: 8px;
+				}
+			}
+		}
+	}
+}
