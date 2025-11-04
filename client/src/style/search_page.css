@@ -171,10 +171,6 @@ section#search {
 						background-color: #FF424B;
 						color: #fff;
 					}
-
-					span:first-child {
-						margin-left: 0;
-					}
 				}
 
 				div.short_description {
