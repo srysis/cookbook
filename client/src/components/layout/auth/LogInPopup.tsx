@@ -8,7 +8,6 @@ import LoadingSpinner from "../../LoadingSpinnerInline.tsx"
 import error_icon from "../../../assets/exclamation-mark-2.png"
 
 import "../../../style/auth/login_popup.css"
-import "../../../style/mobile/auth/login_popup.css"
 
 type UserCredentials = {
 	username: string,
