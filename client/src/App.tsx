@@ -115,11 +115,26 @@ function App() {
 		}
 	}
 
+	const WIDTH_THRESHOLD = 550;
+
+	const initial_device_type = window.innerWidth < WIDTH_THRESHOLD ? "mobile" : "desktop";
+
+	const [DEVICE_TYPE, setDeviceType] = useState<string>(initial_device_type);
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > WIDTH_THRESHOLD) {
+			setDeviceType("desktop");
+		} else {
+			setDeviceType("mobile");
+		}
+	})
+
 	return(
 		<BrowserRouter basename="/">
 			<Routes>
 				<Route 
 					element={<BaseLayout 
+								DEVICE_TYPE={DEVICE_TYPE}
 								isLoggedIn={isLoggedIn} 
 								logIn={logIn} 
 								logOut={logOut} 
