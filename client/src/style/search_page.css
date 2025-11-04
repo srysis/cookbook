@@ -24,6 +24,7 @@ section#search {
 				div.ingredients {
 					display: flex;
 					flex-wrap: wrap;
+					gap: .2em;
 
 					span.ingredient_wrapper:last-child {
 						margin-right: 0;
@@ -33,7 +34,6 @@ section#search {
 						display: flex;
 						align-items: center;
 						border: none;
-						margin: 4px;
 						color: #fff;
 						cursor: pointer;
 
@@ -174,7 +174,7 @@ section#search {
 					}
 				}
 
-				div.description {
+				div.short_description {
 					padding-block: 16px;
 				}
 			}
