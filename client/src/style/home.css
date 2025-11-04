@@ -41,8 +41,11 @@ section#home {
 			}
 
 			div.ingredients {
+				display: flex;
+				flex-wrap: wrap;
+				gap: .2em;
+
 				span {
-					margin-inline: .1vw;
 					border-radius: var(--ingredient-border-radius);
 					padding: 2px 8px;
 					background-color: #FF424B;
@@ -54,7 +57,7 @@ section#home {
 				}
 			}
 
-			div.description {
+			div.short_description {
 				padding-block: 16px;
 			}
 		}
