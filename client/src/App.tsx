@@ -14,6 +14,7 @@ import SearchRecipesPage from './pages/search_recipes'
 import AddRecipePage from './pages/add_recipe'
 import RecipePage from './pages/recipe_page'
 
+import LoginPage from './pages/auth/login_page'
 import RegistrationPage from './pages/auth/registration_page'
 
 if (import.meta.env.PROD) {
@@ -150,6 +151,7 @@ function App() {
 					<Route path="/search" element={<SearchRecipesPage />} />
 					<Route path="/recipe/:id" element={<RecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
 
+					<Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} logIn={logIn} />} />
 					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
 
 					<Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
