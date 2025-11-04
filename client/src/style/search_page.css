@@ -156,8 +156,11 @@ section#search {
 				}
 
 				div.ingredients {
+					display: flex;
+					flex-wrap: wrap;
+					gap: .1vw;
+
 					span {
-						margin-inline: .1vw;
 						border-radius: var(--ingredient-border-radius);
 						padding: 2px 8px;
 						background-color: #ddd;
