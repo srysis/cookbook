@@ -8,16 +8,19 @@
 
 				div.name {
 					h2 {
-						font-size: 2em;
+						font-size: 1.8em;
 					}
 				}
 
 				div.ingredients {
 					span {
-						margin-inline: .5vw;
 						padding: 2px 4px;
-						font-size: .9em;
+						font-size: .8em;
 					}
+				}
+
+				div.short_description {
+					padding-block: 8px;
 				}
 			}
 		}
