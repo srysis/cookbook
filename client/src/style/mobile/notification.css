@@ -1,0 +1,23 @@
+@media screen and (max-width: 550px) {
+	div#notification_wrapper {
+		div#notification {
+			min-width: 100%;
+			max-width: 100%;
+			padding: 12px 2vw;
+
+			div.icon_container {
+				width: 32px;
+				height: 32px;
+
+				img {
+					width: inherit;
+					height: inherit;
+				}
+			}
+
+			div.text_container {
+				font-size: 1.1em;
+			}
+		}
+	}
+}
