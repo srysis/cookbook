@@ -5,7 +5,8 @@ header {
 	padding: 10px 2vw;
 	background-color: #FF424B;
 
-	div.logo_container {
+	div.logo_wrapper {
+		display: flex;
 		position: relative;
 		z-index: 8;
 		font-size: 2.2em;
