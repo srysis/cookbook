@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useTranslation } from "react-i18next";
 
 import { disableReactDevTools } from '@fvilers/disable-react-devtools'
 
@@ -38,6 +39,14 @@ function App() {
 	const [notification_visible, setNotificationVisible] = useState<boolean>(false);
 	const [notification_type, setNotificationType] = useState<string>("");
 	const [notification_message, setNotificationMessage] = useState<string>("");
+
+	const { i18n } = useTranslation();
+
+	useEffect(() => {
+		if (!window.localStorage.getItem("lang")) {
+			window.localStorage.setItem("lang", i18n.language);
+		}
+	}, [])
 
 	useEffect(() => {
 		if (stored_web_token && stored_user_ID) {
