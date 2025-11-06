@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from "react-i18next";
 
 import bars_solid from "../../assets/bars-solid.png"
 
@@ -14,6 +15,8 @@ interface props {
 }
 
 function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAside}: props) {
+	const { t } = useTranslation();
+
 	return(
 		<header>
 			{ DEVICE_TYPE === "mobile" && 
@@ -24,15 +27,15 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 			<div className="logo_container"><Link to="/">cookbook</Link></div>
 			{ DEVICE_TYPE === "desktop" &&
 				<nav>
-					<span><Link to="/search">Search recipes</Link></span>
+					<span><Link to="/search">{t('search')}</Link></span>
 					{isLoggedIn &&
 						<>
-							<span><Link to="/add_recipe">Add a new recipe</Link></span>
-							<button className="log_out_button" onClick={() => logOut()}>Log out</button>
+							<span><Link to="/add_recipe">{t('addRecipe')}</Link></span>
+							<button className="log_out_button" onClick={() => logOut()}>{t('logOut')}</button>
 						</>
 					}
 					{!isLoggedIn && 
-						<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>Log in</button>
+						<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>{t('logIn')}</button>
 					}
 				</nav>
 			}
