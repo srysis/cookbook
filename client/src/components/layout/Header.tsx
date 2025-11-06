@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 
+import LocaleSwitcher from "../../tools/LocaleSwitcher";
+
 import bars_solid from "../../assets/bars-solid.png"
 
 import "../../style/layout/header.css"
@@ -24,22 +26,25 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 					<button type="button" onClick={() => {toggleAside(true)}}><img src={bars_solid} /></button>
 				</div>
 			}
-			<div className="logo_container"><Link to="/">cookbook</Link></div>
+			<div className="logo_wrapper">
+				<Link to="/">cookbook</Link>
+				{ DEVICE_TYPE === "desktop" && <LocaleSwitcher /> }
+			</div>
 			{ DEVICE_TYPE === "desktop" &&
 				<nav>
-					<span><Link to="/search">{t('search')}</Link></span>
+					<span><Link to="/search">{t('search.title')}</Link></span>
 					{isLoggedIn &&
 						<>
 							<span><Link to="/add_recipe">{t('addRecipe')}</Link></span>
-							<button className="log_out_button" onClick={() => logOut()}>{t('logOut')}</button>
+							<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 						</>
 					}
 					{!isLoggedIn && 
-						<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>{t('logIn')}</button>
+						<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>{t("header.logIn")}</button>
 					}
 				</nav>
 			}
-			
+			{ DEVICE_TYPE === "mobile" && <LocaleSwitcher /> }
 		</header>
 	)
 }
