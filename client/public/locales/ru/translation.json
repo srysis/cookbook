@@ -1,7 +1,21 @@
 {
-	"logIn": "Войти",
-	"logOut": "Выйти",
-	"search": "Поиск рецептов",
-	"searchButton": "Поиск",
-	"addRecipe": "Добавить рецепт"
+	"header": {
+		"logIn": "Войти",
+		"logOut": "Выйти"
+	},
+	"auth": {
+		"register": "Зарегестрироваться",
+		"username": "Имя пользователя",
+		"password": "Пароль",
+		"usernameNote": "",
+		"passwordNote": "",
+		"matchingPasswordNote": ""
+	},
+	"search": {
+		"title": "Поиск рецептов",
+		"searchButton": "Искать",
+		"addIngredient": "Впишите ингридиент(ы)",
+		"noRecipes": "Рецептов, которые включают заданные вами ингридиенты, не найдено"
+	},
+	"addRecipe": "Добавить рецепт",
 }

@@ -1,7 +1,21 @@
 {
-	"logIn": "Log in",
-	"logOut": "Log out",
-	"search": "Search recipes",
-	"searchButton": "Search",
-	"addRecipe": "Add a new recipe"
+	"header": {
+		"logIn": "Log in",
+		"logOut": "Log out"
+	},
+	"auth": {
+		"register": "Register",
+		"username": "Username",
+		"password": "Password",
+		"usernameNote": "",
+		"passwordNote": "",
+		"matchingPasswordNote": ""
+	},
+	"search": {
+		"title": "Search recipes",
+		"searchButton": "Search",
+		"addIngredient": "Add ingredient(s)",
+		"noRecipes": "No recipes that match given ingredients were found."
+	},
+	"addRecipe": "Add a new recipe",
 }
