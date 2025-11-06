@@ -2,23 +2,22 @@ import i18n from "i18next";
 import i18n_http_backend from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 
-// the translations
-// (tip move them in a JSON file and import them,
-// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
+export const supportedLngs = {
+  en: "English",
+  ru: "Русский",
+};
 
 i18n
   .use(i18n_http_backend)
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    lng: "ru", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-    // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-    // if you're using a language detector, do not define the lng option
+    lng: window.localStorage.getItem("lang") || "en", // attempt to retrieve 'lang' key from 'localStorage': if it's unset or null, set 'en' as a default language
 
     debug: true,
 
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false
     },
   });
 
