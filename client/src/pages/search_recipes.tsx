@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { useTranslation } from "react-i18next";
 
 import axios from '../api/axios'
 
@@ -18,6 +19,8 @@ type Recipe = {
 
 function SearchRecipes() {
 	const ingredientsRef = useRef<HTMLInputElement | null>(null);
+
+	const { t } = useTranslation();
 
 	const [filtered_recipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
 	const [ingredients_list, setIngredientsList] = useState<string[]>([]);
@@ -113,7 +116,7 @@ function SearchRecipes() {
 								type="text"
 								ref={ingredientsRef}  
 								id="ingredients" 
-								placeholder="Add ingredient..." 
+								placeholder={t("search.addIngredient")} 
 								autoComplete="off" 
 								onKeyDown={onKeyDownHandler} 
 								onBlur={onBlurHandler}
@@ -123,7 +126,7 @@ function SearchRecipes() {
 					
 					
 				</div>
-				<div className="submit_container"><button type="submit" disabled={!ingredients_list.length}>Search</button></div>
+				<div className="submit_container"><button type="submit" disabled={!ingredients_list.length}>{t("search.searchButton")}</button></div>
 			</form>
 			{ isSearchFinished && 
 				<section id="matching_recipes">
@@ -133,7 +136,7 @@ function SearchRecipes() {
 						</>
 					}
 					{ filtered_recipes.length <= 0 && !search_in_progress &&
-						<p>No recipes that match given ingredients were found.</p>
+						<p>{t("search.noRecipes")}</p>
 					}
 				</section>
 			}
