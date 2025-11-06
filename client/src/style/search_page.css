@@ -59,6 +59,8 @@ section#search {
 				}
 
 				div.input_container {
+					width: 20vw;
+
 					input {
 						width: inherit;
 						border: none;
