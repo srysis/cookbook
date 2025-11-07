@@ -19,7 +19,13 @@
 		"invalidCredentials": "Неправильное имя пользователя или пароль",
 		"usernameTaken": "Имя пользователя занято",
 		"noResponse": "Сервер не отвечает. Повторите попытку позже",
-		"registrationFailureGeneric": "Ошибка регистрации"
+		"registrationFailureGeneric": "Ошибка регистрации",
+		"noRecipeFound": "Рецепта с таким ID не существует"
+	},
+	"deleteRecipe": {
+		"title": "Вы уверены?",
+		"confirm": "Да",
+		"deny": "Нет"
 	},
 	"search": {
 		"title": "Поиск рецептов",
@@ -30,5 +36,6 @@
 	"registerTip": "<0>Регестрируйтесь сейчас</0> чтобы создавать свои собственные рецепты!",
 	"addRecipe": "Добавить рецепт",
 	"clearFields": "Очистить поля",
-	"matchingRecipeTip": "Вы можете это приготовить!"
+	"matchingRecipeTip": "Вы можете это приготовить!",
+	"noInformationGiven": "Нет дополнительной информации."
 }
