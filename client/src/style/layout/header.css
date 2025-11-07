@@ -7,10 +7,15 @@ header {
 
 	div.logo_wrapper {
 		display: flex;
+		align-items: flex-end;
 		position: relative;
 		z-index: 8;
 		font-size: 2.2em;
 		font-weight: bold;
+
+		a {
+			margin-right: 30px;
+		}
 	}
 
 	nav {
