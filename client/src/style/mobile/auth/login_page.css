@@ -28,6 +28,7 @@ section#login {
 
 		div.text_container {
 			color: #fdd;
+			text-align: left;
 			font-weight: bold;
 			font-size: 1.1em;
 		}
