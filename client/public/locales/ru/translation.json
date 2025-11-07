@@ -13,6 +13,9 @@
 		"passwordNote": "",
 		"matchingPasswordNote": ""
 	},
+	"error": {
+		"invalidCredentials": "Неправильное имя пользователя или пароль."
+	},
 	"search": {
 		"title": "Поиск рецептов",
 		"searchButton": "Искать",

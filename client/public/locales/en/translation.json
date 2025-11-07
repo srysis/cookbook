@@ -13,6 +13,9 @@
 		"passwordNote": "",
 		"matchingPasswordNote": ""
 	},
+	"error": {
+		"invalidCredentials": "Invalid username or password."
+	},
 	"search": {
 		"title": "Search recipes",
 		"searchButton": "Search",
