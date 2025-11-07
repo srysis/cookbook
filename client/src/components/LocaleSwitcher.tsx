@@ -14,7 +14,7 @@ function LocaleSwitcher() {
 				value={i18n.resolvedLanguage}
 				onChange={(e) => { i18n.changeLanguage(e.target.value).then(() => {window.localStorage.setItem("lang", i18n.language)});  } }
 			>
-				{Object.entries(supportedLngs).map(([code, name]) => (
+				{Object.entries(supportedLngs).map(([code]) => (
 					<option value={code} key={code}>
 						{code.toUpperCase()}
 					</option>
