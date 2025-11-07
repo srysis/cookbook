@@ -4,6 +4,8 @@
 		"logOut": "Log out"
 	},
 	"auth": {
+		"logIn": "Log in",
+		"logInButton": "Log in",
 		"register": "Register",
 		"username": "Username",
 		"password": "Password",
@@ -17,5 +19,6 @@
 		"addIngredient": "Add ingredient(s)",
 		"noRecipes": "No recipes that match given ingredients were found."
 	},
+	"registerTip": "<0>Register now</0> to be able to create your own recipes!",
 	"addRecipe": "Add a new recipe"
 }
