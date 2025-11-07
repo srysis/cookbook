@@ -45,18 +45,13 @@
 
 			div.buttons_container {
 				display: flex;
-				justify-content: space-between;
+				flex-direction: column;
+				row-gap: 20px;
+				padding-top: 30px;
 
 				button {
-					width: 50%;
-				}
-
-				button[type="button"] {
-					margin-left: 0;
-				}
-
-				button[type="submit"] {
-					margin-right: 0;
+					width: 100%;
+					margin: 0;
 				}
 			}
 		}
