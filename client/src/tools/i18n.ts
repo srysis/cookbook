@@ -14,8 +14,6 @@ i18n
     fallbackLng: "en",
     lng: window.localStorage.getItem("lang") || "en", // attempt to retrieve 'lang' key from 'localStorage': if it's unset or null, set 'en' as a default language
 
-    debug: true,
-
     interpolation: {
       escapeValue: false
     },
