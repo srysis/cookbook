@@ -18,6 +18,8 @@
 					}
 
 					div.input_container {
+						width: 50vw;
+
 						input {
 							padding: 15px 1vw;
 						}
