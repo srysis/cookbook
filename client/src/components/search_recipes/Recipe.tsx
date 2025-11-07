@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from "react-i18next"
 
 interface props {
 	recipe: {
@@ -13,6 +14,7 @@ interface props {
 
 function Recipe({recipe, ingredients_list}: props) {
 	const { id, name, short_description, ingredients } = recipe;
+	const { t } = useTranslation();
 
 	function capitalize(word: string) {
 		return word.charAt(0).toUpperCase() + word.slice(1);
@@ -56,7 +58,7 @@ function Recipe({recipe, ingredients_list}: props) {
 					<div className="overlay">
 						<Link to={`/recipe/${id}?${queryString}`}></Link>
 					</div>
-					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">You can cook this!</span>}</div>
+					<div className="name"><h2>{name}</h2>{isFullMatch && <span className="hint">{t("matchingRecipeTip")}</span>}</div>
 					<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
 					<div className="short_description">
 						<p>{short_description}</p>
