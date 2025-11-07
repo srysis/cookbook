@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { supportedLngs } from "../tools/i18n.ts";
 
 import "../style/locale_switcher.css"
+import "../style/mobile/locale_switcher.css"
 
 function LocaleSwitcher() {
 	const { i18n } = useTranslation();
