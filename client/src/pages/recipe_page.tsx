@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from "react-i18next"
 
 import axios from '../api/axios'
 
@@ -29,6 +30,8 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 	const navigate = useNavigate();
 
 	const { id } = useParams();
+
+	const { t } = useTranslation();
 
 	const [recipe_info, setRecipeInfo] = useState<Recipe>({id: 0, name: "", description: "", short_description: "", ingredients: ""});
 	const [isLoading, setLoadingState] = useState<boolean>(true);
@@ -108,10 +111,14 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 				{ isDeletePopupVisible && 
 					<div className="delete_popup_overlay" onClick={(event: any) => {if (event.target.classList.contains("delete_popup_overlay")) showDeletePopup(false) }}>
 						<div className="delete_popup_container">
-							<h1>Are you sure?</h1>
+							<h1>{t("deleteRecipe.title")}</h1>
 							<div className="selection_container">
-								<button type="button" onClick={deleteRecipe} disabled={delete_in_progress ? true : false}>{delete_in_progress ? <LoadingSpinnerInline /> : "Yes"}</button>
-								<button type="button" onClick={() => {showDeletePopup(false)}} disabled={delete_in_progress ? true : false}>No</button>
+								<button type="button" onClick={deleteRecipe} disabled={delete_in_progress ? true : false}>
+									{delete_in_progress ? <LoadingSpinnerInline /> : <>{t("deleteRecipe.confirm")}</>}
+								</button>
+								<button type="button" onClick={() => {showDeletePopup(false)}} disabled={delete_in_progress ? true : false}>
+									{t("deleteRecipe.deny")}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -131,14 +138,14 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 					</div>
 					<hr />
 					<div className="description">
-						<p>{description ? description : "No additional information was given."}</p>
+						<p>{description ? description : <>{t("noInformationGiven")}</>}</p>
 					</div>
 				</section>
 			</>
 		)
 	} else if (infoFetched && !isLoading && recipe_info == undefined) {
 		setNotificationType("error");
-		setNotificationMessage("Recipe with given ID does not exist");
+		setNotificationMessage(t("error.noRecipeFound"));
 		navigate("/");
 	} else if (isLoading) {
 		return(
