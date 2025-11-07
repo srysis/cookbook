@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { Trans, useTranslation } from 'react-i18next'
 
 import axios from '../../api/axios'
 
@@ -23,6 +24,8 @@ interface props {
 
 function RegistrationPage({isLoggedIn}: props) {
 	const userRef = useRef<HTMLInputElement | null>(null);
+
+	const { t } = useTranslation();
 
 	const [username, setUsername] = useState<string>("");
 	const [isUsernameValid, setIsUsernameValid] = useState<boolean>(false);
@@ -120,11 +123,11 @@ function RegistrationPage({isLoggedIn}: props) {
 
 		} catch (error: any) {
 			if (error.status === 409) {
-				setErrorMessage("Username is taken");
+				setErrorMessage(t("error.usernameTaken"));
 			} else if (!error.data) {
-				setErrorMessage("No response from the server");
+				setErrorMessage(t("error.noResponse"));
 			} else {
-				setErrorMessage("Registration failed");
+				setErrorMessage(t("error.registrationFailureGeneric"));
 			}
 
 			setRegistrationState(false);
@@ -136,7 +139,7 @@ function RegistrationPage({isLoggedIn}: props) {
 		<>
 			{ !isLoggedIn && 
 				<section id="registration">
-					<h1>Register</h1>
+					<h1>{t("auth.registerTitle")}</h1>
 					{ registration_failed && 
 						<div id="error_container">
 							<div className="image_container">
@@ -150,7 +153,7 @@ function RegistrationPage({isLoggedIn}: props) {
 					<form onSubmit={onSubmitHandler}>
 						<div className="input_container">
 							<label htmlFor="username">
-								<span>Username<img src={isUsernameValid ? correct_icon : incorrect_icon} /></span>
+								<span>{t("auth.username")}<img src={isUsernameValid ? correct_icon : incorrect_icon} /></span>
 							</label>
 							<input 
 								type="text" 
@@ -164,14 +167,16 @@ function RegistrationPage({isLoggedIn}: props) {
 								required 
 							/>
 							<div id="username_note" className={username_focus && !isUsernameValid ? "visible" : ""}>
-								<h3>Username must:</h3>
-								<p>Be 4 to 24 characters long</p>
-								<p>Start with a letter(regardless of case)</p>
+								<Trans i18nKey="auth.usernameNote">
+									<h3>Username must:</h3>
+									<p>Be 4 to 24 characters long</p>
+									<p>Start with a letter(regardless of case)</p>
+								</Trans>
 							</div>
 						</div>
 						<div className="input_container">
 							<label htmlFor="password">
-								<span>Password<img src={isPasswordValid ? correct_icon : incorrect_icon} /></span>
+								<span>{t("auth.password")}<img src={isPasswordValid ? correct_icon : incorrect_icon} /></span>
 							</label>
 							<div className="container">
 								<input 
@@ -188,14 +193,16 @@ function RegistrationPage({isLoggedIn}: props) {
 								</button>
 							</div>
 							<div id="password_note" className={password_focus && !isPasswordValid ? "visible" : ""}>
-								<h3>Password must:</h3>
-								<p>Be 8 to 24 characters long</p>
-								<p>Contain one uppercase and one lowercase letters and a number</p>
+								<Trans i18nKey="auth.passwordNote">
+									<h3>Password must:</h3>
+									<p>Be 8 to 24 characters long</p>
+									<p>Contain at least one uppercase letter and a number</p>
+								</Trans>
 							</div>
 						</div>
 						<div className="input_container">
 							<label htmlFor="match_password">
-								<span>Confirm password<img src={password && isPasswordValid && doPasswordsMatch ? correct_icon : incorrect_icon} /></span>
+								<span>{t("auth.matchingPassword")}<img src={password && isPasswordValid && doPasswordsMatch ? correct_icon : incorrect_icon} /></span>
 							</label>
 							<input 
 								type="password" 
@@ -207,13 +214,15 @@ function RegistrationPage({isLoggedIn}: props) {
 								required 
 							/>
 							<div id="matching_password_note" className={matching_password_focus && password && isPasswordValid && !doPasswordsMatch ? "visible" : ""}>
-								<p>Must match the password in the "Password" field</p>
+								<Trans i18nKey="auth.matchingPasswordNote">
+									<p>Must match the password</p>
+								</Trans>
 							</div>
 						</div>
 						<div className="buttons_container">
-							<button type="button" onClick={clearFields} disabled={registration_in_progress}>Clear</button>
+							<button type="button" onClick={clearFields} disabled={registration_in_progress}>{t("clearFields")}</button>
 							<button type="submit" disabled={!isUsernameValid || !isPasswordValid || !doPasswordsMatch || registration_in_progress ? true : false}>
-								{ registration_in_progress ? <LoadingSpinner /> : "Register" }
+								{ registration_in_progress ? <LoadingSpinner /> : <>{t("auth.register")}</> }
 							</button>
 						</div>
 					</form>
