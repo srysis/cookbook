@@ -29,5 +29,6 @@
 	},
 	"registerTip": "<0>Register now</0> to be able to create your own recipes!",
 	"addRecipe": "Add a new recipe",
-	"clearFields": "Clear fields"
+	"clearFields": "Clear fields",
+	"matchingRecipeTip": "You can cook this!"
 }
