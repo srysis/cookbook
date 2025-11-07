@@ -123,7 +123,7 @@ function LogInPage({ isLoggedIn, logIn }: props) {
 							<div className="register_tip">
 								<p>
 									<Trans i18nKey="registerTip">
-										<Link to="/register" onClick={() => {setLoginPopupVisible(false)}}>Register now</Link> to be able to create your own recipes!
+										<Link to="/register">Register now</Link> to be able to create your own recipes!
 									</Trans>
 								</p>
 							</div>
