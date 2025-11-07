@@ -22,6 +22,18 @@
 		"registrationFailureGeneric": "Registration failed",
 		"noRecipeFound": "Recipe with given ID does not exist"
 	},
+	"addRecipe": {
+		"title": "Add a new recipe",
+		"name": "Recipe name*",
+		"namePlaceholder": "Name your recipe",
+		"ingredients": "Ingredients(at least one)",
+		"addIngredient": "+ Add ingredient",
+		"shortDescription": "Short description*",
+		"shortDescriptionPlaceholder": "Give your recipe a brief description",
+		"additionalInfo": "Additional information(optional)",
+		"additionalInfoPlaceholder": "Any additional information you want to provide (e.g. cooking order, tips and tricks, recommendations)",
+		"buttonText": "Add"
+	},
 	"deleteRecipe": {
 		"title": "Are you sure?",
 		"confirm": "Yes",
@@ -34,7 +46,6 @@
 		"noRecipes": "No recipes that match given ingredients were found."
 	},
 	"registerTip": "<0>Register now</0> to be able to create your own recipes!",
-	"addRecipe": "Add a new recipe",
 	"clearFields": "Clear fields",
 	"matchingRecipeTip": "You can cook this!",
 	"noInformationGiven": "No additional information was given."
