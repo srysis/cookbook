@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { supportedLngs } from "./i18n.ts";
+import { supportedLngs } from "../tools/i18n.ts";
+
+import "../style/locale_switcher.css"
 
 export default function LocaleSwitcher() {
 	const { i18n } = useTranslation();
 
 	return (
-		<div>
-			<div className="locale-switcher">
+		<div className="locale_switcher">
 			<select
 				id="lang_switch"
 				value={i18n.resolvedLanguage}
@@ -14,11 +15,10 @@ export default function LocaleSwitcher() {
 			>
 				{Object.entries(supportedLngs).map(([code, name]) => (
 					<option value={code} key={code}>
-						{name}
+						{code.toUpperCase()}
 					</option>
 				))}
 			</select>
-			</div>
 		</div>
 	);
 }
