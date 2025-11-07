@@ -3,7 +3,7 @@ import { supportedLngs } from "../tools/i18n.ts";
 
 import "../style/locale_switcher.css"
 
-export default function LocaleSwitcher() {
+function LocaleSwitcher() {
 	const { i18n } = useTranslation();
 
 	return (
@@ -22,3 +22,5 @@ export default function LocaleSwitcher() {
 		</div>
 	);
 }
+
+export default LocaleSwitcher;
