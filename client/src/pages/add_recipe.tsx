@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from "react-i18next"
 
 import axios from '../api/axios.ts'
 
@@ -15,6 +16,8 @@ interface props {
 
 function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 	const navigate = useNavigate();
+
+	const { t } = useTranslation();
 
 	const [recipe_name, setRecipeName] = useState<string>("");
 	const [recipe_short_description, setRecipeShortDescription] = useState<string>("");
@@ -155,24 +158,24 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		<section id="add_recipe">
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
-					<label htmlFor="name"><span>Recipe name*</span></label>
-					<input type="text" id="name" placeholder="Name your recipe" onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
+					<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
+					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
 				</div>
 				<div className="input_wrapper">
-					<label><span>Ingredients(at least one)</span></label>
+					<label><span>{t("addRecipe.ingredients")}</span></label>
 					<div className="input_container">
-						<button type="button" id="add_ingredient" onClick={addInputField}>+ Add ingredient</button>
+						<button type="button" id="add_ingredient" onClick={addInputField}>{t("addRecipe.addIngredient")}</button>
 					</div>
 				</div>
 				<div className="input_container">
-					<label htmlFor="short_description"><span>Short description*</span></label>
-					<input type="text" id="short_description" placeholder="Give your recipe a brief description" onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
+					<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
+					<input type="text" id="short_description" placeholder={t("addRecipe.shortDescriptionPlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
 				</div>
 				<div className="input_container">
-					<label htmlFor="description"><span>Additional information(optional)</span></label>
+					<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
 					<textarea 
 						id="description" 
-						placeholder="Things like how to cook properly or just the description of an end result" 
+						placeholder={t("addRecipe.additionalInfoPlaceholder")}
 						rows={4} 
 						cols={40} 
 						maxLength={5000} 
@@ -180,8 +183,10 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					/>
 				</div>
 				<div className="buttons_container">
-					<button type="button" disabled={adding_in_progress} onClick={() => clearFields()}>Clear</button>
-					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || adding_in_progress}>{adding_in_progress ? <LoadingSpinner /> : "Add recipe"}</button>
+					<button type="button" disabled={adding_in_progress} onClick={() => clearFields()}>{t("clearFields")}</button>
+					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || adding_in_progress}>
+						{adding_in_progress ? <LoadingSpinner /> : <>{t("addRecipe.buttonText")}</>}
+					</button>
 				</div>
 			</form>
 		</section>
