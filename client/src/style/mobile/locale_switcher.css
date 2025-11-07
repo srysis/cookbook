@@ -1,0 +1,7 @@
+@media screen and (max-width: 550px) {
+	div.locale_switcher {
+		select#lang_switch {
+			padding-inline: 15px;
+		}
+	}
+}
