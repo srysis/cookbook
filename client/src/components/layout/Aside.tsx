@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 import "../../style/mobile/layout/aside.css"
 
@@ -10,6 +11,7 @@ interface props {
 }
 
 function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
+	const { t } = useTranslation();
 
 	function onInteractHandler() {
 		toggleAside(false);
@@ -21,14 +23,14 @@ function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
 			<div id="content">
 				{!isLoggedIn && 
 					<span> 
-						<Link id="log_in_button" to="/login" onClick={onInteractHandler}>Log In</Link>
+						<Link id="log_in_button" to="/login" onClick={onInteractHandler}>{t("header.logIn")}</Link>
 					</span> 
 				}
-				<span><Link to="/search" onClick={onInteractHandler}>Search recipes</Link></span>
+				<span><Link to="/search" onClick={onInteractHandler}>{t('search.title')}</Link></span>
 				{ isLoggedIn && 
 					<> 
-						<span><Link to="/add_recipe" onClick={onInteractHandler}>Add a new recipe</Link></span>
-						<button className="log_out_button" onClick={() => logOut()}>Log out</button>
+						<span><Link to="/add_recipe" onClick={onInteractHandler}>{t('addRecipe')}</Link></span>
+						<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 					</>
 				}
 			</div>
