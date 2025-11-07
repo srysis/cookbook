@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next';
 
 import axios from '../../../api/axios'
 
@@ -21,6 +22,8 @@ interface props {
 
 function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	const userRef: any = useRef(null);
+
+	const { t } = useTranslation();
 
 	const [user_credentials, setUserCredentials] = useState<UserCredentials>({username: "", password: ""});
 
@@ -77,7 +80,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 	return(
 		<div id="login_popup" onClick={() => { if ((event?.target as HTMLElement).id == "login_popup") setLoginPopupVisible(false) }}>
 			<div className="form_container">
-				<h1>Log In</h1>
+				<h1>{t("auth.logIn")}</h1>
 				{ login_failed && 
 					<div id="error_container">
 						<div className="image_container">
@@ -90,7 +93,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 				}
 				<form onSubmit={onSubmitHandler}>
 					<div className="input_container">
-						<label htmlFor="username"><span>Username</span></label>
+						<label htmlFor="username"><span>{t("auth.username")}</span></label>
 						<input 
 							type="text" 
 							id="username" 
@@ -101,7 +104,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 						/>
 					</div>
 					<div className="input_container">
-						<label htmlFor="password"><span>Password</span></label>
+						<label htmlFor="password"><span>{t("auth.password")}</span></label>
 						<input 
 							type="password" 
 							id="password" 
@@ -110,10 +113,14 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 						/>
 					</div>
 					<div className="submit_container">
-						<button type="submit" disabled={!user_credentials.username || !user_credentials.password || login_in_progress}>{login_in_progress ? <LoadingSpinner /> : "Log In"}</button>
+						<button type="submit" disabled={!user_credentials.username || !user_credentials.password || login_in_progress}>{login_in_progress ? <LoadingSpinner /> : <>{t("auth.logInButton")}</>}</button>
 					</div>
 					<div className="register_tip">
-						<p><Link to="/register" onClick={() => {setLoginPopupVisible(false)}}>Register now</Link> to be able to create your own recipes!</p>
+						<p>
+							<Trans i18nKey="registerTip">
+								<Link to="/register" onClick={() => {setLoginPopupVisible(false)}}>Register now</Link> to be able to create your own recipes!
+							</Trans>
+						</p>
 					</div>
 				</form>
 			</div>
