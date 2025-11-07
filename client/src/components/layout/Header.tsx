@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 
-import LocaleSwitcher from "../../tools/LocaleSwitcher";
+import LocaleSwitcher from "../LocaleSwitcher";
 
 import bars_solid from "../../assets/bars-solid.png"
 
@@ -28,7 +28,7 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 			}
 			<div className="logo_wrapper">
 				<Link to="/">cookbook</Link>
-				{ DEVICE_TYPE === "desktop" && <LocaleSwitcher /> }
+				<LocaleSwitcher />
 			</div>
 			{ DEVICE_TYPE === "desktop" &&
 				<nav>
@@ -44,7 +44,6 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 					}
 				</nav>
 			}
-			{ DEVICE_TYPE === "mobile" && <LocaleSwitcher /> }
 		</header>
 	)
 }
