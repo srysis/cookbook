@@ -72,7 +72,7 @@ function LogInPopup({ logIn, setLoginPopupVisible }: props) {
 			setLoginFailed(true);
 
 			if (error.status === 404) {
-				setErrorMessage("Invalid username or password.");
+				setErrorMessage(t("error.invalidCredentials"));
 			}
 		}
 	}
