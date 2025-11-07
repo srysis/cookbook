@@ -29,7 +29,7 @@ function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
 				<span><Link to="/search" onClick={onInteractHandler}>{t('search.title')}</Link></span>
 				{ isLoggedIn && 
 					<> 
-						<span><Link to="/add_recipe" onClick={onInteractHandler}>{t('addRecipe')}</Link></span>
+						<span><Link to="/add_recipe" onClick={onInteractHandler}>{t('addRecipe.title')}</Link></span>
 						<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 					</>
 				}
