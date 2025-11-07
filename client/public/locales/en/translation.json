@@ -7,14 +7,19 @@
 		"logIn": "Log in",
 		"logInButton": "Log in",
 		"register": "Register",
+		"registerTitle": "Register",
 		"username": "Username",
 		"password": "Password",
-		"usernameNote": "",
-		"passwordNote": "",
-		"matchingPasswordNote": ""
+		"matchingPassword": "Confirm password",
+		"usernameNote": "<0>Username must:</0><1>Be 4 to 24 characters long</1><2>Start with a letter(regardless of case)</2>",
+		"passwordNote": "<0>Password must:</0><1>Be 8 to 24 characters long</1><2>Contain at least one uppercase letter and a number</2>",
+		"matchingPasswordNote": "<0>Must match the password</0>"
 	},
 	"error": {
-		"invalidCredentials": "Invalid username or password."
+		"invalidCredentials": "Invalid username or password",
+		"usernameTaken": "Username is taken",
+		"noResponse": "No response from the server. Try again soon",
+		"registrationFailureGeneric": "Registration failed"
 	},
 	"search": {
 		"title": "Search recipes",
@@ -23,5 +28,6 @@
 		"noRecipes": "No recipes that match given ingredients were found."
 	},
 	"registerTip": "<0>Register now</0> to be able to create your own recipes!",
-	"addRecipe": "Add a new recipe"
+	"addRecipe": "Add a new recipe",
+	"clearFields": "Clear fields"
 }
