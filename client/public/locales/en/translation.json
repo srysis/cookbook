@@ -31,7 +31,7 @@
 		"shortDescription": "Short description*",
 		"shortDescriptionPlaceholder": "Give your recipe a brief description",
 		"additionalInfo": "Additional information(optional)",
-		"additionalInfoPlaceholder": "Any additional information you want to provide (e.g. cooking order, tips and tricks, recommendations)",
+		"additionalInfoPlaceholder": "Any additional information you want to provide (e.g. cooking order, tips, recommendations)",
 		"buttonText": "Add"
 	},
 	"deleteRecipe": {
