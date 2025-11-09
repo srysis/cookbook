@@ -1,0 +1,52 @@
+{
+	"header": {
+		"logIn": "Přihlasit se",
+		"logOut": "Odhlasit se"
+	},
+	"auth": {
+		"logIn": "Přihlasit se",
+		"logInButton": "Přihlasit se",
+		"register": "Registrace",
+		"registerTitle": "Registrace",
+		"username": "Uživatelské jméno",
+		"password": "Heslo",
+		"matchingPassword": "Potvrzení hesla",
+		"usernameNote": "<0>Uživatelské jméno musí:</0><1>Mít délku 4 až 24 znaků</1><2>Začínat písmenem (bez ohledu na velikost písmen)</2>",
+		"passwordNote": "<0>Heslo musí:</0><1>Mít délku 8 až 24 znaků</1>Obsahovat alespoň jedno velké písmeno a číslici</2>",
+		"matchingPasswordNote": "<0>Musí odpovídat heslu</0>"
+	},
+	"error": {
+		"invalidCredentials": "Neplatné uživatelské jméno nebo heslo",
+		"usernameTaken": "Uživatelské jméno je obsazeno",
+		"noResponse": "Žádná odpověď od serveru. Zkuste to znovu brzy.",
+		"registrationFailureGeneric": "Registrace se nezdařila",
+		"noRecipeFound": "Recept s daným ID neexistuje"
+	},
+	"addRecipe": {
+		"title": "Přidat nový recept",
+		"name": "Název receptu*",
+		"namePlaceholder": "Pojmenujte svůj recept",
+		"ingredients": "Ingredience(alespoň jedna)",
+		"addIngredient": "+ Přidejte přísadu",
+		"shortDescription": "Krátký popis*",
+		"shortDescriptionPlaceholder": "Stručně popište svůj recept",
+		"additionalInfo": "Doplňující informace(volitelné)",
+		"additionalInfoPlaceholder": "Veškeré další informace, které chcete poskytnout(např. pořadí vaření, tipy, doporučení)",
+		"buttonText": "Přidat"
+	},
+	"deleteRecipe": {
+		"title": "Jste si jistý?",
+		"confirm": "Ano",
+		"deny": "Ne"
+	},
+	"search": {
+		"title": "Hledat recepty",
+		"searchButton": "Hledat",
+		"addIngredient": "Přidat přísadu(y)",
+		"noRecipes": "Nebyly nalezeny žádné recepty, které by odpovídaly zadaným ingrediencím."
+	},
+	"registerTip": "<0>Zaregistrujte se nyní</0> a budete moci vytvářet vlastní recepty!",
+	"clearFields": "Vymazat pole",
+	"matchingRecipeTip": "Můžete to uvařit!",
+	"noInformationGiven": "Nebyly poskytnuty žádné další informace."
+}
