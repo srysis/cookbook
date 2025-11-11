@@ -4,10 +4,11 @@
 		"logOut": "Odhlasit se"
 	},
 	"auth": {
-		"logIn": "Přihlasit se",
+		"logIn": "Přihlaste se do <1>Cookbook</1>",
 		"logInButton": "Přihlasit se",
 		"register": "Registrace",
-		"registerTitle": "Registrace",
+		"registerTitle": "Vytvořte si účet pro <1>Cookbook</1>",
+		"haveAnAccount": "Už máte účet? <1>Přihlaste se.</1>",
 		"username": "Uživatelské jméno",
 		"password": "Heslo",
 		"matchingPassword": "Potvrzení hesla",
@@ -45,7 +46,7 @@
 		"addIngredient": "Přidat přísadu(y)",
 		"noRecipes": "Nebyly nalezeny žádné recepty, které by odpovídaly zadaným ingrediencím."
 	},
-	"registerTip": "<0>Zaregistrujte se nyní</0> a budete moci vytvářet vlastní recepty!",
+	"registerTip": "Ještě nemáte účet? <1>Zaregistrujte se nyní!</1>",
 	"clearFields": "Vymazat pole",
 	"matchingRecipeTip": "Můžete to uvařit!",
 	"noInformationGiven": "Nebyly poskytnuty žádné další informace."

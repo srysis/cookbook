@@ -4,10 +4,11 @@
 		"logOut": "Log out"
 	},
 	"auth": {
-		"logIn": "Log in",
+		"logIn": "Log in to <1>Cookbook</1>",
 		"logInButton": "Log in",
 		"register": "Register",
-		"registerTitle": "Register",
+		"registerTitle": "Create an account for <1>Cookbook</1>",
+		"haveAnAccount": "Already have an account? <1>Log in.</1>",
 		"username": "Username",
 		"password": "Password",
 		"matchingPassword": "Confirm password",
@@ -45,7 +46,7 @@
 		"addIngredient": "Add ingredient(s)",
 		"noRecipes": "No recipes that match given ingredients were found."
 	},
-	"registerTip": "<0>Register now</0> to be able to create your own recipes!",
+	"registerTip": "Don't have an account yet? <1>Register now!</1>",
 	"clearFields": "Clear fields",
 	"matchingRecipeTip": "You can cook this!",
 	"noInformationGiven": "No additional information was given."
