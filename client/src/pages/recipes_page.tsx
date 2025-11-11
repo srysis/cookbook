@@ -1,5 +1,8 @@
-import axios from '../api/axios'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useTranslation } from "react-i18next";
+
+import axios from '../api/axios'
 
 import Recipe from "../components/recipes/Recipe"
 import LoadingSpinner from "../components/LoadingSpinnerBlock.tsx"
@@ -16,6 +19,8 @@ type Recipe = {
 }
 
 function RecipesPage() {
+	const { t } = useTranslation();
+
 	const [recipes, setRecipes] = useState<Array<Recipe>>([]);
 	const [areRecipesRetrieved, setRecipesRetrieved] = useState<boolean>(false);
 
@@ -37,10 +42,20 @@ function RecipesPage() {
 		});
 	}, []);
 
-	if (areRecipesRetrieved && !isLoading && recipes != undefined) {
+	if (areRecipesRetrieved && !isLoading) {
 		return(
 			<section id="recipes">
 				{recipes && recipes.map((recipe) => <Recipe key={recipe.id} content={recipe} />)}
+				<div id="add_recipe">
+					<div className="link_container">
+						<div className="overlay">
+							<Link to={`/add_recipe`}></Link>
+						</div>
+						<div className="content">
+							<p>+ {t('addRecipe.title')}</p>
+						</div>
+					</div>
+				</div>
 			</section>
 		)
 	} else if (isLoading) {
