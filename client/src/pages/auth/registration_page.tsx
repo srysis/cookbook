@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 
 import axios from '../../api/axios'
@@ -139,93 +140,104 @@ function RegistrationPage({isLoggedIn}: props) {
 		<>
 			{ !isLoggedIn && 
 				<section id="registration">
-					<h1>{t("auth.registerTitle")}</h1>
-					{ registration_failed && 
-						<div id="error_container">
-							<div className="image_container">
-								<img src={error_icon} />
+					<div className="form_container">
+						<p className="register_title">
+							<Trans i18nKey="auth.registerTitle">
+								Create an account for <span>Cookbook</span>
+							</Trans>
+						</p>
+						<p className="have_an_account_title">
+							<Trans i18nKey="auth.haveAnAccount">
+								Already have an account? <Link to="/">Log in.</Link>
+							</Trans>
+						</p>
+						{ registration_failed && 
+							<div id="error_container">
+								<div className="image_container">
+									<img src={error_icon} />
+								</div>
+								<div className="text_container">
+									<p>{error_message}</p>
+								</div>
 							</div>
-							<div className="text_container">
-								<p>{error_message}</p>
-							</div>
-						</div>
-					}
-					<form onSubmit={onSubmitHandler}>
-						<div className="input_container">
-							<label htmlFor="username">
-								<span>{t("auth.username")}<img src={isUsernameValid ? correct_icon : incorrect_icon} /></span>
-							</label>
-							<input 
-								type="text" 
-								id="username" 
-								ref={userRef} 
-								autoComplete="off" 
-								onClick={() => setPasswordVisible(false)} 
-								onChange={onChangeHandler} 
-								onFocus={() => setUsernameFocus(true)} 
-								onBlur={() => setUsernameFocus(false)} 
-								required 
-							/>
-							<div id="username_note" className={username_focus && !isUsernameValid ? "visible" : ""}>
-								<Trans i18nKey="auth.usernameNote">
-									<h3>Username must:</h3>
-									<p>Be 4 to 24 characters long</p>
-									<p>Start with a letter(regardless of case)</p>
-								</Trans>
-							</div>
-						</div>
-						<div className="input_container">
-							<label htmlFor="password">
-								<span>{t("auth.password")}<img src={isPasswordValid ? correct_icon : incorrect_icon} /></span>
-							</label>
-							<div className="container">
+						}
+						<form onSubmit={onSubmitHandler}>
+							<div className="input_container">
+								<label htmlFor="username">
+									<span>{t("auth.username")}<img src={isUsernameValid ? correct_icon : incorrect_icon} /></span>
+								</label>
 								<input 
-									type={isPasswordVisible ? "text" : "password"}
-									id="password" 
+									type="text" 
+									id="username" 
+									ref={userRef} 
+									autoComplete="off" 
 									onClick={() => setPasswordVisible(false)} 
 									onChange={onChangeHandler} 
-									onFocus={() => setPasswordFocus(true)} 
-									onBlur={() => setPasswordFocus(false)} 
+									onFocus={() => setUsernameFocus(true)} 
+									onBlur={() => setUsernameFocus(false)} 
 									required 
 								/>
-								<button type="button" onClick={() => setPasswordVisible(!isPasswordVisible)}>
-									<img src={eye_icon} className={isPasswordVisible ? "selected" : ""} />
+								<div id="username_note" className={username_focus && !isUsernameValid ? "visible" : ""}>
+									<Trans i18nKey="auth.usernameNote">
+										<h3>Username must:</h3>
+										<p>Be 4 to 24 characters long</p>
+										<p>Start with a letter(regardless of case)</p>
+									</Trans>
+								</div>
+							</div>
+							<div className="input_container">
+								<label htmlFor="password">
+									<span>{t("auth.password")}<img src={isPasswordValid ? correct_icon : incorrect_icon} /></span>
+								</label>
+								<div className="container">
+									<input 
+										type={isPasswordVisible ? "text" : "password"}
+										id="password" 
+										onClick={() => setPasswordVisible(false)} 
+										onChange={onChangeHandler} 
+										onFocus={() => setPasswordFocus(true)} 
+										onBlur={() => setPasswordFocus(false)} 
+										required 
+									/>
+									<button type="button" onClick={() => setPasswordVisible(!isPasswordVisible)}>
+										<img src={eye_icon} className={isPasswordVisible ? "selected" : ""} />
+									</button>
+								</div>
+								<div id="password_note" className={password_focus && !isPasswordValid ? "visible" : ""}>
+									<Trans i18nKey="auth.passwordNote">
+										<h3>Password must:</h3>
+										<p>Be 8 to 24 characters long</p>
+										<p>Contain at least one uppercase letter and a number</p>
+									</Trans>
+								</div>
+							</div>
+							<div className="input_container">
+								<label htmlFor="match_password">
+									<span>{t("auth.matchingPassword")}<img src={password && isPasswordValid && doPasswordsMatch ? correct_icon : incorrect_icon} /></span>
+								</label>
+								<input 
+									type="password" 
+									id="match_password" 
+									onClick={() => setPasswordVisible(false)} 
+									onChange={onChangeHandler} 
+									onFocus={() => setMatchingPasswordFocus(true)} 
+									onBlur={() => setMatchingPasswordFocus(false)} 
+									required 
+								/>
+								<div id="matching_password_note" className={matching_password_focus && password && isPasswordValid && !doPasswordsMatch ? "visible" : ""}>
+									<Trans i18nKey="auth.matchingPasswordNote">
+										<p>Must match the password</p>
+									</Trans>
+								</div>
+							</div>
+							<div className="buttons_container">
+								<button type="button" onClick={clearFields} disabled={registration_in_progress}>{t("clearFields")}</button>
+								<button type="submit" disabled={!isUsernameValid || !isPasswordValid || !doPasswordsMatch || registration_in_progress ? true : false}>
+									{ registration_in_progress ? <LoadingSpinner /> : <>{t("auth.register")}</> }
 								</button>
 							</div>
-							<div id="password_note" className={password_focus && !isPasswordValid ? "visible" : ""}>
-								<Trans i18nKey="auth.passwordNote">
-									<h3>Password must:</h3>
-									<p>Be 8 to 24 characters long</p>
-									<p>Contain at least one uppercase letter and a number</p>
-								</Trans>
-							</div>
-						</div>
-						<div className="input_container">
-							<label htmlFor="match_password">
-								<span>{t("auth.matchingPassword")}<img src={password && isPasswordValid && doPasswordsMatch ? correct_icon : incorrect_icon} /></span>
-							</label>
-							<input 
-								type="password" 
-								id="match_password" 
-								onClick={() => setPasswordVisible(false)} 
-								onChange={onChangeHandler} 
-								onFocus={() => setMatchingPasswordFocus(true)} 
-								onBlur={() => setMatchingPasswordFocus(false)} 
-								required 
-							/>
-							<div id="matching_password_note" className={matching_password_focus && password && isPasswordValid && !doPasswordsMatch ? "visible" : ""}>
-								<Trans i18nKey="auth.matchingPasswordNote">
-									<p>Must match the password</p>
-								</Trans>
-							</div>
-						</div>
-						<div className="buttons_container">
-							<button type="button" onClick={clearFields} disabled={registration_in_progress}>{t("clearFields")}</button>
-							<button type="submit" disabled={!isUsernameValid || !isPasswordValid || !doPasswordsMatch || registration_in_progress ? true : false}>
-								{ registration_in_progress ? <LoadingSpinner /> : <>{t("auth.register")}</> }
-							</button>
-						</div>
-					</form>
+						</form>
+					</div>
 				</section>
 			}
 		</>
