@@ -112,15 +112,22 @@ router.delete('/recipe/:id', checkOwner, (request, response) => {
 })
 
 router.get('/filter_recipes', (request, response) => {
-	const ingredients = Object.values(request.query);
+	const user_id = request.query.id;
 
-	const query = "SELECT * FROM `recipes` WHERE MATCH(`ingredients`) AGAINST ('" + ingredients + "')";
+	if (user_id) {
+		const ingredients = request.query;
+		delete ingredients.id;
 
-	database.query(query, (error, data) => {
-		if (error) return response.json(error);
+		const query = "SELECT * FROM `recipes` WHERE MATCH(`ingredients`) AGAINST ('" + Object.values(ingredients) + "') AND `made_by` = " + user_id;
 
-		response.json(data);
-	})
+		database.query(query, (error, data) => {
+			if (error) return response.json(error);
+
+			response.json(data);
+		})
+	} else {
+		response.status(401).json({success: false, message: "User is not authorized."});
+	}
 });
 
 module.exports = router;
