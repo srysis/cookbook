@@ -37,8 +37,6 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 	const [isLoading, setLoadingState] = useState<boolean>(true);
 	const [infoFetched, setInfoFetched] = useState<boolean>(false);
 
-	const [ownership, setOwnership] = useState<boolean>(false);
-
 	const [isDeletePopupVisible, showDeletePopup] = useState<boolean>(false);
 
 	const [delete_in_progress, setDeletionState] = useState<boolean>(false);
@@ -54,7 +52,15 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 		.then((response: any) => {
 			setRecipeInfo(response.data.recipe_info);
 
-			setOwnership(response.data.ownership);
+			if (response.data.recipe_info && !response.data.ownership) {
+				setNotificationType("error");
+				setNotificationMessage("This recipe does not belong to you.");
+				navigate("/recipes");
+			} else if (!response.data.recipe_info) {
+				setNotificationType("error");
+				setNotificationMessage(t("error.noRecipeFound"));
+				navigate("/recipes");
+			}
 
 			setInfoFetched(true);
 			setLoadingState(false);
@@ -80,7 +86,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 			if (delete_response.data.success) {
 				setNotificationType("success");
 				setNotificationMessage("Recipe was successfully deleted")
-				navigate('/');
+				navigate('/recipes');
 			} else {
 				navigate(`/recipe/${id}`);
 			}
@@ -129,12 +135,10 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 							<div className="name"><h2>{name}</h2></div>
 							<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
 							<div className="short_description">{short_description}</div>
+						</div> 
+						<div className="delete">
+							<button type="button" onClick={() => {showDeletePopup(true)}}><img src={delete_icon} /></button>
 						</div>
-						{ ownership && 
-							<div className="delete">
-								<button type="button" onClick={() => {showDeletePopup(true)}}><img src={delete_icon} /></button>
-							</div>
-						}
 					</div>
 					<hr />
 					<div className="description">
@@ -143,10 +147,6 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 				</section>
 			</>
 		)
-	} else if (infoFetched && !isLoading && recipe_info == undefined) {
-		setNotificationType("error");
-		setNotificationMessage(t("error.noRecipeFound"));
-		navigate("/");
 	} else if (isLoading) {
 		return(
 			<LoadingSpinnerBlock />
