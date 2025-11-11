@@ -150,7 +150,6 @@ function App() {
 				<Route 
 					element={<BaseLayout 
 								DEVICE_TYPE={DEVICE_TYPE}
-								isLoggedIn={isLoggedIn} 
 								logOut={logOut} 
 								notification_visible={notification_visible} 
 								notification_message={notification_message} 

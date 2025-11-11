@@ -5,12 +5,10 @@ import "../../style/mobile/layout/aside.css"
 
 interface props {
 	toggleAside: Function,
-	visibility: boolean,
-	isLoggedIn: boolean,
 	logOut: Function
 }
 
-function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
+function Aside({ toggleAside, logOut } : props) {
 	const { t } = useTranslation();
 
 	function onInteractHandler() {

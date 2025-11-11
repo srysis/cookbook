@@ -8,7 +8,6 @@ import Notification from "../Notification.tsx"
 
 interface props {
 	DEVICE_TYPE: string,
-	isLoggedIn: boolean,
 	logOut: Function,
 	notification_visible: boolean,
 	notification_message: string,
@@ -17,7 +16,7 @@ interface props {
 	setNotificationType: Function
 }
 
-function Base({DEVICE_TYPE, isLoggedIn, logOut, notification_visible, notification_message, notification_type, setNotificationMessage, setNotificationType}: props) {
+function Base({DEVICE_TYPE, logOut, notification_visible, notification_message, notification_type, setNotificationMessage, setNotificationType}: props) {
 	const [isAsideVisible, toggleAside] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -35,8 +34,8 @@ function Base({DEVICE_TYPE, isLoggedIn, logOut, notification_visible, notificati
 
 	return(
 		<>
-			{ isAsideVisible && <Aside toggleAside={toggleAsideWrapper} visibility={isAsideVisible} isLoggedIn={isLoggedIn} logOut={logOut} /> }
-			<Header DEVICE_TYPE={DEVICE_TYPE} isLoggedIn={isLoggedIn} logOut={logOut} toggleAside={toggleAsideWrapper} />
+			{ isAsideVisible && <Aside toggleAside={toggleAsideWrapper} logOut={logOut} /> }
+			<Header DEVICE_TYPE={DEVICE_TYPE} logOut={logOut} toggleAside={toggleAsideWrapper} />
 			{notification_visible && 
 				<Notification message={notification_message} type={notification_type} setNotificationMessage={setNotificationMessage} setNotificationType={setNotificationType} />
 			}

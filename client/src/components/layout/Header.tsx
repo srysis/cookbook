@@ -10,12 +10,11 @@ import "../../style/mobile/layout/header.css"
 
 interface props {
 	DEVICE_TYPE: string,
-	isLoggedIn: boolean,
 	logOut: Function,
 	toggleAside: Function
 }
 
-function Header({DEVICE_TYPE, isLoggedIn, logOut, toggleAside}: props) {
+function Header({DEVICE_TYPE, logOut, toggleAside}: props) {
 	const { t } = useTranslation();
 
 	return(
