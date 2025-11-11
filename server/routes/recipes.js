@@ -9,13 +9,36 @@ const checkOwner = require('../middlewares/checkOwner.js');
 const router = express.Router();
 
 router.get('/recipes', (request, response) => {
-	const query = "SELECT * FROM `recipes`";
+	const token = request.headers['authorization'];
+	const user_id = request.query.id;
 
-	database.query(query, (error, data) => {
-		if (error) return response.json(error);
+	if (token) {
+		try {
+			const decoded_token = jwt.verify(token, access_key);
 
-		response.json({recipes: data})
-	})
+			if (decoded_token) {
+				if (decoded_token.id == user_id) {
+					const query = "SELECT * FROM `recipes` WHERE `made_by` = " + user_id;
+
+					database.query(query, (error, data) => {
+						if (error) return response.json(error);
+
+						response.json({recipes: data})
+					})
+				} else {
+					response.status(401).json({success: false, message: "Passed token does not correspond to the passed user ID."})
+				}
+			}
+		} catch (error) {
+			if (error.name == "TokenExpiredError") {
+				response.status(401).json({success: false, message: "Passed token has been expired.", refreshable: true});
+			} else {
+				response.status(401).json({success: false, message: "Passed token is either invalid or modified.", refreshable: false});
+			}
+		}
+	} else {
+		response.status(401).json({success: false, message: "No authorization header passed."})
+	}
 });
 
 router.get('/recipe/:id', checkOwner, (request, response) => {
