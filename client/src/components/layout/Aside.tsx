@@ -21,18 +21,8 @@ function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
 		<aside className={visibility ? "active" : ""}>
 			<div className="overlay" onClick={onInteractHandler}></div>
 			<div id="content">
-				{!isLoggedIn && 
-					<span> 
-						<Link id="log_in_button" to="/login" onClick={onInteractHandler}>{t("header.logIn")}</Link>
-					</span> 
-				}
 				<span><Link to="/search" onClick={onInteractHandler}>{t('search.title')}</Link></span>
-				{ isLoggedIn && 
-					<> 
-						<span><Link to="/add_recipe" onClick={onInteractHandler}>{t('addRecipe.title')}</Link></span>
-						<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
-					</>
-				}
+				<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 			</div>
 		</aside>
 	)
