@@ -80,7 +80,7 @@ function SearchRecipes() {
 				let query = new URLSearchParams(Object.assign({}, temp_ingredients_list) as any);
 				let queryString = query.toString();
 
-				axios.get(`/filter_recipes?${queryString}`)
+				axios.get(`/filter_recipes?id=${window.localStorage.getItem('id')}&${queryString}`)
 				.then((response: any) => {
 					setFilteredRecipes(response.data);
 
@@ -88,7 +88,9 @@ function SearchRecipes() {
 					setSearchState(false);
 				})
 				.catch((error: any) => {
-					console.error(error);
+					if (error.status === 401) {
+						window.location.reload();
+					}
 				})
 			}
 
