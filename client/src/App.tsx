@@ -151,7 +151,6 @@ function App() {
 					element={<BaseLayout 
 								DEVICE_TYPE={DEVICE_TYPE}
 								isLoggedIn={isLoggedIn} 
-								logIn={logIn} 
 								logOut={logOut} 
 								notification_visible={notification_visible} 
 								notification_message={notification_message} 
