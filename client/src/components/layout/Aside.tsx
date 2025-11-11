@@ -18,7 +18,7 @@ function Aside({ toggleAside, visibility, isLoggedIn, logOut } : props) {
 	}
 
 	return(
-		<aside className={visibility ? "active" : ""}>
+		<aside>
 			<div className="overlay" onClick={onInteractHandler}></div>
 			<div id="content">
 				<span><Link to="/search" onClick={onInteractHandler}>{t('search.title')}</Link></span>
