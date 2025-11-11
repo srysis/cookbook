@@ -38,7 +38,9 @@ function RecipesPage() {
 			setLoadingState(false);
 		})
 		.catch((error: any) => {
-			console.error(error);
+			if (error.status === 401) {
+				window.location.reload();
+			}
 		});
 	}, []);
 
