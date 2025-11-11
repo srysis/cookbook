@@ -27,7 +27,7 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 				</div>
 			}
 			<div className="logo_wrapper">
-				<Link to="/">cookbook</Link>
+				<Link to="/recipes">cookbook</Link>
 				<LocaleSwitcher />
 			</div>
 			{ DEVICE_TYPE === "desktop" &&
@@ -35,7 +35,6 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 					<span><Link to="/search">{t('search.title')}</Link></span>
 					{isLoggedIn &&
 						<>
-							<span><Link to="/add_recipe">{t('addRecipe.title')}</Link></span>
 							<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 						</>
 					}
