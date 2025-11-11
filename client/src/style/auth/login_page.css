@@ -11,14 +11,14 @@ section#login {
 		align-items: center;
 		margin: 10px auto;
 		border-radius: var(--border-radius);
-		padding: 10px 3vw;
+		padding: 10px 1vw;
 		box-shadow: var(--error-container-box-shadow);
 		background-color: var(--error-container-color);
 
 		div.image_container {
 			width: 40px;
 			height: 40px;
-			margin-right: 10px;
+			margin-right: 20px;
 
 			img {
 				width: inherit;
@@ -64,7 +64,7 @@ section#login {
 				width: 100%;
 				border: 1px solid #ddd;
 				border-radius: var(--border-radius);
-				padding: 10px 4vw;
+				padding: 10px 1vw;
 				box-shadow: var(--input-element-box-shadow);
 				background-color: var(--input-element-background-color);
 			}
@@ -74,7 +74,7 @@ section#login {
 			padding-block: 20px;
 
 			button {
-				width: 50%;
+				width: 20%;
 				margin-inline: 1vw;
 				border: 1px solid #ddd;
 				border-radius: 2px;
