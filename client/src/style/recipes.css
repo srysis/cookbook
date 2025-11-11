@@ -1,4 +1,4 @@
-section#home {
+section#recipes {
 	div.recipe {
 		display: flex;
 		flex-direction: column;
