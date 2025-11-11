@@ -8,6 +8,7 @@ import axios from './api/axios'
 
 import ProtectedRoutes from './tools/ProtectedRoutes'
 
+import WelcomeLayout from './components/layout/Welcome'
 import BaseLayout from './components/layout/Base'
 
 import RecipesPage from './pages/recipes_page'
@@ -142,8 +143,10 @@ function App() {
 	return(
 		<BrowserRouter basename="/">
 			<Routes>
-				<Route path="/login" element={<LoginPage isLoggedIn={isLoggedIn} logIn={logIn} />} />
-				<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
+				<Route element={<WelcomeLayout isLoggedIn={isLoggedIn} />} >
+					<Route path="/" element={<LoginPage isLoggedIn={isLoggedIn} logIn={logIn} />} />
+					<Route path="/register" element={<RegistrationPage isLoggedIn={isLoggedIn} />} />
+				</Route>
 				<Route 
 					element={<BaseLayout 
 								DEVICE_TYPE={DEVICE_TYPE}
