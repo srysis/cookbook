@@ -1,9 +1,6 @@
 section#recipes {
-	div.recipe {
-		display: flex;
-		flex-direction: column;
+	div.recipe, div#add_recipe {
 		text-align: left;
-		margin-block: 10px;
 		border-radius: var(--border-radius);
 		background-color: #fff;
 		box-shadow: var(--box-shadow);
@@ -21,13 +18,26 @@ section#recipes {
 				a {
 					position: absolute;
 					z-index: 2;
-					left: 0;
-					right: 0;
-					top: 0;
-					bottom: 0;
+					inset: 0;
 				}
 			}
+		}
 
+		div.link_container:hover {
+			background-color: var(--link-hover-color);
+		}
+
+		div.link_container:active {
+			background-color: var(--link-active-color);
+		}
+	}
+
+	div.recipe {
+		display: flex;
+		flex-direction: column;
+		margin-block: 10px;
+
+		div.link_container {
 			div {
 				padding: 2px 1vw;
 			}
@@ -61,13 +71,17 @@ section#recipes {
 				padding-block: 16px;
 			}
 		}
+	}
 
-		div.link_container:hover {
-			background-color: var(--link-hover-color);
-		}
+	div#add_recipe {
+		div.link_container {
+			font-size: 1.2em;
+			color: #444;
 
-		div.link_container:active {
-			background-color: var(--link-active-color);
+			div.content {
+				padding: 10px 1vw;
+			}
 		}
 	}
 }
+
