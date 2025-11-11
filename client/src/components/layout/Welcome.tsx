@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Outlet } from 'react-router-dom'
 
+import LocaleSwitcher from "../LocaleSwitcher.tsx"
+
 import "../../style/layout/welcome.css"
 
 interface props {
@@ -18,11 +20,14 @@ function WelcomeLayout({isLoggedIn}: props) {
 	}, [])
 
 	return(
-		<div id="welcome_wrapper">
-			<main>
-				<Outlet />
-			</main>
-		</div>
+		<main>
+			<div id="welcome_wrapper">
+				<div id="left_side">
+					<LocaleSwitcher />
+					<Outlet />
+				</div>
+			</div>
+		</main>
 	)
 }
 
