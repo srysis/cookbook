@@ -54,7 +54,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 
 			if (response.data.recipe_info && !response.data.ownership) {
 				setNotificationType("error");
-				setNotificationMessage("This recipe does not belong to you.");
+				setNotificationMessage(t("error.unownedRecipe"));
 				navigate("/recipes");
 			} else if (!response.data.recipe_info) {
 				setNotificationType("error");
