@@ -1,8 +1,7 @@
 section#login {
-	width: 60%;
-	height: 100vh;
+	width: 100%;
+	height: 90%;
 	margin: 0;
-	border-radius: var(--border-radius);
 	padding: 20px 3vw;
 	background-color: #fff;
 
@@ -35,7 +34,7 @@ section#login {
 	}
 
 	div.form_container {
-		margin-top: 22vh;
+		margin-top: 15vh;
 
 		p.login_title {
 			font-size: 2em;
