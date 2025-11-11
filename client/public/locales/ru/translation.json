@@ -21,7 +21,8 @@
 		"usernameTaken": "Имя пользователя занято",
 		"noResponse": "Сервер не отвечает. Повторите попытку позже",
 		"registrationFailureGeneric": "Ошибка регистрации",
-		"noRecipeFound": "Рецепта с таким ID не существует"
+		"noRecipeFound": "Рецепта с таким ID не существует",
+		"unownedRecipe": "Этот рецепт не принадлежит вам"
 	},
 	"addRecipe": {
 		"title": "Добавить рецепт",

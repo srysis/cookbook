@@ -21,7 +21,8 @@
 		"usernameTaken": "Username is taken",
 		"noResponse": "No response from the server. Try again soon",
 		"registrationFailureGeneric": "Registration failed",
-		"noRecipeFound": "Recipe with given ID does not exist"
+		"noRecipeFound": "Recipe with given ID does not exist",
+		"unownedRecipe": "This recipe does not belong to you"
 	},
 	"addRecipe": {
 		"title": "Add a new recipe",
