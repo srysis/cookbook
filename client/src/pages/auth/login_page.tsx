@@ -85,18 +85,22 @@ function LogInPage({ isLoggedIn, logIn }: props) {
 			{ !isLoggedIn && 
 				<section id="login">
 					<div className="form_container">
-						<h1>{t("auth.logIn")}</h1>
-						{ login_failed && 
-							<div id="error_container">
-								<div className="image_container">
-									<img src={error_icon} />
-								</div>
-								<div className="text_container">
-									<p>{error_message}</p>
-								</div>
-							</div>
-						}
+						<p className="login_title">
+							<Trans i18nKey="auth.logIn">
+								Log in to <span>Cookbook</span>
+							</Trans>
+						</p>
 						<form onSubmit={onSubmitHandler}>
+							{ login_failed && 
+								<div id="error_container">
+									<div className="image_container">
+										<img src={error_icon} />
+									</div>
+									<div className="text_container">
+										<p>{error_message}</p>
+									</div>
+								</div>
+							}
 							<div className="input_container">
 								<label htmlFor="username"><span>{t("auth.username")}</span></label>
 								<input 
@@ -123,7 +127,7 @@ function LogInPage({ isLoggedIn, logIn }: props) {
 							<div className="register_tip">
 								<p>
 									<Trans i18nKey="registerTip">
-										<Link to="/register">Register now</Link> to be able to create your own recipes!
+										Don't have an account yet? <Link to="/register">Register now!</Link>
 									</Trans>
 								</p>
 							</div>
