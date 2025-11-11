@@ -1,9 +1,9 @@
 section#registration {
-	width: 80%;
-	margin-inline: auto;
+	width: 60%;
+	height: 100vh;
+	margin: 0;
 	border-radius: var(--border-radius);
-	padding: 40px 4vw;
-	box-shadow: var(--box-shadow);
+	padding: 20px 3vw;
 	background-color: #fff;
 
 	div#error_container {
@@ -26,128 +26,157 @@ section#registration {
 		}
 	}
 
-	form {
-		padding-block: 10px;
+	div.form_container {
+		margin-top: 15vh;
 
-		div.input_container:first-child {
-			padding-top: 0;
+		p {
+			margin-block: 15px;
 		}
 
-		div.input_container {
-			padding: 20px 0;
+		p.register_title {
+			font-size: 2em;
 
-			label {
-				display: block;
-				margin-bottom: 10px;
-				text-align: left;
+			span {
 				font-weight: bold;
+			}
+		}
 
-				span {
-					padding-right: 10px;
+		p.have_an_account_title {
+			font-size: 1.4em;
+			text-align: left;
+
+			a {
+				color: #000;
+				text-decoration-line: underline;
+				font-weight: bold;
+			}
+		}
+
+		form {
+			padding-block: 10px;
+
+			div.input_container:first-child {
+				padding-top: 0;
+			}
+
+			div.input_container {
+				padding: 20px 0;
+
+				label {
+					display: block;
+					margin-bottom: 10px;
+					text-align: left;
+					font-weight: bold;
+
+					span {
+						padding-right: 10px;
+
+						img {
+							padding-left: 10px;
+							margin-bottom: -2px;
+						}
+					}
+				}
+
+				input {
+					width: 100%;
+					border: 1px solid #ddd;
+					border-radius: var(--border-radius);
+					padding: 10px 1vw;
+					box-shadow: var(--input-element-box-shadow);
+					background-color: var(--input-element-background-color);
+				}
+
+				div#username_note, div#password_note, div#matching_password_note {
+					display: none;
+					border: 2px solid #555;
+					border-top: none;
+					border-bottom-left-radius: var(--border-radius);
+					border-bottom-right-radius: var(--border-radius);
+					padding: 10px 1vw;
+					text-align: left;
+					line-height: 1.3em;
+
+					h3, p {
+						margin-block: .3em;
+					}
+
+					h3 {
+						margin-bottom: .6em;
+					}
+
+					p:before {
+						content: "•";
+						margin-right: 5px;
+						font-size: 1.6em;
+						vertical-align: middle;
+					}
+				}
+
+				div#username_note.visible, div#password_note.visible, div#matching_password_note.visible {
+					display: block;
+				}
+			}
+
+			div.input_container > div.container {
+				position: relative;
+
+				button {
+					position: absolute;
+					top: 8px;
+					right: 1vw;
+					padding: 0;
+					box-shadow: none;
 
 					img {
-						padding-left: 10px;
-						margin-bottom: -2px;
+						filter: invert(50%);
+					}
+
+					img.selected {
+						filter: invert(25%);
+					}
+				}
+
+				button:hover {
+					background-color: var(--button-color);
+
+					img {
+						filter: invert(30%);
 					}
 				}
 			}
 
-			input {
-				width: 100%;
-				border: 1px solid #ddd;
-				border-radius: var(--border-radius);
-				padding: 10px 1vw;
-				box-shadow: var(--input-element-box-shadow);
-				background-color: var(--input-element-background-color);
-			}
+			div.buttons_container {
+				padding-top: 20px;
 
-			div#username_note, div#password_note, div#matching_password_note {
-				display: none;
-				border: 2px solid #555;
-				border-top: none;
-				border-bottom-left-radius: var(--border-radius);
-				border-bottom-right-radius: var(--border-radius);
-				padding: 10px 1vw;
-				text-align: left;
-				line-height: 1.3em;
-
-				h3, p {
-					margin-block: .3em;
+				button {
+					width: 30%;
+					margin-inline: 1vw;
+					border: 1px solid #ddd;
+					border-radius: 2px;
+					padding-block: 10px;
+					font-size: 1.2em;
+					font-weight: bold;
+					box-shadow: var(--input-element-box-shadow);
+					background-color: var(--input-element-background-color);
+					color: #000;
 				}
 
-				h3 {
-					margin-bottom: .6em;
+				button:hover {
+					background-color: var(--input-element-hover-background-color);
 				}
 
-				p:before {
-					content: "•";
-					margin-right: 5px;
-					font-size: 1.6em;
-					vertical-align: middle;
-				}
-			}
-
-			div#username_note.visible, div#password_note.visible, div#matching_password_note.visible {
-				display: block;
-			}
-		}
-
-		div.input_container > div.container {
-			position: relative;
-
-			button {
-				position: absolute;
-				top: 8px;
-				right: 1vw;
-				padding: 0;
-				box-shadow: none;
-
-				img {
-					filter: invert(50%);
+				button:active {
+					background-color: var(--input-element-active-background-color);
 				}
 
-				img.selected {
-					filter: invert(25%);
+				button[disabled] {
+					cursor: not-allowed;
+					background-color: var(--disabled-input-element-background-color);
 				}
-			}
-
-			button:hover {
-				background-color: var(--button-color);
-
-				img {
-					filter: invert(30%);
-				}
-			}
-		}
-
-		div.buttons_container {
-			padding-top: 20px;
-
-			button {
-				width: 20%;
-				margin-inline: 1vw;
-				border: 1px solid #ddd;
-				border-radius: 2px;
-				padding-block: 10px;
-				font-size: 1.2em;
-				font-weight: bold;
-				box-shadow: var(--input-element-box-shadow);
-				background-color: var(--input-element-background-color);
-				color: #000;
-			}
-
-			button:hover {
-				background-color: var(--input-element-hover-background-color);
-			}
-
-			button:active {
-				background-color: var(--input-element-active-background-color);
-			}
-
-			button[disabled] {
-				cursor: not-allowed;
-				background-color: var(--disabled-input-element-background-color);
 			}
 		}
 	}
+
+	
 }
