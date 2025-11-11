@@ -1,9 +1,9 @@
 section#login {
-	width: 95%;
-	margin-inline: auto;
+	width: 60%;
+	height: 100vh;
+	margin: 0;
 	border-radius: var(--border-radius);
 	padding: 20px 3vw;
-	box-shadow: var(--box-shadow);
 	background-color: #fff;
 
 	div#error_container {
@@ -34,82 +34,94 @@ section#login {
 		}
 	}
 
-	form {
-		padding-block: 10px;
+	div.form_container {
+		margin-top: 22vh;
 
-		div.input_container:first-child {
-			padding-top: 0;
+		p.login_title {
+			font-size: 2em;
+
+			span {
+				font-weight: bold;
+			}
 		}
 
-		div.input_container {
-			padding: 10px 0;
+		form {
+			padding-block: 10px;
 
-			label {
-				display: block;
-				margin-bottom: 10px;
-				text-align: left;
-				font-weight: bold;
+			div.input_container:first-child {
+				padding-top: 0;
+			}
 
-				span {
-					padding-right: 10px;
+			div.input_container {
+				padding: 10px 0;
 
-					img {
-						padding-left: 10px;
-						margin-bottom: -2px;
+				label {
+					display: block;
+					margin-bottom: 10px;
+					text-align: left;
+					font-weight: bold;
+
+					span {
+						padding-right: 10px;
+
+						img {
+							padding-left: 10px;
+							margin-bottom: -2px;
+						}
 					}
+				}
+
+				input {
+					width: 100%;
+					border: 1px solid #ddd;
+					border-radius: var(--border-radius);
+					padding: 10px 1vw;
+					box-shadow: var(--input-element-box-shadow);
+					background-color: var(--input-element-background-color);
 				}
 			}
 
-			input {
-				width: 100%;
-				border: 1px solid #ddd;
-				border-radius: var(--border-radius);
-				padding: 10px 1vw;
-				box-shadow: var(--input-element-box-shadow);
-				background-color: var(--input-element-background-color);
-			}
-		}
+			div.submit_container {
+				padding-block: 20px;
 
-		div.submit_container {
-			padding-block: 20px;
-
-			button {
-				width: 20%;
-				margin-inline: 1vw;
-				border: 1px solid #ddd;
-				border-radius: 2px;
-				padding-block: 10px;
-				font-size: 1.2em;
-				font-weight: bold;
-				box-shadow: var(--input-element-box-shadow);
-				background-color: var(--input-element-background-color);
-				color: #000;
-			}
-
-			button:hover {
-				background-color: var(--input-element-hover-background-color);
-			}
-
-			button:active {
-				background-color: var(--input-element-active-background-color);
-			}
-
-			button[disabled] {
-				cursor: not-allowed;
-				background-color: var(--disabled-input-element-background-color);
-			}
-		}
-
-		div.register_tip {
-			text-align: center;
-
-			p {
-				font-size: 1.1em;
-
-				a {
-					color: #000;
-					text-decoration-line: underline;
+				button {
+					width: 20%;
+					margin-inline: 1vw;
+					border: 1px solid #ddd;
+					border-radius: 2px;
+					padding-block: 10px;
+					font-size: 1.2em;
 					font-weight: bold;
+					box-shadow: var(--input-element-box-shadow);
+					background-color: var(--input-element-background-color);
+					color: #000;
+				}
+
+				button:hover {
+					background-color: var(--input-element-hover-background-color);
+				}
+
+				button:active {
+					background-color: var(--input-element-active-background-color);
+				}
+
+				button[disabled] {
+					cursor: not-allowed;
+					background-color: var(--disabled-input-element-background-color);
+				}
+			}
+
+			div.register_tip {
+				text-align: left;
+
+				p {
+					font-size: 1.2em;
+
+					a {
+						color: #000;
+						text-decoration-line: underline;
+						font-weight: bold;
+					}
 				}
 			}
 		}
