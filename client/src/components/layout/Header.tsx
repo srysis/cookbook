@@ -12,11 +12,10 @@ interface props {
 	DEVICE_TYPE: string,
 	isLoggedIn: boolean,
 	logOut: Function,
-	setLoginPopupVisible: Function,
 	toggleAside: Function
 }
 
-function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAside}: props) {
+function Header({DEVICE_TYPE, isLoggedIn, logOut, toggleAside}: props) {
 	const { t } = useTranslation();
 
 	return(
@@ -33,14 +32,7 @@ function Header({DEVICE_TYPE, isLoggedIn, logOut, setLoginPopupVisible, toggleAs
 			{ DEVICE_TYPE === "desktop" &&
 				<nav>
 					<span><Link to="/search">{t('search.title')}</Link></span>
-					{isLoggedIn &&
-						<>
-							<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
-						</>
-					}
-					{!isLoggedIn && 
-						<button className="log_in_button" onClick={() => setLoginPopupVisible(true)}>{t("header.logIn")}</button>
-					}
+					<button className="log_out_button" onClick={() => logOut()}>{t('header.logOut')}</button>
 				</nav>
 			}
 		</header>
