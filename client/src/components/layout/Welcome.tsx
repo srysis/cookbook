@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Outlet } from 'react-router-dom'
 
+import "../../style/layout/welcome.css"
+
 interface props {
 	isLoggedIn: boolean
 }
@@ -16,11 +18,11 @@ function WelcomeLayout({isLoggedIn}: props) {
 	}, [])
 
 	return(
-		<>
+		<div id="welcome_wrapper">
 			<main>
 				<Outlet />
 			</main>
-		</>
+		</div>
 	)
 }
 
