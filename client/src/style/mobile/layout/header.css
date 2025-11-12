@@ -1,7 +1,6 @@
 @media screen and (max-width: 550px) {
 	header {
 		justify-content: normal;
-		align-items: baseline;
 		gap: 5vw;
 
 		div#aside_toggler {
@@ -22,6 +21,7 @@
 		div.logo_wrapper {
 			width: 100%;
 			justify-content: space-between;
+			align-items: normal;
 			z-index: 4;
 		}
 	}
