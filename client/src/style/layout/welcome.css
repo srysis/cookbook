@@ -11,15 +11,18 @@ div#welcome_wrapper {
 
 		div.locale_switcher {
 			width: 100%;
-			height: 10%;
-			display: flex;
-			flex-direction: row-reverse;
+			height: 8%;
+			padding-inline: 2.7vw;
+			justify-content: flex-end;
 			background-color: #fff;
+
+			img {
+				filter: invert(0%);
+			}
 
 			select#lang_switch {
 				height: 40px;
 				margin-top: 10px;
-				margin-right: 15px;
 				font-size: 1.25em;
 				color: #000;
 			}
