@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { supportedLngs } from "../tools/i18n.ts";
 
+import globe_logo from "../assets/globe-logo.png"
+
 import "../style/locale_switcher.css"
 import "../style/mobile/locale_switcher.css"
 
@@ -9,6 +11,7 @@ function LocaleSwitcher() {
 
 	return (
 		<div className="locale_switcher">
+			<img src={globe_logo} />
 			<select
 				id="lang_switch"
 				value={i18n.resolvedLanguage}
