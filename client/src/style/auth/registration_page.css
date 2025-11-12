@@ -1,43 +1,9 @@
 section#registration {
-	width: 100%;
-	height: 92%;
-	margin: 0;
-	padding: 20px 3vw;
-	background-color: #fff;
-
-	div#error_container {
-		display: flex;
-		align-items: center;
-		margin: 20px auto;
-		border-radius: var(--border-radius);
-		padding: 10px 1vw;
-		box-shadow: var(--error-container-box-shadow);
-		background-color: var(--error-container-color);
-
-		div.image_container {
-			margin-right: 20px;
-		}
-
-		div.text_container {
-			color: #fdd;
-			font-weight: bold;
-			font-size: 1.3em;
-		}
-	}
-
 	div.form_container {
 		margin-top: 8vh;
 
 		p {
 			margin-block: 15px;
-		}
-
-		p.register_title {
-			font-size: 2em;
-
-			span {
-				font-weight: bold;
-			}
 		}
 
 		p.have_an_account_title {
@@ -52,40 +18,7 @@ section#registration {
 		}
 
 		form {
-			padding-block: 10px;
-
-			div.input_container:first-child {
-				padding-top: 0;
-			}
-
 			div.input_container {
-				padding: 20px 0;
-
-				label {
-					display: block;
-					margin-bottom: 10px;
-					text-align: left;
-					font-weight: bold;
-
-					span {
-						padding-right: 10px;
-
-						img {
-							padding-left: 10px;
-							margin-bottom: -2px;
-						}
-					}
-				}
-
-				input {
-					width: 100%;
-					border: 1px solid #ddd;
-					border-radius: var(--border-radius);
-					padding: 10px 1vw;
-					box-shadow: var(--input-element-box-shadow);
-					background-color: var(--input-element-background-color);
-				}
-
 				div#username_note, div#password_note, div#matching_password_note {
 					display: none;
 					border: 2px solid #555;
@@ -146,36 +79,11 @@ section#registration {
 			}
 
 			div.buttons_container {
-				padding-top: 20px;
-
 				button {
 					width: 30%;
 					margin-inline: 1vw;
-					border: 1px solid #ddd;
-					border-radius: 2px;
-					padding-block: 10px;
-					font-size: 1.2em;
-					font-weight: bold;
-					box-shadow: var(--input-element-box-shadow);
-					background-color: var(--input-element-background-color);
-					color: #000;
-				}
-
-				button:hover {
-					background-color: var(--input-element-hover-background-color);
-				}
-
-				button:active {
-					background-color: var(--input-element-active-background-color);
-				}
-
-				button[disabled] {
-					cursor: not-allowed;
-					background-color: var(--disabled-input-element-background-color);
 				}
 			}
 		}
 	}
-
-	
 }
