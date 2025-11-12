@@ -1,32 +1,6 @@
 @media screen and (max-width: 550px) {
 	section#registration {
-		height: 90%;
-		padding-block: 0;
-		overflow: auto;
-
-		div#error_container {
-			margin: 10px auto;
-			padding: 10px 3vw;
-
-			div.image_container {
-				width: 40px;
-				height: 40px;
-				margin-right: 10px;
-
-				img {
-					width: inherit;
-					height: inherit;
-				}
-			}
-
-			div.text_container {
-				font-size: 1.1em;
-			}
-		}
-
 		div.form_container {
-			margin: 0;
-
 			p.register_title {
 				margin: 0;
 				font-size: 1.4em;
@@ -39,12 +13,6 @@
 
 			form {
 				div.input_container {
-					padding: 10px 0;
-
-					input {
-						padding: 10px 4vw;
-					}
-
 					div#username_note, div#password_note, div#matching_password_note {
 						padding: 5px 3vw;
 						line-height: 1.1em;
