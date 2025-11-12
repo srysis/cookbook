@@ -13,6 +13,7 @@ import "../../style/auth/login_page.css"
 import "../../style/auth/shared.css"
 
 import "../../style/mobile/auth/login_page.css"
+import "../../style/mobile/auth/shared.css"
 
 type UserCredentials = {
 	username: string,

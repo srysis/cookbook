@@ -16,6 +16,7 @@ import "../../style/auth/registration_page.css"
 import "../../style/auth/shared.css"
 
 import "../../style/mobile/auth/registration_page.css"
+import "../../style/mobile/auth/shared.css"
 
 const USER_REGEX : RegExp = /^[a-zA-Z][a-zA-Z-_]{3,23}$/;
 const PWD_REGEX : RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
