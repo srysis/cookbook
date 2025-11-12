@@ -1,0 +1,38 @@
+@media screen and (max-width: 550px) {
+	section#login {
+		height: 90%;
+		padding-block: 0;
+		overflow: auto;
+
+		div.form_container {
+			margin: 0;
+
+			p.login_title {
+				font-size: 1.5em;
+			}
+
+			form {
+				div.input_container {
+					input {
+						padding: 10px 4vw;
+					}
+				}
+
+				div.submit_container {
+					button {
+						width: 60%;
+					}
+				}
+
+				div.register_tip {
+					text-align: center;
+
+					p {
+						display: flex;
+						flex-direction: column;
+					}
+				}
+			}
+		}
+	}
+}
