@@ -1,7 +1,13 @@
 @media screen and (max-width: 550px) {
 	div.locale_switcher {
+		img {
+			width: 24px;
+			height: 24px;
+		}
+
 		select#lang_switch {
-			padding-inline: 15px;
+			padding-inline: 10px;
+			font-size: .5em;
 		}
 	}
 }
