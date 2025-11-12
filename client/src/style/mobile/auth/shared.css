@@ -1,0 +1,40 @@
+@media screen and (max-width: 550px) {
+	section#login, section#registration {
+		height: 90%;
+		padding-block: 0;
+		overflow: auto;
+
+		div.form_container {
+			margin: 0 !important;
+
+			form {
+				div#error_container {
+					padding: 10px 3vw;
+
+					div.image_container {
+						width: 40px;
+						height: 40px;
+						margin-right: 10px;
+
+						img {
+							width: inherit;
+							height: inherit;
+						}
+					}
+
+					div.text_container {
+						font-size: 1.1em;
+					}
+				}
+
+				div.input_container {
+					padding: 10px 0;
+
+					input {
+						padding: 10px 4vw;
+					}
+				}
+			}
+		}
+	}
+}
