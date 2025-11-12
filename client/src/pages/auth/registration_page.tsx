@@ -13,6 +13,8 @@ import correct_icon from "../../assets/correct.png"
 import incorrect_icon from "../../assets/incorrect.png"
 
 import "../../style/auth/registration_page.css"
+import "../../style/auth/shared.css"
+
 import "../../style/mobile/auth/registration_page.css"
 
 const USER_REGEX : RegExp = /^[a-zA-Z][a-zA-Z-_]{3,23}$/;

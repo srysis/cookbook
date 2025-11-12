@@ -10,6 +10,8 @@ import LoadingSpinner from "../../components/LoadingSpinnerInline.tsx"
 import error_icon from "../../assets/exclamation-mark-2.png"
 
 import "../../style/auth/login_page.css"
+import "../../style/auth/shared.css"
+
 import "../../style/mobile/auth/login_page.css"
 
 type UserCredentials = {
