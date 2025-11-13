@@ -44,17 +44,21 @@ router.get('/recipes', (request, response) => {
 router.get('/recipe/:id', checkOwner, (request, response) => {
 	const recipe_id = request.params.id;
 
-	if (response.locals.ownership) {
-		const get_recipe_query = "SELECT * FROM `recipes` WHERE `id` = " + recipe_id;
+	const get_recipe_query = "SELECT * FROM `recipes` WHERE `id` = " + recipe_id;
 
-		database.query(get_recipe_query, (error, data) => {
-			if (error) return response.json(error);
+	database.query(get_recipe_query, (error, data) => {
+		if (error) return response.json(error);
 
-			response.json({recipe_info: data[0]});
-		})
-	} else {
-		response.status(403).json({success: false, message: "Client does not own this post."});
-	}
+		if (data.length) {
+			if (response.locals.ownership) {
+				response.json({success: true, recipe_info: data[0]});
+			} else {
+				response.status(403).json({success: false, message: "Client does not own this post."});
+			}
+		} else {
+			response.status(404).json({success: false, message: "Recipe does not exist"})
+		}
+	})
 })
 
 router.post('/recipe', authenticator, (request, response) => {
