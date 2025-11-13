@@ -52,21 +52,19 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 		.then((response: any) => {
 			setRecipeInfo(response.data.recipe_info);
 
-			if (response.data.recipe_info && !response.data.ownership) {
-				setNotificationType("error");
-				setNotificationMessage(t("error.unownedRecipe"));
-				navigate("/recipes");
-			} else if (!response.data.recipe_info) {
-				setNotificationType("error");
-				setNotificationMessage(t("error.noRecipeFound"));
-				navigate("/recipes");
-			}
-
 			setInfoFetched(true);
 			setLoadingState(false);
 		})
 		.catch((error: any) => {
-			console.error(error);
+			if (error.status === 403) {
+				setNotificationType("error");
+				setNotificationMessage(t("error.unownedRecipe"));
+			} else if (error.status === 404) {
+				setNotificationType("error");
+				setNotificationMessage(t("error.noRecipeFound"));
+			}
+			
+			navigate("/recipes");
 		})
 	}, [])
 
