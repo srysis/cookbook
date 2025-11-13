@@ -22,7 +22,7 @@
 		"noResponse": "Žádná odpověď od serveru. Zkuste to znovu brzy.",
 		"registrationFailureGeneric": "Registrace se nezdařila",
 		"noRecipeFound": "Recept s daným ID neexistuje",
-		"unownedRecipe": "Tento recept ti nepatří"
+		"unownedRecipe": "Tento recept neni váš"
 	},
 	"addRecipe": {
 		"title": "Přidat nový recept",
