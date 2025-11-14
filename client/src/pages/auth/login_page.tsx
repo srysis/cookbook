@@ -12,6 +12,9 @@ import error_icon from "../../assets/exclamation-mark-2.png"
 import "../../style/auth/login_page.css"
 import "../../style/auth/shared.css"
 
+import "../../style/tablet/auth/login_page.css"
+import "../../style/tablet/auth/shared.css"
+
 import "../../style/mobile/auth/login_page.css"
 import "../../style/mobile/auth/shared.css"
 

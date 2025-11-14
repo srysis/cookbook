@@ -15,6 +15,8 @@ import incorrect_icon from "../../assets/incorrect.png"
 import "../../style/auth/registration_page.css"
 import "../../style/auth/shared.css"
 
+import "../../style/tablet/auth/shared.css"
+
 import "../../style/mobile/auth/registration_page.css"
 import "../../style/mobile/auth/shared.css"
 
