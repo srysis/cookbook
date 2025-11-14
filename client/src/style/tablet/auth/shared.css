@@ -1,15 +1,10 @@
 @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
 	section#login, section#registration {
-		position: static;
 		height: 90%;
 		padding-block: 0;
 		overflow: auto;
 
 		div.form_container {
-			position: static;
-			transform: none;
-			width: auto;
-
 			form {
 				div.input_container {
 					padding: 10px 0;

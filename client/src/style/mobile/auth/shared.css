@@ -1,15 +1,10 @@
 @media screen and (max-width: 600px) {
 	section#login, section#registration {
-		position: static;
 		height: 90%;
 		padding-block: 0;
 		overflow: auto;
 
 		div.form_container {
-			position: static;
-			transform: none;
-			width: auto;
-
 			form {
 				div#error_container {
 					padding: 10px 3vw;
