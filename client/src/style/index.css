@@ -45,6 +45,10 @@ section {
 	margin: 20px 2vw;
 }
 
+section:not(#recipes) {
+	padding: 20px 1vw;
+}
+
 a {
 	text-decoration-line: none;
 	color: var(--link-color);
@@ -76,6 +80,12 @@ input:focus {
 @media screen and (max-width: 600px) {
 	section {
 		margin: 10px 2vw;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+	section:not(#recipes) {
+		padding: 10px 2vw;
 	}
 }
 
