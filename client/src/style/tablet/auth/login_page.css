@@ -1,0 +1,13 @@
+@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+	section#login {
+		div.form_container {
+			form {
+				div.submit_container {
+					button {
+						width: 50%;
+					}
+				}
+			}
+		}
+	}
+}

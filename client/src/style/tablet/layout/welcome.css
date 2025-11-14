@@ -1,0 +1,7 @@
+@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+	div#welcome_wrapper {
+		div#left_side {
+			width: 80%;
+		}
+	}
+}
