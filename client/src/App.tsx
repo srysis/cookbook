@@ -126,7 +126,7 @@ function App() {
 		}
 	}
 
-	const WIDTH_THRESHOLD = 550;
+	const WIDTH_THRESHOLD = 600;
 
 	const initial_device_type = window.innerWidth < WIDTH_THRESHOLD ? "mobile" : "desktop";
 
