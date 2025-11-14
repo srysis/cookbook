@@ -5,7 +5,7 @@
 		overflow: auto;
 
 		div.form_container {
-			margin: 0 !important;
+			width: 92.7%;
 
 			form {
 				div#error_container {
