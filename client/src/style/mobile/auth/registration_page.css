@@ -27,15 +27,8 @@
 				}
 
 				div.buttons_container {
-					display: flex;
-					justify-content: space-between;
-					column-gap: 20px;
+					column-gap: 3vw;
 					padding-top: 30px;
-
-					button {
-						width: 100%;
-						margin: 0;
-					}
 				}
 			}
 		}
