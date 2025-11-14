@@ -79,9 +79,12 @@ section#registration {
 			}
 
 			div.buttons_container {
+				display: flex;
+				justify-content: space-between;
+				column-gap: 1vw;
+
 				button {
-					width: 30%;
-					margin-inline: 1vw;
+					width: 50%;
 				}
 			}
 		}
