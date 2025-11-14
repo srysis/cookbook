@@ -18,11 +18,13 @@ div.delete_popup_overlay {
 		}
 
 		div.selection_container {
+			display: flex;
+			justify-content: center;
+			column-gap: 1vw;
 			padding-top: 20px;
 
 			button {
 				width: 20%;
-				margin-inline: 1vw;
 				border: 1px solid #ddd;
 				border-radius: 2px;
 				padding-block: 10px;
