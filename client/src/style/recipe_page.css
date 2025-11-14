@@ -52,7 +52,6 @@ div.delete_popup_overlay {
 section#recipe {
 	display: flex;
 	flex-direction: column;
-	padding: 20px 1vw;
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow);
 	text-align: left;
