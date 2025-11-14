@@ -72,7 +72,7 @@ section#search {
 		}
 
 		div.submit_container {
-			margin-top: 30px;
+			margin-block: 30px;
 
 			button {
 				width: 15%;
@@ -102,6 +102,7 @@ section#search {
 
 	section#matching_recipes {
 		margin: 20px 0;
+		padding: 0;
 
 		p {
 			text-align: left;
