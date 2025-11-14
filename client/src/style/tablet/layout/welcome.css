@@ -1,7 +1,21 @@
 @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
 	div#welcome_wrapper {
+		display: block;
+		
 		div#left_side {
-			width: 80%;
+			width: 97%;
+			height: 100%;
+			margin: auto;
+			padding-block: 15px;
+
+			div.locale_switcher {
+				height: 10%;
+
+				select#lang_switch {
+					padding-inline: 10px;
+					font-size: 1em;
+				}
+			}
 		}
 	}
 }
