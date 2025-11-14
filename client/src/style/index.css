@@ -73,7 +73,7 @@ input:focus {
 	border: none;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
 	section {
 		margin: 10px 2vw;
 	}
