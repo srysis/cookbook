@@ -7,6 +7,7 @@ import Recipe from "../components/search_recipes/Recipe"
 import LoadingSpinner from "../components/LoadingSpinnerBlock.tsx"
 
 import "../style/search_page.css"
+import "../style/tablet/search_page.css"
 import "../style/mobile/search_page.css"
 
 type Recipe = {
