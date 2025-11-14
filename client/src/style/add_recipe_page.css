@@ -105,15 +105,11 @@ section#add_recipe {
 		div.buttons_container {
 			display: flex;
 			justify-content: flex-end;
+			column-gap: 1vw;
 			padding-top: 20px;
-
-			button[type="submit"] {
-				margin-right: 0;
-			}
 
 			button {
 				width: 15%;
-				margin-inline: 1vw;
 				border: 1px solid #ddd;
 				border-radius: 2px;
 				padding-block: 10px;
