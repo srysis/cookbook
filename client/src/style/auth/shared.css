@@ -1,7 +1,4 @@
 section#login, section#registration {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	width: 100%;
 	height: 92%;
 	margin: 0;
