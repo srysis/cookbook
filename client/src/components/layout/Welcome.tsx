@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 import LocaleSwitcher from "../LocaleSwitcher.tsx"
 
 import "../../style/layout/welcome.css"
+import "../../style/tablet/layout/welcome.css"
 import "../../style/mobile/layout/welcome.css"
 
 interface props {
