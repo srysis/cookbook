@@ -6,9 +6,10 @@
 			padding: 30px 0;
 
 			div.selection_container {
+				column-gap: 3vw;
+
 				button {
 					width: 40%;
-					margin-inline: 2vw;
 					padding-block: 5px;
 				}
 			}
