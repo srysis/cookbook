@@ -39,10 +39,7 @@
 
 			div.buttons_container {
 				justify-content: space-between;
-
-				button[type="button"] {
-					margin-left: 0;
-				}
+				column-gap: 3vw;
 
 				button {
 					width: 50%;
