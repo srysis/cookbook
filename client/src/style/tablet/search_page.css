@@ -1,0 +1,11 @@
+@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+	section#search {
+		form {
+			div.submit_container {
+				button {
+					width: 30%;
+				}
+			}
+		}
+	}
+}
