@@ -1,0 +1,34 @@
+@media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+	section#add_recipe {
+		form {
+			div.input_wrapper {
+				div.input_container {
+					padding: 10px 1vw;
+
+					div.ingredient_container {
+						input.ingredient, button {
+							padding: 5px 2vw;
+						}
+
+						input.ingredient {
+							width: 60%;
+							margin-right: 2vw;
+						}
+					}
+
+					button#add_ingredient {
+						padding: 5px 2vw;
+					}
+				}
+			}
+
+			div.buttons_container {
+				column-gap: 2vw;
+
+				button {
+					width: 30%;
+				}
+			}
+		}
+	}
+}
