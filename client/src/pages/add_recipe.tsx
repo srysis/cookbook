@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from "react-i18next"
 
@@ -20,6 +20,9 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 
 	const { t } = useTranslation();
 
+	const [initial_info_field_height, setInitialInfoFieldHeight] = useState<number| null>(null);
+	const [current_info_field_height, setCurrentInfoFieldHeight] = useState<number| null>(null);
+
 	const [recipe_name, setRecipeName] = useState<string>("");
 	const [recipe_short_description, setRecipeShortDescription] = useState<string>("");
 	const [recipe_description, setRecipeDescription] = useState<string>("");
@@ -27,6 +30,15 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(false);
 
 	const [adding_in_progress, setAddingState] = useState<boolean>(false);
+
+	useEffect(() => {
+		const info_field: HTMLElement | null = document.querySelector("textarea#description");
+
+		if (info_field != null) {
+			setInitialInfoFieldHeight(info_field.clientHeight);
+			setCurrentInfoFieldHeight(info_field.clientHeight);
+		}
+	}, [])
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -98,6 +110,21 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		setRecipeShortDescription("");
 	}
 
+	function onInputHandler(event: any) {
+		event.target.style.height = "auto";
+		event.target.style.height = `${event.target.scrollHeight + 5}px`;
+
+		setCurrentInfoFieldHeight(event.target.scrollHeight);
+	}
+
+	function onBlurHandler(event: any) {
+		event.target.style.height = `${initial_info_field_height}px`;
+	}
+
+	function onFocusHandler(event: any) {
+		event.target.style.height = `${current_info_field_height}px`;
+	}
+
 	function onNameOrDescriptionChangeHandler(event: any) {
 		switch (event.target.id) {
 			case "name":
@@ -160,7 +187,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
 					<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
-					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
+					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
 				</div>
 				<div className="input_wrapper">
 					<label><span>{t("addRecipe.ingredients")}</span></label>
@@ -170,17 +197,28 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				</div>
 				<div className="input_container">
 					<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
-					<input type="text" id="short_description" placeholder={t("addRecipe.shortDescriptionPlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" required />
+					<input
+						type="text" 
+						id="short_description" 
+						placeholder={t("addRecipe.shortDescriptionPlaceholder")} 
+						onChange={onNameOrDescriptionChangeHandler} 
+						autoComplete="off"
+						maxLength={300}
+						required 
+					/>
 				</div>
 				<div className="input_container">
 					<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
 					<textarea 
 						id="description" 
 						placeholder={t("addRecipe.additionalInfoPlaceholder")}
-						rows={4} 
+						rows={10} 
 						cols={40} 
-						maxLength={5000} 
+						maxLength={10000} 
 						onChange={onNameOrDescriptionChangeHandler} 
+						onInput={onInputHandler}
+						onFocus={onFocusHandler} 
+						onBlur={onBlurHandler}
 					/>
 				</div>
 				<div className="buttons_container">
