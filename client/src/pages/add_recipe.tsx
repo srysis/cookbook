@@ -188,7 +188,9 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				<div className="input_container">
 					<div className="label_wrapper">
 						<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
-						<span className="character_count">{document.querySelector("input#name")?.value.length} / {document.querySelector("input#name")?.getAttribute("maxLength")}</span>
+						<span className="character_count">
+							{(document.querySelector("input#name") as HTMLInputElement)?.value.length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
+						</span>
 					</div>
 					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
 				</div>
@@ -202,7 +204,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="label_wrapper">
 						<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
 						<span className="character_count">
-							{document.querySelector("input#short_description")?.value.length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
+							{(document.querySelector("input#short_description") as HTMLInputElement)?.value.length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<input
@@ -219,7 +221,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="label_wrapper">
 						<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
 						<span className="character_count">
-							{document.querySelector("textarea#description")?.value.length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
+							{(document.querySelector("textarea#description") as HTMLInputElement)?.value.length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<textarea 
