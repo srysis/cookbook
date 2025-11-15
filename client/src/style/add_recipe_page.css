@@ -88,6 +88,18 @@ section#add_recipe {
 		div.input_container {
 			padding-block: 10px;
 
+			div.label_wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+
+				span.character_count {
+					color: #555;
+					font-size: .9em;
+					font-style: italic;
+				}
+			}
+
 			input, textarea {
 				width: 100%;
 				border: 1px solid #ddd;
