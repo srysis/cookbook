@@ -186,7 +186,10 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		<section id="add_recipe">
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
-					<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
+					<div className="label_wrapper">
+						<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
+						<span className="character_count">{document.querySelector("input#name")?.value.length} / {document.querySelector("input#name")?.getAttribute("maxLength")}</span>
+					</div>
 					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
 				</div>
 				<div className="input_wrapper">
@@ -196,7 +199,12 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					</div>
 				</div>
 				<div className="input_container">
-					<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
+					<div className="label_wrapper">
+						<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
+						<span className="character_count">
+							{document.querySelector("input#short_description")?.value.length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
+						</span>
+					</div>
 					<input
 						type="text" 
 						id="short_description" 
@@ -208,7 +216,12 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					/>
 				</div>
 				<div className="input_container">
-					<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
+					<div className="label_wrapper">
+						<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
+						<span className="character_count">
+							{document.querySelector("textarea#description")?.value.length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
+						</span>
+					</div>
 					<textarea 
 						id="description" 
 						placeholder={t("addRecipe.additionalInfoPlaceholder")}
