@@ -53,7 +53,7 @@ router.get('/recipe/:id', checkOwner, (request, response) => {
 			if (response.locals.ownership) {
 				response.json({success: true, recipe_info: data[0]});
 			} else {
-				response.status(403).json({success: false, message: "Client does not own this post."});
+				response.status(403).json({success: false, message: "Client does not own this recipe."});
 			}
 		} else {
 			response.status(404).json({success: false, message: "Recipe does not exist"})
