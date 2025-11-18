@@ -20,12 +20,16 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 
 	const { t } = useTranslation();
 
-	const [initial_info_field_height, setInitialInfoFieldHeight] = useState<number| null>(null);
-	const [current_info_field_height, setCurrentInfoFieldHeight] = useState<number| null>(null);
+	const [initial_info_field_height, setInitialInfoFieldHeight] = useState<number | null>(null);
+	const [current_info_field_height, setCurrentInfoFieldHeight] = useState<number | null>(null);
 
 	const [recipe_name, setRecipeName] = useState<string>("");
 	const [recipe_short_description, setRecipeShortDescription] = useState<string>("");
 	const [recipe_description, setRecipeDescription] = useState<string>("");
+
+	const [recipe_name_length, setRecipeNameLength] = useState<number>(0);
+	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(0);
+	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(0);
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(false);
 
@@ -129,12 +133,15 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		switch (event.target.id) {
 			case "name":
 				setRecipeName(event.target.value);
+				setRecipeNameLength(event.target.value.length);
 				break;
 			case "description":
 				setRecipeDescription(event.target.value);
+				setRecipeDescriptionLength(event.target.value.length);
 				break;
 			case "short_description":
 				setRecipeShortDescription(event.target.value);
+				setRecipeShortDescriptionLength(event.target.value.length);
 				break;
 			default:
 				console.error("Unexpected value");
@@ -189,7 +196,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="label_wrapper">
 						<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
 						<span className="character_count">
-							{(document.querySelector("input#name") as HTMLInputElement)?.value.length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
+							{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
@@ -204,7 +211,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="label_wrapper">
 						<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
 						<span className="character_count">
-							{(document.querySelector("input#short_description") as HTMLInputElement)?.value.length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
+							{recipe_short_description_length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<input
@@ -221,7 +228,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="label_wrapper">
 						<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
 						<span className="character_count">
-							{(document.querySelector("textarea#description") as HTMLInputElement)?.value.length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
+							{recipe_description_length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<textarea 
