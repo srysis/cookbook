@@ -23,6 +23,7 @@ div.locale_switcher {
 		padding: 5px .5vw;
 		color: #fff;
 		font-size: .7em;
+		background-color: transparent;
 		cursor: pointer;
 
 		option {
@@ -30,6 +31,7 @@ div.locale_switcher {
 			border: 1px solid #ccc;
 			padding-block: 5px;
 			text-align: center;
+			color: #000;
 		}
 
 		option::checkmark {
