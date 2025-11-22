@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from "react-i18next"
 
 import axios from '../api/axios'
@@ -137,6 +137,16 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 						</div> 
 						<div className="delete">
 							<button type="button" onClick={() => {showDeletePopup(true)}}><img src={delete_icon} /></button>
+						</div>
+						<div className="edit">
+							<Link to={`/recipe/${recipe_info.id}/edit`} state={{
+								initial_name: recipe_info.name,
+								initial_description: recipe_info.description,
+								initial_short_description: recipe_info.short_description,
+								initial_ingredients: recipe_info.ingredients
+							}} >
+								Edit
+							</Link>
 						</div>
 					</div>
 					<hr />
