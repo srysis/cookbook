@@ -112,6 +112,10 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 		setRecipeName("");
 		setRecipeDescription("");
 		setRecipeShortDescription("");
+
+		setRecipeNameLength(0);
+		setRecipeDescriptionLength(0);
+		setRecipeShortDescriptionLength(0);
 	}
 
 	function onInputHandler(event: any) {
