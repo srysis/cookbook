@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const database = require('../database.js');
 
-function checkOwner(request, response, next) {	
+function setOwnership(request, response, next) {	
 	const token = request.headers['authorization'];
 	const recipe_id = request.params.id;
 
@@ -35,4 +35,4 @@ function checkOwner(request, response, next) {
 	});
 }
 
-module.exports = checkOwner;
+module.exports = setOwnership;
