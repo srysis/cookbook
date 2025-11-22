@@ -76,6 +76,27 @@ router.post('/recipe', authenticator, (request, response) => {
 	})
 })
 
+router.patch('/recipe/:id', [authenticator, checkOwner], (request, response) => {
+	if (response.locals.ownership) {
+		const recipe_id = request.params.id;
+		const user_id = request.body.user_id;
+		const { name, description, short_description, ingredients } = request.body.recipe_data;
+
+		const capitalized_name = name.charAt(0).toUpperCase() + name.slice(1);
+
+		const update_recipe_query = "UPDATE `recipes` SET `name` = '" + capitalized_name + "', `description` = '" + description + "', `short_description` = '" + short_description + 
+									"', `ingredients` = '" + ingredients + "' WHERE `id` = " + recipe_id;
+
+		database.query(update_recipe_query, (error, data) => {
+			if (error) return response.json(error);
+
+			response.json({success: true, message: "Recipe info was updated successfully."});
+		});
+	} else {
+		response.status(403).json({success: false, message: "Client does not own this recipe."});
+	}
+})
+
 router.delete('/recipe/:id', checkOwner, (request, response) => {
 	const token = request.headers['authorization'];
 
