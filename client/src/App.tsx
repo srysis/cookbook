@@ -14,6 +14,7 @@ import BaseLayout from './components/layout/Base'
 import RecipesPage from './pages/recipes_page'
 import SearchRecipesPage from './pages/search_recipes'
 import AddRecipePage from './pages/add_recipe'
+import EditRecipePage from './pages/edit_recipe'
 import RecipePage from './pages/recipe_page'
 
 import LoginPage from './pages/auth/login_page'
@@ -162,6 +163,7 @@ function App() {
 					<Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
 						<Route path="/recipes" element={<RecipesPage />} />
 						<Route path="/recipe/:id" element={<RecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
+						<Route path="/recipe/:id/edit" element={<EditRecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
 						<Route path="/add_recipe" element={<AddRecipePage setNotificationMessage={setNotificationMessageWrapper} setNotificationType={setNotificationTypeWrapper} />} />
 						<Route path="/search" element={<SearchRecipesPage />} />
 					</Route>
