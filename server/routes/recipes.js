@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const database = require('../database.js');
 
 const authenticator = require('../middlewares/authenticator.js');
-const checkOwner = require('../middlewares/checkOwner.js');
+const setOwnership = require('../middlewares/setOwnership.js');
 
 const router = express.Router();
 
@@ -41,7 +41,7 @@ router.get('/recipes', (request, response) => {
 	}
 });
 
-router.get('/recipe/:id', checkOwner, (request, response) => {
+router.get('/recipe/:id', setOwnership, (request, response) => {
 	const recipe_id = request.params.id;
 
 	const get_recipe_query = "SELECT * FROM `recipes` WHERE `id` = " + recipe_id;
@@ -76,7 +76,7 @@ router.post('/recipe', authenticator, (request, response) => {
 	})
 })
 
-router.patch('/recipe/:id', [authenticator, checkOwner], (request, response) => {
+router.patch('/recipe/:id', [authenticator, setOwnership], (request, response) => {
 	if (response.locals.ownership) {
 		const recipe_id = request.params.id;
 		const user_id = request.body.user_id;
@@ -97,7 +97,7 @@ router.patch('/recipe/:id', [authenticator, checkOwner], (request, response) => 
 	}
 })
 
-router.delete('/recipe/:id', checkOwner, (request, response) => {
+router.delete('/recipe/:id', setOwnership, (request, response) => {
 	const token = request.headers['authorization'];
 
 	if (token) {
