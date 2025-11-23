@@ -84,7 +84,7 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 
 			if (delete_response.data.success) {
 				setNotificationType("success");
-				setNotificationMessage("Recipe was successfully deleted")
+				setNotificationMessage(t("success.deleted"))
 				navigate('/recipes');
 			} else {
 				navigate(`/recipe/${id}`);
