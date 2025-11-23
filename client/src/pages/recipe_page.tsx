@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useTranslation } from "react-i18next"
 
 import axios from '../api/axios'
@@ -8,7 +8,9 @@ import axios from '../api/axios'
 import LoadingSpinnerBlock from "../components/LoadingSpinnerBlock.tsx"
 import LoadingSpinnerInline from "../components/LoadingSpinnerInline.tsx"
 
+import dots_icon from "../assets/v_dots-icon.png"
 import delete_icon from "../assets/trash_can.png"
+import edit_icon from "../assets/edit.png"
 
 import "../style/recipe_page.css"
 import "../style/tablet/recipe_page.css"
@@ -94,6 +96,15 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 		}
 	}
 
+	function checkElementClasses(event: any) {
+		if (!event.target.classList.contains("icon_container") && (event.target.tagName != "IMG")) {
+			const element = document.querySelector("div.list_container");
+			if (element) element.classList.remove("active");
+		}
+	}
+
+	window.addEventListener("click", checkElementClasses);
+
 	if (infoFetched && !isLoading && recipe_info != undefined) {
 		const { name, description, short_description, ingredients } = recipe_info;
 
@@ -134,19 +145,34 @@ function RecipePage({setNotificationMessage, setNotificationType}: props) {
 							<div className="name"><h2>{name}</h2></div>
 							<div className="ingredients">{matching_ingredients_HTML}{non_matching_ingredients_HTML}</div>
 							<div className="short_description">{short_description}</div>
-						</div> 
-						<div className="delete">
-							<button type="button" onClick={() => {showDeletePopup(true)}}><img src={delete_icon} /></button>
 						</div>
-						<div className="edit">
-							<Link to={`/recipe/${recipe_info.id}/edit`} state={{
-								name: recipe_info.name,
-								description: recipe_info.description,
-								short_description: recipe_info.short_description,
-								ingredients: recipe_info.ingredients
-							}} >
-								Edit
-							</Link>
+						<div className="options_container">
+							<div className="icon_container" title="Recipe options" 
+								 onClick={() => {
+								 	const element = document.querySelector("div.list_container");
+									if (element) element.classList.toggle("active");
+								 }}>
+								<img src={dots_icon} />
+								<div className="list_container">
+									<div className="list_element">
+										<button type="button" onClick={() => {
+											navigate(`/recipe/${recipe_info.id}/edit`, { 
+												state: {
+													id: recipe_info.id,
+													name: recipe_info.name,
+													description: recipe_info.description,
+													short_description: recipe_info.short_description,
+													ingredients: recipe_info.ingredients
+												}
+											})}}>
+											<img src={edit_icon} />{t("recipeOptions.edit")}
+										</button>
+									</div>
+									<div className="list_element">
+										<button type="button" onClick={() => {showDeletePopup(true)}}><img src={delete_icon} />{t("recipeOptions.delete")}</button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr />
