@@ -19,26 +19,29 @@ interface props {
 function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const location = useLocation();
 
-	const { initial_name, initial_description, initial_short_description, initial_ingredients } = location.state;
-
 	const navigate = useNavigate();
 
 	const { id } = useParams();
 
 	const { t } = useTranslation();
 
+	const [has_state_data, setHasStateData] = useState<boolean>(location.state ? true : false);
+
+	const [initial_recipe_info, setInitialRecipeInfo] = useState<Object | undefined>(location.state ? location.state : {})
+
 	const [initial_info_field_height, setInitialInfoFieldHeight] = useState<number | null>(null);
 	const [current_info_field_height, setCurrentInfoFieldHeight] = useState<number | null>(null);
 
-	const [recipe_name, setRecipeName] = useState<string>(initial_name);
-	const [recipe_short_description, setRecipeShortDescription] = useState<string>(initial_short_description);
-	const [recipe_description, setRecipeDescription] = useState<string>(initial_description);
+	const [recipe_name, setRecipeName] = useState<string | undefined>(initial_recipe_info.name);
+	const [recipe_short_description, setRecipeShortDescription] = useState<string | undefined>(initial_recipe_info.short_description);
+	const [recipe_description, setRecipeDescription] = useState<string | undefined>(initial_recipe_info.description);
+	const [recipe_ingredients, setRecipeIngredients] = useState<string | undefined>(initial_recipe_info.ingredients);
 
-	const [recipe_name_length, setRecipeNameLength] = useState<number>(initial_name.length);
-	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(initial_short_description.length);
-	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(initial_description.length);
+	const [recipe_name_length, setRecipeNameLength] = useState<number>(recipe_name ? recipe_name.length : 0);
+	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(recipe_short_description ? recipe_short_description.length : 0);
+	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(recipe_description ? recipe_description.length : 0);
 
-	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(initial_ingredients.split(",").length > 0);
+	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients?.length > 0 ? recipe_ingredients.split(",").length > 0 : false);
 
 	const [editing_in_progress, setEditingState] = useState<boolean>(false);
 
@@ -50,6 +53,45 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			setCurrentInfoFieldHeight(info_field.clientHeight);
 		}
 	}, [])
+
+	useEffect(() => {
+		if (!has_state_data) {
+			axios.get(`/recipe/${id}`)
+			.then((response: any) => {
+				const { name, short_description, description, ingredients } = response.data.recipe_info;
+
+				setInitialRecipeInfo(response.data.recipe_info);
+
+				setRecipeName(name);
+				setRecipeNameLength(name.length);
+				setRecipeShortDescription(short_description);
+				setRecipeShortDescriptionLength(short_description.length);
+				setRecipeDescription(description);
+				setRecipeDescriptionLength(description.length);
+				setRecipeIngredients(ingredients);
+
+				setHasStateData(true);
+
+				const info_field: HTMLElement | null = document.querySelector("textarea#description");
+
+				if (info_field != null) {
+					setInitialInfoFieldHeight(info_field.clientHeight);
+					setCurrentInfoFieldHeight(info_field.clientHeight);
+				}
+			})
+			.catch((error: any) => {
+				if (error.status === 403) {
+					setNotificationType("error");
+					setNotificationMessage(t("error.unownedRecipe"));
+				} else if (error.status === 404) {
+					setNotificationType("error");
+					setNotificationMessage(t("error.noRecipeFound"));
+				}
+
+				navigate('/recipes');
+			})
+		}
+	}, [has_state_data])
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -102,18 +144,18 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	}
 
 	function resetFields() {
-		(document.querySelector("input[id='name']") as HTMLInputElement)!.value = initial_name;
-		(document.querySelector("input[id='short_description']") as HTMLInputElement)!.value = initial_short_description;
-		(document.querySelector("textarea[id='description']") as HTMLInputElement)!.value = initial_description;
+		(document.querySelector("input[id='name']") as HTMLInputElement)!.value = initial_recipe_info.name;
+		(document.querySelector("input[id='short_description']") as HTMLInputElement)!.value = initial_recipe_info.short_description;
+		(document.querySelector("textarea[id='description']") as HTMLInputElement)!.value = initial_recipe_info.description;
 
 
-		setRecipeName(initial_name);
-		setRecipeDescription(initial_description);
-		setRecipeShortDescription(initial_short_description);
+		setRecipeName(initial_recipe_info.name);
+		setRecipeDescription(initial_recipe_info.description);
+		setRecipeShortDescription(initial_recipe_info.description);
 
-		setRecipeNameLength(initial_name.length);
-		setRecipeDescriptionLength(initial_description.length);
-		setRecipeShortDescriptionLength(initial_short_description.length);
+		setRecipeNameLength(initial_recipe_info.name.length);
+		setRecipeDescriptionLength(initial_recipe_info.description.length);
+		setRecipeShortDescriptionLength(initial_recipe_info.short_description.length);
 
 
 		const ingredient_containers = document.querySelectorAll("div.ingredient_container");
@@ -123,7 +165,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		}
 
 
-		const initial_ingredients_list = initial_ingredients.split(",");
+		const initial_ingredients_list = recipe_ingredients.split(",");
 		const input_container = document.querySelector("div.input_wrapper > div.input_container");
 
 		for (let counter = 0; counter < initial_ingredients_list.length; counter++) {
@@ -226,86 +268,88 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		})
 	}
 
-	return(
-		<section id="edit_recipe">
-			<form onSubmit={onSubmitHandler}>
-				<div className="input_container">
-					<div className="label_wrapper">
-						<label htmlFor="name"><span>{t("recipeForm.name")}</span></label>
-						<span className="character_count">
-							{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
-						</span>
-					</div>
-					<input 
-						type="text" 
-						id="name" 
-						defaultValue={initial_name}
-						placeholder={t("recipeForm.namePlaceholder")} 
-						onChange={onNameOrDescriptionChangeHandler} 
-						autoComplete="off" 
-						maxLength={150} 
-						required 
-					/>
-				</div>
-				<div className="input_wrapper">
-					<label><span>{t("recipeForm.ingredients")}</span></label>
+	if (has_state_data) {
+		return(
+			<section id="edit_recipe">
+				<form onSubmit={onSubmitHandler}>
 					<div className="input_container">
-						{initial_ingredients.split(",").map((ingredient: any, index: any) => 
-							<div key={index} className="ingredient_container initial">
-								<input type="text" name="ingredient" className="ingredient" defaultValue={ingredient} onKeyDown={onIngredientKeyDownHandler} />
-								<button type="button" onClick={removeInputField}>X</button>
-							</div>
-						)}
-						<button type="button" id="add_ingredient" onClick={addInputField}>{t("recipeForm.addIngredient")}</button>
+						<div className="label_wrapper">
+							<label htmlFor="name"><span>{t("recipeForm.name")}</span></label>
+							<span className="character_count">
+								{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
+							</span>
+						</div>
+						<input 
+							type="text" 
+							id="name" 
+							defaultValue={recipe_name}
+							placeholder={t("recipeForm.namePlaceholder")} 
+							onChange={onNameOrDescriptionChangeHandler} 
+							autoComplete="off" 
+							maxLength={150} 
+							required 
+						/>
 					</div>
-				</div>
-				<div className="input_container">
-					<div className="label_wrapper">
-						<label htmlFor="short_description"><span>{t("recipeForm.shortDescription")}</span></label>
-						<span className="character_count">
-							{recipe_short_description_length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
-						</span>
+					<div className="input_wrapper">
+						<label><span>{t("recipeForm.ingredients")}</span></label>
+						<div className="input_container">
+							{recipe_ingredients?.split(",").map((ingredient: any, index: any) => 
+								<div key={index} className="ingredient_container initial">
+									<input type="text" name="ingredient" className="ingredient" defaultValue={ingredient} onKeyDown={onIngredientKeyDownHandler} />
+									<button type="button" onClick={removeInputField}>X</button>
+								</div>
+							)}
+							<button type="button" id="add_ingredient" onClick={addInputField}>{t("recipeForm.addIngredient")}</button>
+						</div>
 					</div>
-					<input
-						type="text" 
-						id="short_description" 
-						defaultValue={initial_short_description}
-						placeholder={t("recipeForm.shortDescriptionPlaceholder")} 
-						onChange={onNameOrDescriptionChangeHandler} 
-						autoComplete="off"
-						maxLength={300}
-						required 
-					/>
-				</div>
-				<div className="input_container">
-					<div className="label_wrapper">
-						<label htmlFor="description"><span>{t("recipeForm.additionalInfo")}</span></label>
-						<span className="character_count">
-							{recipe_description_length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
-						</span>
+					<div className="input_container">
+						<div className="label_wrapper">
+							<label htmlFor="short_description"><span>{t("recipeForm.shortDescription")}</span></label>
+							<span className="character_count">
+								{recipe_short_description_length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
+							</span>
+						</div>
+						<input
+							type="text" 
+							id="short_description" 
+							defaultValue={recipe_short_description}
+							placeholder={t("recipeForm.shortDescriptionPlaceholder")} 
+							onChange={onNameOrDescriptionChangeHandler} 
+							autoComplete="off"
+							maxLength={300}
+							required 
+						/>
 					</div>
-					<textarea 
-						id="description" 
-						defaultValue={initial_description}
-						placeholder={t("addRecipe.additionalInfoPlaceholder")}
-						rows={10} 
-						cols={40} 
-						maxLength={10000} 
-						onChange={onNameOrDescriptionChangeHandler} 
-						onInput={onInputHandler}
-						onFocus={onFocusHandler} 
-						onBlur={onBlurHandler}
-					/>
-				</div>
-				<div className="buttons_container">
-					<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
-					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || editing_in_progress}>
-						{editing_in_progress ? <LoadingSpinner /> : <>{t("recipeForm.editRecipeButton")}</>}
-					</button>
-				</div>
-			</form>
-		</section>
-	)
+					<div className="input_container">
+						<div className="label_wrapper">
+							<label htmlFor="description"><span>{t("recipeForm.additionalInfo")}</span></label>
+							<span className="character_count">
+								{recipe_description_length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
+							</span>
+						</div>
+						<textarea 
+							id="description" 
+							defaultValue={recipe_description}
+							placeholder={t("recipeForm.additionalInfoPlaceholder")}
+							rows={10} 
+							cols={40} 
+							maxLength={10000} 
+							onChange={onNameOrDescriptionChangeHandler} 
+							onInput={onInputHandler}
+							onFocus={onFocusHandler} 
+							onBlur={onBlurHandler}
+						/>
+					</div>
+					<div className="buttons_container">
+						<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
+						<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || editing_in_progress}>
+							{editing_in_progress ? <LoadingSpinner /> : <>{t("recipeForm.editRecipeButton")}</>}
+						</button>
+					</div>
+				</form>
+			</section>
+		)
+	}
 }
 
 export default EditRecipe;
