@@ -198,22 +198,22 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
+						<label htmlFor="name"><span>{t("recipeForm.name")}</span></label>
 						<span className="character_count">
 							{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
 						</span>
 					</div>
-					<input type="text" id="name" placeholder={t("addRecipe.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
+					<input type="text" id="name" placeholder={t("recipeForm.namePlaceholder")} onChange={onNameOrDescriptionChangeHandler} autoComplete="off" maxLength={150} required />
 				</div>
 				<div className="input_wrapper">
-					<label><span>{t("addRecipe.ingredients")}</span></label>
+					<label><span>{t("recipeForm.ingredients")}</span></label>
 					<div className="input_container">
-						<button type="button" id="add_ingredient" onClick={addInputField}>{t("addRecipe.addIngredient")}</button>
+						<button type="button" id="add_ingredient" onClick={addInputField}>{t("recipeForm.addIngredient")}</button>
 					</div>
 				</div>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
+						<label htmlFor="short_description"><span>{t("recipeForm.shortDescription")}</span></label>
 						<span className="character_count">
 							{recipe_short_description_length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
 						</span>
@@ -221,7 +221,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 					<input
 						type="text" 
 						id="short_description" 
-						placeholder={t("addRecipe.shortDescriptionPlaceholder")} 
+						placeholder={t("recipeForm.shortDescriptionPlaceholder")} 
 						onChange={onNameOrDescriptionChangeHandler} 
 						autoComplete="off"
 						maxLength={300}
@@ -230,14 +230,14 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				</div>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
+						<label htmlFor="description"><span>{t("recipeForm.additionalInfo")}</span></label>
 						<span className="character_count">
 							{recipe_description_length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
 						</span>
 					</div>
 					<textarea 
 						id="description" 
-						placeholder={t("addRecipe.additionalInfoPlaceholder")}
+						placeholder={t("recipeForm.additionalInfoPlaceholder")}
 						rows={10} 
 						cols={40} 
 						maxLength={10000} 
@@ -250,7 +250,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 				<div className="buttons_container">
 					<button type="button" disabled={adding_in_progress} onClick={() => clearFields()}>{t("clearFields")}</button>
 					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || adding_in_progress}>
-						{adding_in_progress ? <LoadingSpinner /> : <>{t("addRecipe.buttonText")}</>}
+						{adding_in_progress ? <LoadingSpinner /> : <>{t("recipeForm.addRecipeButton")}</>}
 					</button>
 				</div>
 			</form>
