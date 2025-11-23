@@ -25,7 +25,7 @@
 		"unownedRecipe": "Этот рецепт не принадлежит вам"
 	},
 	"addRecipeTitle": "Добавить рецепт",
-	"addRecipe": {
+	"recipeForm": {
 		"name": "Название рецепта*",
 		"namePlaceholder": "Дайте название вашему рецепту",
 		"ingredients": "Ингридиенты(минимум один)",
