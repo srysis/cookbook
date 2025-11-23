@@ -257,7 +257,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			if (response.data.success) {
 				setEditingState(false);
 				setNotificationType("success");
-				setNotificationMessage("Recipe was successfully added");
+				setNotificationMessage(t("success.updated"));
 				navigate(`/recipe/${id}`)
 			}
 		})
