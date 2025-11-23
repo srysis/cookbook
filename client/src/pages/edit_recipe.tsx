@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next"
 
 import axios from '../api/axios.ts'
 
-import LoadingSpinner from "../components/LoadingSpinnerInline.tsx"
+import LoadingSpinnerBlock from "../components/LoadingSpinnerBlock.tsx"
+import LoadingSpinnerInline from "../components/LoadingSpinnerInline.tsx"
 
 import "../style/add_edit_recipe_page.css"
 import "../style/tablet/add_edit_recipe_page.css"
@@ -343,11 +344,15 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 					<div className="buttons_container">
 						<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
 						<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || editing_in_progress}>
-							{editing_in_progress ? <LoadingSpinner /> : <>{t("recipeForm.editRecipeButton")}</>}
+							{editing_in_progress ? <LoadingSpinnerInline /> : <>{t("recipeForm.editRecipeButton")}</>}
 						</button>
 					</div>
 				</form>
 			</section>
+		)
+	} else {
+		return(
+			<LoadingSpinnerBlock />
 		)
 	}
 }
