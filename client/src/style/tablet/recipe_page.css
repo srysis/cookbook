@@ -12,4 +12,24 @@
 			}
 		}
 	}
+
+	section#recipe {
+		div.recipe_wrapper {
+			div.options_container {
+				div.list_container {
+					width: 28vw;
+
+					div.list_element {
+						button {
+							margin-left: 10%;
+
+							img {
+								margin-right: .8vw;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
