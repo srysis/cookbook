@@ -43,10 +43,19 @@
 				}
 			}
 
-			div.delete {
-				img {
-					width: 28px;
-					height: 28px;
+			div.options_container {
+				div.list_container {
+					width: 56vw;
+
+					div.list_element {
+						button {
+							margin-left: 10%;
+
+							img {
+								margin-right: 1.6vw;
+							}
+						}
+					}
 				}
 			}
 		}

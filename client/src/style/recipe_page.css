@@ -111,19 +111,66 @@ section#recipe {
 			}
 		}
 
-		div.delete {
+		div.options_container {
+			position: relative;
 			margin: 0;
 
-			button:hover {
+			div.icon_container {
+				border-radius: 20px;
+				padding: 10px;
+				cursor: pointer;
+
 				img {
-					filter: brightness(90%);
+					width: 12px;
+					user-select: none;
 				}
 			}
 
-			button:active {
-				img {
-					filter: brightness(80%);
+			div.icon_container:hover {
+				background-color: #ddd;
+			}
+			
+			div.icon_container:active {
+				background-color: #bbb;
+			}
+
+			div.list_container {
+				position: absolute;
+				right: .5vw;
+				display: none;
+				width: 12vw;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-shadow: 0 0 15px #aaa;
+				background-color: #fff;
+
+				div.list_element {
+					button {
+						width: 100%;
+						display: inline-flex;
+						align-items: center;
+						margin-left: 15%;
+						padding: 10px 0;
+						font-size: 1.1em;
+
+						img {
+							width: 24px;
+							margin-right: .4vw;
+						}
+					}
 				}
+
+				div.list_element:hover {
+					background-color: #ddd;
+				}
+
+				div.list_element:active {
+					background-color: #bbb;
+				}
+			}
+
+			div.list_container.active {
+				display: block;
 			}
 		}
 	}
