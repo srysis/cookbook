@@ -79,6 +79,10 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 				setRecipeDescriptionLength(description.length);
 				setRecipeIngredients(ingredients);
 
+				if (ingredients) {
+					setIngredientsExist(true);
+				}
+
 				setHasStateData(true);
 
 				const info_field: HTMLElement | null = document.querySelector("textarea#description");
@@ -197,6 +201,10 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			ingredient_container.appendChild(delete_input_field_button_HTML);
 
 			input_container!.insertBefore(ingredient_container, document.querySelector("button#add_ingredient"));
+		}
+
+		if (initial_ingredients_list.length) {
+			setIngredientsExist(true);
 		}
 	}
 
