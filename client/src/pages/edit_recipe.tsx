@@ -84,9 +84,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	function removeInputField(event: any) {
 		event.target.parentElement.remove();
 
-		const ingredient_containers = document.querySelectorAll("div.ingredient_container");
-
-		if (ingredient_containers.length == 0) {
+		if (document.querySelectorAll("div.ingredient_container").length == 0) {
 			setIngredientsExist(false);
 		}
 	}
@@ -104,15 +102,10 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	}
 
 	function resetFields() {
-		document.querySelector("input[id='name']").value = initial_name;
-		document.querySelector("input[id='short_description']").value = initial_short_description;
-		document.querySelector("textarea[id='description']").value = initial_description;
-
-		const ingredient_containers = document.querySelectorAll("div.ingredient_container:not(.initial)");
-
-		for (let ingredient_container of ingredient_containers) {
-			ingredient_container.remove();
-		}
+		(document.querySelector("input[id='name']") as HTMLInputElement)!.value = initial_name;
+		(document.querySelector("input[id='short_description']") as HTMLInputElement)!.value = initial_short_description;
+		(document.querySelector("textarea[id='description']") as HTMLInputElement)!.value = initial_description;
+		
 
 		setRecipeName(initial_name);
 		setRecipeDescription(initial_description);
@@ -121,6 +114,39 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		setRecipeNameLength(initial_name.length);
 		setRecipeDescriptionLength(initial_description.length);
 		setRecipeShortDescriptionLength(initial_short_description.length);
+
+
+		const ingredient_containers = document.querySelectorAll("div.ingredient_container");
+
+		for (let ingredient_container of ingredient_containers) {
+			ingredient_container.remove();
+		}
+
+
+		const initial_ingredients_list = initial_ingredients.split(",");
+		const input_container = document.querySelector("div.input_wrapper > div.input_container");
+
+		for (let counter = 0; counter < initial_ingredients_list.length; counter++) {
+			const ingredient_container: HTMLElement = document.createElement('div');
+			ingredient_container.classList.add("ingredient_container");
+
+			const input_field_HTML: HTMLInputElement = document.createElement('input');
+			input_field_HTML.setAttribute("type", "text");
+			input_field_HTML.setAttribute("name", "ingredient");
+			input_field_HTML.classList.add("ingredient");
+			input_field_HTML.addEventListener('keydown', onIngredientKeyDownHandler);
+			input_field_HTML.setAttribute("value", initial_ingredients_list[counter]);
+
+			const delete_input_field_button_HTML: HTMLButtonElement = document.createElement('button');
+			delete_input_field_button_HTML.setAttribute("type", "button");
+			delete_input_field_button_HTML.addEventListener('click', removeInputField);
+			delete_input_field_button_HTML.innerHTML = 'X';
+
+			ingredient_container.appendChild(input_field_HTML);
+			ingredient_container.appendChild(delete_input_field_button_HTML);
+
+			input_container!.insertBefore(ingredient_container, document.querySelector("button#add_ingredient"));
+		}
 	}
 
 	function onInputHandler(event: any) {
@@ -175,12 +201,15 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 		setEditingState(true);
 
-		axios.patch(`/recipe/${id}`, {user_id: window.localStorage.getItem("id"), recipe_data: {
-			name: recipe_name,
-			description: recipe_description,
-			short_description: recipe_short_description,
-			ingredients: recipe_ingredients
-		}})
+		axios.patch(`/recipe/${id}`, {
+			user_id: window.localStorage.getItem("id"), 
+			recipe_data: {
+				name: recipe_name,
+				description: recipe_description,
+				short_description: recipe_short_description,
+				ingredients: recipe_ingredients
+			}
+		})
 		.then((response: any) => {
 			if (response.data.success) {
 				setEditingState(false);
@@ -221,7 +250,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 				<div className="input_wrapper">
 					<label><span>{t("addRecipe.ingredients")}</span></label>
 					<div className="input_container">
-						{initial_ingredients.split(",").map((ingredient, index) => 
+						{initial_ingredients.split(",").map((ingredient: any, index: any) => 
 							<div key={index} className="ingredient_container initial">
 								<input type="text" name="ingredient" className="ingredient" defaultValue={ingredient} onKeyDown={onIngredientKeyDownHandler} />
 								<button type="button" onClick={removeInputField}>X</button>
