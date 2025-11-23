@@ -17,6 +17,14 @@ interface props {
 	setNotificationType: Function
 }
 
+type Recipe = {
+	id: number,
+	name: string,
+	description: string,
+	short_description: string,
+	ingredients: string
+}
+
 function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const location = useLocation();
 
@@ -28,21 +36,21 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 	const [has_state_data, setHasStateData] = useState<boolean>(location.state ? true : false);
 
-	const [initial_recipe_info, setInitialRecipeInfo] = useState<Object | undefined>(location.state ? location.state : {})
+	const [initial_recipe_info, setInitialRecipeInfo] = useState<Recipe>(location.state ? location.state : {id: id, name: "", short_description: "", description: "", ingredients: ""})
 
 	const [initial_info_field_height, setInitialInfoFieldHeight] = useState<number | null>(null);
 	const [current_info_field_height, setCurrentInfoFieldHeight] = useState<number | null>(null);
 
-	const [recipe_name, setRecipeName] = useState<string | undefined>(initial_recipe_info.name);
-	const [recipe_short_description, setRecipeShortDescription] = useState<string | undefined>(initial_recipe_info.short_description);
-	const [recipe_description, setRecipeDescription] = useState<string | undefined>(initial_recipe_info.description);
-	const [recipe_ingredients, setRecipeIngredients] = useState<string | undefined>(initial_recipe_info.ingredients);
+	const [recipe_name, setRecipeName] = useState<string | undefined>(initial_recipe_info?.name);
+	const [recipe_short_description, setRecipeShortDescription] = useState<string | undefined>(initial_recipe_info?.short_description);
+	const [recipe_description, setRecipeDescription] = useState<string | undefined>(initial_recipe_info?.description);
+	const [recipe_ingredients, setRecipeIngredients] = useState<string | undefined>(initial_recipe_info?.ingredients);
 
 	const [recipe_name_length, setRecipeNameLength] = useState<number>(recipe_name ? recipe_name.length : 0);
 	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(recipe_short_description ? recipe_short_description.length : 0);
 	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(recipe_description ? recipe_description.length : 0);
 
-	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients?.length > 0 ? recipe_ingredients.split(",").length > 0 : false);
+	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
 	const [editing_in_progress, setEditingState] = useState<boolean>(false);
 
@@ -166,7 +174,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		}
 
 
-		const initial_ingredients_list = recipe_ingredients.split(",");
+		const initial_ingredients_list = recipe_ingredients!.split(",");
 		const input_container = document.querySelector("div.input_wrapper > div.input_container");
 
 		for (let counter = 0; counter < initial_ingredients_list.length; counter++) {
