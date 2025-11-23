@@ -105,7 +105,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		(document.querySelector("input[id='name']") as HTMLInputElement)!.value = initial_name;
 		(document.querySelector("input[id='short_description']") as HTMLInputElement)!.value = initial_short_description;
 		(document.querySelector("textarea[id='description']") as HTMLInputElement)!.value = initial_description;
-		
+
 
 		setRecipeName(initial_name);
 		setRecipeDescription(initial_description);
@@ -231,7 +231,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			<form onSubmit={onSubmitHandler}>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="name"><span>{t("addRecipe.name")}</span></label>
+						<label htmlFor="name"><span>{t("recipeForm.name")}</span></label>
 						<span className="character_count">
 							{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
 						</span>
@@ -240,7 +240,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 						type="text" 
 						id="name" 
 						defaultValue={initial_name}
-						placeholder={t("addRecipe.namePlaceholder")} 
+						placeholder={t("recipeForm.namePlaceholder")} 
 						onChange={onNameOrDescriptionChangeHandler} 
 						autoComplete="off" 
 						maxLength={150} 
@@ -248,7 +248,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 					/>
 				</div>
 				<div className="input_wrapper">
-					<label><span>{t("addRecipe.ingredients")}</span></label>
+					<label><span>{t("recipeForm.ingredients")}</span></label>
 					<div className="input_container">
 						{initial_ingredients.split(",").map((ingredient: any, index: any) => 
 							<div key={index} className="ingredient_container initial">
@@ -256,12 +256,12 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 								<button type="button" onClick={removeInputField}>X</button>
 							</div>
 						)}
-						<button type="button" id="add_ingredient" onClick={addInputField}>{t("addRecipe.addIngredient")}</button>
+						<button type="button" id="add_ingredient" onClick={addInputField}>{t("recipeForm.addIngredient")}</button>
 					</div>
 				</div>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="short_description"><span>{t("addRecipe.shortDescription")}</span></label>
+						<label htmlFor="short_description"><span>{t("recipeForm.shortDescription")}</span></label>
 						<span className="character_count">
 							{recipe_short_description_length} / {document.querySelector("input#short_description")?.getAttribute("maxLength")}
 						</span>
@@ -270,7 +270,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 						type="text" 
 						id="short_description" 
 						defaultValue={initial_short_description}
-						placeholder={t("addRecipe.shortDescriptionPlaceholder")} 
+						placeholder={t("recipeForm.shortDescriptionPlaceholder")} 
 						onChange={onNameOrDescriptionChangeHandler} 
 						autoComplete="off"
 						maxLength={300}
@@ -279,7 +279,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 				</div>
 				<div className="input_container">
 					<div className="label_wrapper">
-						<label htmlFor="description"><span>{t("addRecipe.additionalInfo")}</span></label>
+						<label htmlFor="description"><span>{t("recipeForm.additionalInfo")}</span></label>
 						<span className="character_count">
 							{recipe_description_length} / {document.querySelector("textarea#description")?.getAttribute("maxLength")}
 						</span>
@@ -298,9 +298,9 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 					/>
 				</div>
 				<div className="buttons_container">
-					<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("clearFields")}</button>
+					<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
 					<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || editing_in_progress}>
-						{editing_in_progress ? <LoadingSpinner /> : <>{t("addRecipe.buttonText")}</>}
+						{editing_in_progress ? <LoadingSpinner /> : <>{t("recipeForm.editRecipeButton")}</>}
 					</button>
 				</div>
 			</form>
