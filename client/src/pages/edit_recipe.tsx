@@ -7,9 +7,9 @@ import axios from '../api/axios.ts'
 
 import LoadingSpinner from "../components/LoadingSpinnerInline.tsx"
 
-import "../style/add_recipe_page.css"
-import "../style/tablet/add_recipe_page.css"
-import "../style/mobile/add_recipe_page.css"
+import "../style/add_edit_recipe_page.css"
+import "../style/tablet/add_edit_recipe_page.css"
+import "../style/mobile/add_edit_recipe_page.css"
 
 interface props {
 	setNotificationMessage: Function,
