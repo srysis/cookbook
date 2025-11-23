@@ -181,7 +181,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 			if (response.data.success) {
 				setAddingState(false);
 				setNotificationType("success");
-				setNotificationMessage("Recipe was successfully added");
+				setNotificationMessage(t("success.added"));
 				navigate(`/recipe/${response.data.inserted_ID}`)
 			}
 		})
