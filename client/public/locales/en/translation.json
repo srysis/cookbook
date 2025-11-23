@@ -24,8 +24,8 @@
 		"noRecipeFound": "Recipe with given ID does not exist",
 		"unownedRecipe": "This recipe does not belong to you"
 	},
-	"addRecipe": {
-		"title": "Add a new recipe",
+	"addRecipeTitle": "Add a new recipe",
+	"recipeForm": {
 		"name": "Recipe name*",
 		"namePlaceholder": "Name your recipe",
 		"ingredients": "Ingredients(at least one)",
@@ -34,7 +34,8 @@
 		"shortDescriptionPlaceholder": "Give your recipe a brief description",
 		"additionalInfo": "Additional information(optional)",
 		"additionalInfoPlaceholder": "Any additional information you want to provide (e.g. cooking order, tips, recommendations)",
-		"buttonText": "Add"
+		"addRecipeButton": "Add",
+		"editRecipeButton": "Edit"
 	},
 	"deleteRecipe": {
 		"title": "Are you sure?",
@@ -49,6 +50,7 @@
 	},
 	"registerTip": "Don't have an account yet? <1>Register now!</1>",
 	"clearFields": "Clear fields",
+	"resetFields": "Reset fields",
 	"matchingRecipeTip": "You can cook this!",
 	"noInformationGiven": "No additional information was given."
 }

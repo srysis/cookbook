@@ -24,7 +24,8 @@
 		"noRecipeFound": "Recept s daným ID neexistuje",
 		"unownedRecipe": "Tento recept neni váš"
 	},
-	"addRecipe": {
+	"addRecipeTitle": "Přidat nový recept",
+	"recipeForm": {
 		"title": "Přidat nový recept",
 		"name": "Název receptu*",
 		"namePlaceholder": "Pojmenujte svůj recept",
@@ -34,7 +35,8 @@
 		"shortDescriptionPlaceholder": "Stručně popište svůj recept",
 		"additionalInfo": "Doplňující informace(volitelné)",
 		"additionalInfoPlaceholder": "Veškeré další informace, které chcete poskytnout(např. pořadí vaření, tipy, doporučení)",
-		"buttonText": "Přidat"
+		"addRecipeButton": "Přidat",
+		"editRecipeButton": "Upravit"
 	},
 	"deleteRecipe": {
 		"title": "Jste si jistý?",
@@ -49,6 +51,7 @@
 	},
 	"registerTip": "Ještě nemáte účet? <1>Zaregistrujte se nyní!</1>",
 	"clearFields": "Vymazat pole",
+	"resetFields": "Resetovat pole",
 	"matchingRecipeTip": "Můžete to uvařit!",
 	"noInformationGiven": "Nebyly poskytnuty žádné další informace."
 }

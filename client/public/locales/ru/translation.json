@@ -24,8 +24,8 @@
 		"noRecipeFound": "Рецепта с таким ID не существует",
 		"unownedRecipe": "Этот рецепт не принадлежит вам"
 	},
+	"addRecipeTitle": "Добавить рецепт",
 	"addRecipe": {
-		"title": "Добавить рецепт",
 		"name": "Название рецепта*",
 		"namePlaceholder": "Дайте название вашему рецепту",
 		"ingredients": "Ингридиенты(минимум один)",
@@ -34,7 +34,8 @@
 		"shortDescriptionPlaceholder": "Кратко опишите ваш рецепт",
 		"additionalInfo": "Дополнительная информация(опционально)",
 		"additionalInfoPlaceholder": "Любая дополнительная информация, которую вы хотели бы предоставить (напр. порядок готовки, советы, рекоменданции)",
-		"buttonText": "Добавить"
+		"addRecipeButton": "Добавить",
+		"editRecipeButton": "Изменить"
 	},
 	"deleteRecipe": {
 		"title": "Вы уверены?",
@@ -49,6 +50,7 @@
 	},
 	"registerTip": "У вас ещё нет учётной записи? <1>Зарегистрируйтесь сейчас!</1>",
 	"clearFields": "Очистить поля",
+	"resetFields": "Сбросить поля",
 	"matchingRecipeTip": "Вы можете это приготовить!",
 	"noInformationGiven": "Нет дополнительной информации."
 }
