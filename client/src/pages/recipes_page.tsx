@@ -54,7 +54,7 @@ function RecipesPage() {
 							<Link to={`/add_recipe`}></Link>
 						</div>
 						<div className="content">
-							<p>+ {t('addRecipe.title')}</p>
+							<p>+ {t('addRecipeTitle')}</p>
 						</div>
 					</div>
 				</div>
