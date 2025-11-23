@@ -42,6 +42,10 @@
 		"addRecipeButton": "Add",
 		"editRecipeButton": "Edit"
 	},
+	"recipeOptions": {
+		"edit": "Edit",
+		"delete": "Delete" 
+	},
 	"deleteRecipe": {
 		"title": "Are you sure?",
 		"confirm": "Yes",

@@ -43,6 +43,10 @@
 		"addRecipeButton": "Přidat",
 		"editRecipeButton": "Upravit"
 	},
+	"recipeOptions": {
+		"edit": "Upravit",
+		"delete": "Vymazat" 
+	},
 	"deleteRecipe": {
 		"title": "Jste si jistý?",
 		"confirm": "Ano",

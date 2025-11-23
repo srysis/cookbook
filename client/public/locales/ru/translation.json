@@ -42,6 +42,10 @@
 		"addRecipeButton": "Добавить",
 		"editRecipeButton": "Изменить"
 	},
+	"recipeOptions": {
+		"edit": "Редактировать",
+		"delete": "Удалить" 
+	},
 	"deleteRecipe": {
 		"title": "Вы уверены?",
 		"confirm": "Да",
