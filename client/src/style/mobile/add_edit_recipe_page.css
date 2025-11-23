@@ -1,5 +1,5 @@
 @media screen and (max-width: 600px) {
-	section#add_recipe {
+	section#add_recipe, section#edit_recipe {
 		padding: 10px 2vw;
 
 		form {

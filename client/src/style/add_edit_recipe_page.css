@@ -1,4 +1,4 @@
-section#add_recipe {
+section#add_recipe, section#edit_recipe {
 	border-radius: var(--border-radius);
 	box-shadow: var(--box-shadow);
 	text-align: left;

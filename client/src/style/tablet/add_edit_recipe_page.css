@@ -1,5 +1,5 @@
 @media screen and (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
-	section#add_recipe {
+	section#add_recipe, section#edit_recipe {
 		form {
 			div.input_wrapper {
 				div.input_container {
