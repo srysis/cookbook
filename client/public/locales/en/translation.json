@@ -16,6 +16,11 @@
 		"passwordNote": "<0>Password must:</0><1>Be 8 to 24 characters long</1><2>Contain at least one uppercase letter and a number</2>",
 		"matchingPasswordNote": "<0>Must match the password</0>"
 	},
+	"success": {
+		"added": "Recipe was successfully added.",
+		"deleted": "Recipe was successfully deleted.",
+		"updated": "Recipe was successfully updated."
+	},
 	"error": {
 		"invalidCredentials": "Invalid username or password",
 		"usernameTaken": "Username is taken",

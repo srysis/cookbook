@@ -16,6 +16,11 @@
 		"passwordNote": "<0>Heslo musí:</0><1>Mít délku 8 až 24 znaků</1>Obsahovat alespoň jedno velké písmeno a číslici</2>",
 		"matchingPasswordNote": "<0>Musí odpovídat heslu</0>"
 	},
+	"success": {
+		"added": "Recept byl úspěšně přidán.",
+		"deleted": "Recept byl úspěšně smazán.",
+		"updated": "Recept byl úspěšně aktualizován."
+	},
 	"error": {
 		"invalidCredentials": "Neplatné uživatelské jméno nebo heslo",
 		"usernameTaken": "Uživatelské jméno je obsazeno",
