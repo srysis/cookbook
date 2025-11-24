@@ -373,7 +373,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 						/>
 					</div>
 					<div className="buttons_container">
-						<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
+						<button type="button" disabled={!recipe_has_changed || editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
 						<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || !recipe_has_changed || editing_in_progress}>
 								{editing_in_progress ? <LoadingSpinnerInline /> : <>{t("recipeForm.editRecipeButton")}</>}
 						</button>
