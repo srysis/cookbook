@@ -54,6 +54,8 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	// due to the input field not being present in the initial render
 	const [recipe_name_max_length, setRecipeNameMaxLength] = useState<number>(0);
 
+	const [recipe_has_changed, setRecipeHasChanged] = useState<boolean>(false);
+
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
 	const [editing_in_progress, setEditingState] = useState<boolean>(false);
@@ -114,6 +116,10 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			setRecipeNameMaxLength(document.querySelector("input#name")?.getAttribute("maxLength"));
 		}
 	}, [has_state_data])
+
+	useEffect(() => {
+		setRecipeHasChanged(((recipe_name !== initial_recipe_info.name) || (recipe_short_description !== initial_recipe_info.short_description) || (recipe_description !== initial_recipe_info.description)) ? true : false);
+	}, [recipe_name, recipe_short_description, recipe_description]);
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -368,8 +374,8 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 					</div>
 					<div className="buttons_container">
 						<button type="button" disabled={editing_in_progress} onClick={() => resetFields()}>{t("resetFields")}</button>
-						<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || editing_in_progress}>
-							{editing_in_progress ? <LoadingSpinnerInline /> : <>{t("recipeForm.editRecipeButton")}</>}
+						<button type="submit" disabled={!recipe_name || !recipe_short_description || !doIngredientsExist || !recipe_has_changed || editing_in_progress}>
+								{editing_in_progress ? <LoadingSpinnerInline /> : <>{t("recipeForm.editRecipeButton")}</>}
 						</button>
 					</div>
 				</form>
