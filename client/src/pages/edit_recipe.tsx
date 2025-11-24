@@ -50,6 +50,10 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(recipe_short_description ? recipe_short_description.length : 0);
 	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(recipe_description ? recipe_description.length : 0);
 
+	// changing the state below forces a re-render that fixes the bug with input field 'maxLength' value being 'null' 
+	// due to the input field not being present in the initial render
+	const [recipe_name_max_length, setRecipeNameMaxLength] = useState<number>(0);
+
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
 	const [editing_in_progress, setEditingState] = useState<boolean>(false);
@@ -103,6 +107,11 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 				navigate('/recipes');
 			})
+		} 
+
+		if (has_state_data) {
+			// change state to force a re-render
+			setRecipeNameMaxLength(document.querySelector("input#name")?.getAttribute("maxLength"));
 		}
 	}, [has_state_data])
 
@@ -293,7 +302,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 						<div className="label_wrapper">
 							<label htmlFor="name"><span>{t("recipeForm.name")}</span></label>
 							<span className="character_count">
-								{recipe_name_length} / {document.querySelector("input#name")?.getAttribute("maxLength")}
+								{recipe_name_length} / {recipe_name_max_length}
 							</span>
 						</div>
 						<input 
