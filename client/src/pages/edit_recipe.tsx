@@ -59,6 +59,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const [recipe_has_changed, setRecipeHasChanged] = useState<boolean>(false);
 	const [ingredient_was_added, setIngredientWasAdded] = useState<boolean>(false);
 	const [initial_ingredient_was_changed, setInitialIngredientWasChanged] = useState<boolean>(false);
+	const [initial_ingredient_was_deleted, setInitialIngredientWasDeleted] = useState<boolean>(false);
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
@@ -126,8 +127,9 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 							(recipe_short_description !== initial_recipe_info.short_description) || 
 							(recipe_description !== initial_recipe_info.description) || 
 							ingredient_was_added ||
-							initial_ingredient_was_changed) ? true : false);
-	}, [recipe_name, recipe_short_description, recipe_description, ingredient_was_added, initial_ingredient_was_changed]);
+							initial_ingredient_was_changed ||
+							initial_ingredient_was_deleted) ? true : false);
+	}, [recipe_name, recipe_short_description, recipe_description, ingredient_was_added, initial_ingredient_was_changed, initial_ingredient_was_deleted]);
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -168,12 +170,18 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 		const ingredient_containers: NodeListOf<HTMLElement> = document.querySelectorAll("div.ingredient_container");
 
+		const initial_ingredient_containers: NodeListOf<HTMLElement> = document.querySelectorAll("div.ingredient_container.initial");
+
 		if (ingredient_containers.length == 0) {
 			setIngredientsExist(false);
 		}
 
-		if (ingredient_containers.length <= recipe_ingredients!.split(",").length) {
+		if (ingredient_containers.length <= initial_ingredients_list.length) {
 			setIngredientWasAdded(false);
+		}
+
+		if (initial_ingredient_containers.length <= initial_ingredients_list.length) {
+			setInitialIngredientWasDeleted(true);
 		}
 	}
 
@@ -240,6 +248,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		}
 
 		setInitialIngredientWasChanged(false);
+		setInitialIngredientWasDeleted(false);
 		setIngredientWasAdded(false);
 	}
 
