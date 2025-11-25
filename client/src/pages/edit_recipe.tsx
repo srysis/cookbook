@@ -55,6 +55,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const [recipe_name_max_length, setRecipeNameMaxLength] = useState<number>(0);
 
 	const [recipe_has_changed, setRecipeHasChanged] = useState<boolean>(false);
+	const [ingredient_was_added, setIngredientWasAdded] = useState<boolean>(false);
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
@@ -118,8 +119,11 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	}, [has_state_data])
 
 	useEffect(() => {
-		setRecipeHasChanged(((recipe_name !== initial_recipe_info.name) || (recipe_short_description !== initial_recipe_info.short_description) || (recipe_description !== initial_recipe_info.description)) ? true : false);
-	}, [recipe_name, recipe_short_description, recipe_description]);
+		setRecipeHasChanged(((recipe_name !== initial_recipe_info.name) || 
+							(recipe_short_description !== initial_recipe_info.short_description) || 
+							(recipe_description !== initial_recipe_info.description) || 
+							ingredient_was_added) ? true : false);
+	}, [recipe_name, recipe_short_description, recipe_description, ingredient_was_added]);
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -149,13 +153,23 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		if (!doIngredientsExist) {
 			setIngredientsExist(true);
 		}
+
+		if (!ingredient_was_added) {
+			setIngredientWasAdded(true);
+		}
 	}
 
 	function removeInputField(event: any) {
 		event.target.parentElement.remove();
 
-		if (document.querySelectorAll("div.ingredient_container").length == 0) {
+		const ingredient_containers: NodeListOf<HTMLElement> = document.querySelectorAll("div.ingredient_container");
+
+		if (ingredient_containers.length == 0) {
 			setIngredientsExist(false);
+		}
+
+		if (ingredient_containers.length <= recipe_ingredients.split(",").length) {
+			setIngredientWasAdded(false);
 		}
 	}
 
@@ -221,6 +235,8 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		if (initial_ingredients_list.length) {
 			setIngredientsExist(true);
 		}
+
+		setIngredientWasAdded(false);
 	}
 
 	function onInputHandler(event: any) {
