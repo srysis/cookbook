@@ -46,6 +46,8 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 	const [recipe_description, setRecipeDescription] = useState<string | undefined>(initial_recipe_info?.description);
 	const [recipe_ingredients, setRecipeIngredients] = useState<string | undefined>(initial_recipe_info?.ingredients);
 
+	const initial_ingredients_list = recipe_ingredients!.split(",");
+
 	const [recipe_name_length, setRecipeNameLength] = useState<number>(recipe_name ? recipe_name.length : 0);
 	const [recipe_short_description_length, setRecipeShortDescriptionLength] = useState<number>(recipe_short_description ? recipe_short_description.length : 0);
 	const [recipe_description_length, setRecipeDescriptionLength] = useState<number>(recipe_description ? recipe_description.length : 0);
@@ -56,6 +58,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 	const [recipe_has_changed, setRecipeHasChanged] = useState<boolean>(false);
 	const [ingredient_was_added, setIngredientWasAdded] = useState<boolean>(false);
+	const [initial_ingredient_was_changed, setInitialIngredientWasChanged] = useState<boolean>(false);
 
 	const [doIngredientsExist, setIngredientsExist] = useState<boolean>(recipe_ingredients!.length > 0 ? recipe_ingredients!.split(",").length > 0 : false);
 
@@ -114,7 +117,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 
 		if (has_state_data) {
 			// change state to force a re-render
-			setRecipeNameMaxLength(document.querySelector("input#name")?.getAttribute("maxLength"));
+			setRecipeNameMaxLength((document.querySelector("input#name")?.getAttribute("maxLength")) as any);
 		}
 	}, [has_state_data])
 
@@ -122,8 +125,9 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 		setRecipeHasChanged(((recipe_name !== initial_recipe_info.name) || 
 							(recipe_short_description !== initial_recipe_info.short_description) || 
 							(recipe_description !== initial_recipe_info.description) || 
-							ingredient_was_added) ? true : false);
-	}, [recipe_name, recipe_short_description, recipe_description, ingredient_was_added]);
+							ingredient_was_added ||
+							initial_ingredient_was_changed) ? true : false);
+	}, [recipe_name, recipe_short_description, recipe_description, ingredient_was_added, initial_ingredient_was_changed]);
 
 	function addInputField(event: any) {
 		const ingredient_container: HTMLElement = document.createElement('div');
@@ -168,7 +172,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			setIngredientsExist(false);
 		}
 
-		if (ingredient_containers.length <= recipe_ingredients.split(",").length) {
+		if (ingredient_containers.length <= recipe_ingredients!.split(",").length) {
 			setIngredientWasAdded(false);
 		}
 	}
@@ -206,8 +210,6 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			ingredient_container.remove();
 		}
 
-
-		const initial_ingredients_list = recipe_ingredients!.split(",");
 		const input_container = document.querySelector("div.input_wrapper > div.input_container");
 
 		for (let counter = 0; counter < initial_ingredients_list.length; counter++) {
@@ -219,6 +221,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			input_field_HTML.setAttribute("name", "ingredient");
 			input_field_HTML.classList.add("ingredient");
 			input_field_HTML.addEventListener('keydown', onIngredientKeyDownHandler);
+			input_field_HTML.addEventListener('change', onInitialIngredientChangeHandler);
 			input_field_HTML.setAttribute("value", initial_ingredients_list[counter]);
 
 			const delete_input_field_button_HTML: HTMLButtonElement = document.createElement('button');
@@ -236,6 +239,7 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			setIngredientsExist(true);
 		}
 
+		setInitialIngredientWasChanged(false);
 		setIngredientWasAdded(false);
 	}
 
@@ -271,6 +275,12 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 			default:
 				console.error("Unexpected value");
 				break;
+		}
+	}
+
+	function onInitialIngredientChangeHandler(event: any) {
+		if (!initial_ingredients_list.includes(event.target.value)) {
+			setInitialIngredientWasChanged(true);
 		}
 	}
 
@@ -343,7 +353,14 @@ function EditRecipe({setNotificationMessage, setNotificationType}: props) {
 						<div className="input_container">
 							{recipe_ingredients?.split(",").map((ingredient: any, index: any) => 
 								<div key={index} className="ingredient_container initial">
-									<input type="text" name="ingredient" className="ingredient" defaultValue={ingredient} onKeyDown={onIngredientKeyDownHandler} />
+									<input 
+										type="text" 
+										name="ingredient" 
+										className="ingredient" 
+										defaultValue={ingredient} 
+										onKeyDown={onIngredientKeyDownHandler} 
+										onChange={onInitialIngredientChangeHandler} 
+									/>
 									<button type="button" onClick={removeInputField}>X</button>
 								</div>
 							)}
