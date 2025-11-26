@@ -142,6 +142,7 @@ function AddRecipe({setNotificationMessage, setNotificationType}: props) {
 			case "description":
 				setRecipeDescription(event.target.value);
 				setRecipeDescriptionLength(event.target.value.length);
+				window.scrollTo(0, event.target.scrollHeight);
 				break;
 			case "short_description":
 				setRecipeShortDescription(event.target.value);
