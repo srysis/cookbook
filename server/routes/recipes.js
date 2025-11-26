@@ -67,7 +67,7 @@ router.post('/recipe', authenticator, (request, response) => {
 
 	const capitalized_name = name.charAt(0).toUpperCase() + name.slice(1);
 
-	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `short_description`, `ingredients`, `made_by`) VALUES ('" + capitalized_name + "', '" + description + "', '" + short_description + "', '" + ingredients + "', '" + user_id + "');"
+	const add_recipe_query = "INSERT INTO `recipes` (`name`, `description`, `short_description`, `ingredients`, `made_by`) VALUES ('" + capitalized_name.replace(/'/g, "\\'") + "', '" + description.replace(/'/g, "\\'") + "', '" + short_description.replace(/'/g, "\\'") + "', '" + ingredients + "', '" + user_id + "');"
 
 	database.query(add_recipe_query, (error, data) => {
 		if (error) return response.json(error);
